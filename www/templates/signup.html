@@ -1,0 +1,51 @@
+<ion-view view-title="Sign Up">
+    <ion-content>
+        <div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="firstname" type="text" class="validate" ng-model="user.firstname">
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="lastname" type="text" class="validate" ng-model="user.lastname">
+                    <label for="lastname">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="username" type="text" class="validate" ng-model="user.username" ng-blur="checkUniqueUser()"   >
+                    <label for="username"  data-success={{message}} >User Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <input name="group1" type="radio" id="test1" checked ng-model="user.gender" value="male" />
+                <label for="test1">Male</label>
+            </div>
+            <div class="row">
+                <input name="group1" type="radio" id="test2" ng-model="user.gender" value="female" />
+                <label for="test2">Female</label>
+            </div>
+        </div>
+        <div class="row">
+            <input name="group1" type="radio" id="test3" ng-model="user.gender" value="others" />
+            <label for="test3">Others</label>
+        </div>
+        <div class="row">
+            <div class="input-field inline">
+                <input id="age" type="number" class="validate" ng-model="user.age" ng-change="validateForAge()">
+                <label for="age">Age</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <button class="waves-effect waves-light btn" ng-click=signup()><i class="material-icons left"></i>Sign Up</button>
+            </div>
+        </div>
+
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>
