@@ -16,14 +16,16 @@ angular.module('fettleflingdb', ['ngCordova'])
             },
 
             checkLogin: function (username) {
-                console.log($cordovaToast);
+               
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT * FROM `users` where username="' + username + '"', [], function (tx, results) {
                         if (results.rows.length == 1) {
                             $cordovaToast.showLongBottom('You are logged in !').then(function (success) {
+                                console.log("Toast is shown !");
                                 // success
                             }, function (error) {
                                 // error
+                                 console.log("Toast is not shown !");
                             });
 
                         }
