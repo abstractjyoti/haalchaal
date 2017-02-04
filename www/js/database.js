@@ -5,7 +5,7 @@ db.transaction(function (tx) {
     // tx.executeSql('drop table users');
 });
 
-angular.module('fettleflingdb', [])
+angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast) {
         return {
             insertUser: function (userinfo) {
@@ -16,18 +16,25 @@ angular.module('fettleflingdb', [])
             },
 
             checkLogin: function (username) {
-
+                $cordovaToast
+                    .show('Here is a message', 'long', 'center')
+                    .then(function (success) {
+                        // success
+                    }, function (error) {
+                        // error
+                    });
+                console.log("checkLogin");
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT * FROM `users` where username="' + username + '"', [], function (tx, results) {
+                        console.log($cordovaToast.show("Here's a message", 'long', 'center'));
                         if (results.rows.length == 1) {
                             $cordovaToast
-                                .show("Here's a message", 'long', 'center')
+                                .show('Here is a message', 'long', 'center')
                                 .then(function (success) {
-                                    console.log('Success');
+                                    // success
                                 }, function (error) {
-                                    console.log('Error');
+                                    // error
                                 });
-
                         }
 
                     }, null);

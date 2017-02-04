@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout,MyDatabase) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -28,14 +28,15 @@ angular.module('starter.controllers', [])
     $scope.login = function () {
         $scope.modal.show();
     };
-     $scope.user={};
-        $scope.user.username=""
+    $scope.user = {};
+    $scope.user.username = ""
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-       
-     MyDatabase.checkLogin($scope.user.username);
-         
+       //  $cordovaToast.show('This might take several minutes, please hold on...', 'long', 'bottom');
+
+       MyDatabase.checkLogin($scope.user.username);
+
     };
 })
 
@@ -70,11 +71,11 @@ angular.module('starter.controllers', [])
 
 .controller('SignupCtrl', function ($scope, MyDatabase) {
     $scope.user = {};
-    $scope.user.username="";
-    $scope.user.firstname="";
-    $scope.user.lastname="";
-    $scope.user.gender="";
-    $scope.user.age="";
+    $scope.user.username = "";
+    $scope.user.firstname = "";
+    $scope.user.lastname = "";
+    $scope.user.gender = "";
+    $scope.user.age = "";
     $scope.validateForAge = function () {
 
         if ($scope.user.age < 0 || $scope.user.age > 999) {
@@ -85,17 +86,18 @@ angular.module('starter.controllers', [])
 
     }
     $scope.checkUniqueUser = function () {
-       
-        if (! $scope.user.username=="") {
-            
+
+        if (!$scope.user.username == "") {
+
         }
 
 
     }
 
     $scope.signup = function () {
-       
-         MyDatabase.insertUser($scope.user);
+
+        MyDatabase.insertUser($scope.user);
+
     }
 
 

@@ -2,6 +2,8 @@
     "jscodehints.detectedExclusions": [
         "picker.js",
         "C:/xampp/htdocs/haalchaal/gulpfile.js",
-        "C:/xampp/htdocs/haalchaal/www/lib/ionic/js/angular-ui/angular-ui-router.min.js"
+        "C:/xampp/htdocs/haalchaal/www/lib/ionic/js/angular-ui/angular-ui-router.min.js",
+        "C:/xampp/htdocs/haalchaal/www/lib/materialize/js/materialize.js",
+        "C:/xampp/htdocs/haalchaal/www/lib/ionic/js/ionic.js"
     ]
 }
