@@ -1,14 +1,15 @@
 /* Empty. Add your own CSS if you like */
-.images
-{
 
+.images {}
 
-
-}
-.heading
-{
+.heading {
     font-size: 15px !important;
     padding: 5px !important;
-    font-weight: 400 !important;
+    font-weight:500 !important;
+}
 
+.buttonstyle {
+    float: right;
+    margin-top: -20px;
+    margin-right: 1px;
 }

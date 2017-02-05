@@ -72,12 +72,9 @@ angular.module('starter.controllers', [])
      console.log("called controller !");
     $scope.getIqQuestions=function()
     {
-
-        console.log("called method !");
-
-
-
-
+        var random=Math.floor(Math.random() * 5) + 1 
+       console.log(random);
+       
     }
     
     
