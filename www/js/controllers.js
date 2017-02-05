@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ngCordova'])
+angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
 
@@ -11,7 +11,6 @@ angular.module('starter.controllers', ['ngCordova'])
 
     // Form data for the login modal
     $scope.loginData = {};
-
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope
@@ -33,41 +32,57 @@ angular.module('starter.controllers', ['ngCordova'])
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-       //  $cordovaToast.show('This might take several minutes, please hold on...', 'long', 'bottom');
-
-       MyDatabase.checkLogin($scope.user.username);
+        //  $cordovaToast.show('This might take several minutes, please hold on...', 'long', 'bottom');
+        // console.log($cordovaToast);
+        MyDatabase.checkLogin($scope.user.username);
 
     };
 })
 
-.controller('PlaylistsCtrl', function ($scope) {
-    $scope.playlists = [
-        {
-            title: 'Reggae',
-            id: 1
+.controller('PlaylistsCtrl', function ($scope, $cordovaToast) {
+        $scope.playlists = [
+            {
+                title: 'Reggae',
+                id: 1
         },
-        {
-            title: 'Chill',
-            id: 2
+            {
+                title: 'Chill',
+                id: 2
         },
-        {
-            title: 'Dubstep',
-            id: 3
+            {
+                title: 'Dubstep',
+                id: 3
         },
-        {
-            title: 'Indie',
-            id: 4
+            {
+                title: 'Indie',
+                id: 4
         },
-        {
-            title: 'Rap',
-            id: 5
+            {
+                title: 'Rap',
+                id: 5
         },
-        {
-            title: 'Cowbell',
-            id: 6
+            {
+                title: 'Cowbell',
+                id: 6
         }
   ];
-})
+
+    })
+    .controller('OptionsCtrl', function ($scope, MyDatabase) {
+     console.log("called controller !");
+    $scope.getIqQuestions=function()
+    {
+
+        console.log("called method !");
+
+
+
+
+    }
+    
+    
+
+    })
 
 .controller('SignupCtrl', function ($scope, MyDatabase) {
     $scope.user = {};

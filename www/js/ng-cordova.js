@@ -3183,9 +3183,12 @@ angular.module('ngCordova.plugins.file', [])
 
         /*
          listFiles: function (path, dir) {
+
          },
+
          listDir: function (path, dirName) {
          var q = $q.defer();
+
          try {
          $window.resolveLocalFileSystemURL(path, function (fileSystem) {
          fileSystem.getDirectory(dirName, options, function (parent) {
@@ -3207,8 +3210,10 @@ angular.module('ngCordova.plugins.file', [])
          e.message = $cordovaFileError[e.code];
          q.reject(e);
          }
+
          return q.promise;
          },
+
          */
       };
 
