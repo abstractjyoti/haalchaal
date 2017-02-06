@@ -13,8 +13,14 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="username" type="text" class="validate" ng-model="user.username" ng-blur="checkUniqueUser()"   >
-                    <label for="username"  data-success={{message}} >User Name</label>
+                    <input id="username" type="text" class="validate" ng-model="user.username" ng-blur="checkUniqueUser()">
+                    <label for="username" data-success={{message}}>User Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" ng-model="user.password">
+                    <label for="password" data-success={{message}}>Password</label>
                 </div>
             </div>
             <div class="row">

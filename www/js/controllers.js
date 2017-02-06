@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
     $scope.doLogin = function () {
         //  $cordovaToast.show('This might take several minutes, please hold on...', 'long', 'bottom');
         // console.log($cordovaToast);
-        MyDatabase.checkLogin($scope.user.username);
+        MyDatabase.checkLogin($scope.user.username, $scope);
 
     };
 })
@@ -69,19 +69,18 @@ angular.module('starter.controllers', [])
 
     })
     .controller('OptionsCtrl', function ($scope, MyDatabase) {
-     console.log("called controller !");
-    $scope.getIqQuestions=function()
-    {
-        var random=Math.floor(Math.random() * 5) + 1 
-       console.log(random);
-       
-    }
-    
-    
+        console.log("called controller !");
+        $scope.getIqQuestions = function () {
+            var random = Math.floor(Math.random() * 5) + 1
+            console.log(random);
+
+        }
+
+
 
     })
 
-.controller('SignupCtrl', function ($scope, MyDatabase) {
+.controller('SignupCtrl', function ($scope, MyDatabase, $location) {
     $scope.user = {};
     $scope.user.username = "";
     $scope.user.firstname = "";
@@ -100,7 +99,16 @@ angular.module('starter.controllers', [])
     $scope.checkUniqueUser = function () {
 
         if (!$scope.user.username == "") {
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
 
+                    if (results.rows.length > 0) {
+                        $scope.userexists = "User already exists !";
+                        console.log($scope.userexists);
+                    } 
+
+                }, null);
+            });
         }
 
 
@@ -108,7 +116,7 @@ angular.module('starter.controllers', [])
 
     $scope.signup = function () {
 
-        MyDatabase.insertUser($scope.user);
+        MyDatabase.insertUser($scope.user, $scope);
 
     }
 

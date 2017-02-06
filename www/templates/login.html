@@ -4,17 +4,26 @@
        
     </ion-header-bar>
     <ion-content>
-        <form ng-submit="doLogin()">
+        <form >
             <div class="row">
                 <div class="input-field col s12">
                     <input id="username" type="text" class="validate" ng-model="user.username" >
                     <label for="username" data-success={{message}}>User Name</label>
                 </div>
             </div>
+             <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" ng-model="user.password" >
+                    <label for="password" data-success={{message}}>Password</label>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <button type="submit" class="waves-effect waves-light btn" ><i class="material-icons left"></i>login</button>
+                    <button  class="waves-effect waves-light btn" ><i class="material-icons left" ng-click="doLogin()"></i>login</button>
                 </div>
+                <!--<div class="input-field col s6">
+                  <a >forgot password ?</a>
+                </div>-->
             </div>
             </div>
         </form>
