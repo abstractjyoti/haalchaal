@@ -17,6 +17,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(6,'analogy',3)");
     tx.executeSql("insert into questioncategory values(7,'classification',3)");
     tx.executeSql("insert into questioncategory values(8,'logic',3)");
+    tx.executeSql("insert into questioncategory values(9,'personality',3)");
     //QUESTION TABLE DATA
     tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('EXPLORE : DISCOVER','read : skim','research : learn','write : print','think : relate','sleep : wake','research : learn',6)");
     tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('COBBLER : SHOE','jockey : horse','contractor : building','mason : stone','cowboy : boot','potter : paint','contractor : building',6)");
@@ -36,7 +37,15 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values(' Which number should come next in the series<br>1, 3, 6, 10, 15,','8','11','24','21','27','21',8)");
     tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('165135 is to peace as 1215225 is to','lead','love ','loop','castle',null,'love',8)");
     tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Library is to book as book is to','page','copy ','binding','cover',null,'page',8)");
-
+    tx.executeSql("insert into questions(img src="img/1.jpg") values ('What you see first', 'face=1','apple=2','person sitting=3',null,null,9));
+                  
+    tx.executeSql("insert into questions(img src="img/2.jpg") values ('What you see first', 'car=1','Man with binocular=2','letter A=3',null,null,9'));
+    tx.executeSql("insert into questions(img src="img/3.jpg") values ('What you see first', 'Bowling pins=1','footprints=2','nesting dolls=3',null,null,9'));
+    tx.executeSql("insert into questions(img src="img/4.jpg") values ('What you see first', 'apple=1','butterfly=2','knife=3',null,null,9'));
+    tx.executeSql("insert into questions(img src="img/5.jpg") values ('What you see first', 'face=1','dog=2','precipice=3',null,null,9'));
+    tx.executeSql("insert into questions(img src="img/6.jpg") values ('What you see first', 'crocodile=1','mountains and water=2','people in boat=3',null,null,9'));
+    tx.executeSql("insert into questions(img src="img/7.jpg") values ('What you see first', 'whale=1','moon and light on water=2','a person surfing=3',null,null,9'));
+                  
     // tx.executeSql('drop table users');
 });
 
