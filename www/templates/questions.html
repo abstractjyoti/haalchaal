@@ -1,0 +1,47 @@
+<ion-view view-title="Questions">
+    <ion-content>
+        <div ng-if='messagebeforequestion!=""' id="questionmessage">
+
+            <h4 class="questiontext"> {{messagebeforequestion}}</h4>
+
+        </div>
+        <ion-list class="questions">
+            <ion-item ng-repeat="questions in questionarray">
+                <div ng-if="questions.questiontype='img'">
+                    <img src={{questions.question}} ng-if="questions.questiontype='img'" class="questionimg">
+                   <br>
+                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option1!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                        <br>
+                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option2!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                        <br>
+                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option3!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                        <br>
+                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option4!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                        <br>
+                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option5!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $('#questionmessage').show();
+            $('.questions').hide();
+            setTimeout(function () {
+                $(".questiontext").animate({
+                    opacity: 0
+                });
+                $('#questionmessage').hide();
+                $('.questions').show();
+            }, 1000);
+
+        }
+    );
+</script>
