@@ -1,3 +1,4 @@
+var questioncategory = "";
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
@@ -68,15 +69,73 @@ angular.module('starter.controllers', [])
   ];
 
     })
-    .controller('OptionsCtrl', function ($scope, MyDatabase) {
-        console.log("called controller !");
-        $scope.getIqQuestions = function () {
-            var random = Math.floor(Math.random() * 5) + 1
-            console.log(random);
+    .controller('OptionsCtrl', function ($scope, MyDatabase, $location) {
+        $scope.getCatId = function (category) {
+            questioncategory = category;
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM `questioncategory` where catname="' + category + '"', [], function (tx, results) {
+
+                    if (results.rows.length > 0) {
+
+                        $location.path('/app/questions/' + results.rows.item(0).id);
+                        console.log(results.rows.item(0).id);
+                        $scope.$apply();
+                    }
+
+                }, null);
+            });
+
+
 
         }
 
 
+
+
+
+    })
+    .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
+        console.log(questioncategory);
+        $scope.messagebeforequestion = questioncategory = "personality" ? "What you see FIRST" : "";
+        $scope.questionarray = [{}];
+        $scope.answers=[];
+        var getQuestionsById = function () {
+
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT id FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, results) {
+
+                    if (results.rows.length <= 0) {
+                        tx.executeSql('SELECT * FROM `questions` where catid="' + $stateParams.id + '"', [], function (tx, results) {
+                            console.log(results.rows.length);
+
+                            for (var i = 0; i < results.rows.length; i++) {
+                                // console.log(results.rows.item(i));
+                                $scope.questionarray[i] = results.rows.item(i);
+
+
+
+                                console.log($scope.questionarray[i]);
+
+
+                            }
+
+
+
+
+                        }, null);
+
+                    }
+
+
+                }, null);
+            });
+
+
+
+        }
+
+
+        getQuestionsById();
 
     })
 
@@ -105,7 +164,7 @@ angular.module('starter.controllers', [])
                     if (results.rows.length > 0) {
                         $scope.userexists = "User already exists !";
                         console.log($scope.userexists);
-                    } 
+                    }
 
                 }, null);
             });

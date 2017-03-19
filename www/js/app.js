@@ -42,6 +42,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
                 }
             }
         })
+     .state('app.questions', {
+            url: '/questions/:id',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/questions.html',
+                     controller: 'QuestionsCtrl'
+                }
+            }
+        })
         .state('app.login', {
             url: '/login',
             views: {

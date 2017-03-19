@@ -3,10 +3,15 @@ var db = openDatabase('fettle_fling', '1.0', 'Test DB', 2 * 1024 * 1024);
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `users` (id integer primary key AUTOINCREMENT, name varchar,username varchar,gender varchar,age number)');
     // tx.executeSql('drop table users');
+<<<<<<< HEAD
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key, category varchar,type_of_eval varchar)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS `direct_questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,question_type varchar, categoryid integer)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS `combinational` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,question_type varchar, categoryid integer)');
     
+=======
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key, catname varchar,parentid integer)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,explanation varchar,catid integer,questiontype varchar)');
+>>>>>>> origin/master
     // tx.executeSql('drop table users');
 });
 db.transaction(function (tx) {
@@ -15,6 +20,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(1,'cocentration',0)");
     tx.executeSql("insert into questioncategory values(2,'eq','combinational')");
     tx.executeSql("insert into questioncategory values(3,'iq',0)");
+<<<<<<< HEAD
    // tx.executeSql("insert into questioncategory values(4,'nutrition',0)");
     tx.executeSql("insert into questioncategory values(4,'stress',0)");
     tx.executeSql("insert into questioncategory values(5,'analogy',`direct_questions`)");
@@ -45,6 +51,45 @@ db.transaction(function (tx) {
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(7,'Choose the word which is different from the rest.','Walk','Pull','Hear','Jump','Run','Hear','classification',6)");
      tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(8,'Choose the word which is different from the rest.','Teach','Instruct','Educate','Explain','null','Instruct','classification',6)");
  
+=======
+    tx.executeSql("insert into questioncategory values(4,'nutrition',0)");
+    tx.executeSql("insert into questioncategory values(5,'stress',0)");
+    tx.executeSql("insert into questioncategory values(6,'analogy',3)");
+    tx.executeSql("insert into questioncategory values(7,'classification',3)");
+    tx.executeSql("insert into questioncategory values(8,'logic',3)");
+    tx.executeSql("insert into questioncategory values(9,'personality',0)");
+    //QUESTION TABLE DATA
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('EXPLORE : DISCOVER','read : skim','research : learn','write : print','think : relate','sleep : wake','research : learn',6)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('COBBLER : SHOE','jockey : horse','contractor : building','mason : stone','cowboy : boot','potter : paint','contractor : building',6)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Odometer is to mileage as compass is to','speed','hiking','needle','direction',null,'direction',6)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Hand is to ring as head is to','cap','ear','gloves','bat',null,'cap',6)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Cup is to bowl as vacuum cleaner is to','broom','spoon','mat','table',null,'broom',6)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Kiwi','Eagle','Emu','Ostrich',null,'Eagle',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Rigveda','Yajurveda','Atharvaveda','Ayurveda','Samveda','Ayurveda',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Gangtok','Singhbhum','Hyderabad','Chennai','Bhubaneshwar','Singhbhum',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Tailor','Carpenter','Blacksmith','Barber','Engineer','Barber',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Eyes','Ears','Hands','Legs','Nose','Nose',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Volume','Size','Large','Shape','Weight','Large',7)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Walk','Pull','Hear','Jump','Run','Hear',7)");
+    /*  tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Teach','Instruct','Educate','Explain','null','Instruct',7)");*/
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?','100','20','45','50','90','45',8)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('The day before the day before yesterday is three days after Saturday. What day is it today?','Monday','Tuesday','Wednesday','Thursday','Friday','Friday',8)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values(' Which number should come next in the series<br>1, 3, 6, 10, 15,','8','11','24','21','27','21',8)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('165135 is to peace as 1215225 is to','lead','love ','loop','castle',null,'love',8)");
+    tx.executeSql("insert into questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Library is to book as book is to','page','copy ','binding','cover',null,'page',8)");
+    
+    
+    
+    //Personality
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/1.jpg', 'face,1','apple,2','person sitting,3',9,'img')");
+                  
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/2.jpg', 'car,1','Man with binocular,2','letter A,3',9,'img')");
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/3.jpg', 'Bowling pins,1','footprints,2','nesting dolls,3',9,'img')");
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/4.jpg', 'apple,1','butterfly,2','knife,3',9,'img')");
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/5.jpg', 'face,1','dog,2','precipice,3',9,'img')");
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/6.jpg', 'crocodile,1','mountains and water,2','people in boat,3',9,'img')");
+    tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype) values ('img/7.jpg', 'whale,1','moon and light on water,2','a person surfing,3',9,'img')");
+>>>>>>> origin/master
                   
        //iq logic
     
