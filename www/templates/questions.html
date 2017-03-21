@@ -8,18 +8,17 @@
         <ion-list class="questions">
             <ion-item ng-repeat="questions in questionarray">
                 <div ng-if="questions.questiontype='img'">
-                    <img src={{questions.question}} ng-if="questions.questiontype='img'" class="questionimg">
+                    <img src='{{(questions.question.split(";")[1])}}' ng-if="questions.questiontype='img'" class="questionimg">{{(questions.question.split(";")[1])}}
                    <br>
-                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option1!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option1!=null'>{{(questions.option1.split("="))[0]}}</ion-radio>
                         <br>
-                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option2!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option2!=null'>{{(questions.option2.split("="))[0]}}</ion-radio>
                         <br>
-                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option3!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option3!=null'>{{(questions.option3.split("="))[0]}}</ion-radio>
                         <br>
-                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option4!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
+                   <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option4!=null'>{{(questions.option4.split("="))[0]}}</ion-radio>
                         <br>
-                    <ion-radio  value="{{questions.option1}}" ng-model="answers[$index]"  ng-if='questions.option5!=null'>{{(questions.option1.split(","))[0]}}</ion-radio>
-
+                    
                 </div>
             </ion-item>
         </ion-list>

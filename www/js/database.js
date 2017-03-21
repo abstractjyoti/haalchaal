@@ -108,45 +108,49 @@ db.transaction(function (tx) {
      });
     //personality
     db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(1,'What you see first <br>img/1.jpg', 'face=1','apple=2','person sitting=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(2, 'What you see first <br>img/2.jpg', 'car=1','Man with binocular=2','letter A=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(3, 'What you see first <br>img/3.jpg', 'Bowling pins=1','footprints=2','nesting dolls=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(4,'What you see first<br>img/4.jpg', 'apple=1','butterfly=2','knife=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(5, 'What you see first <br>img/5.jpg', 'face=1','dog=2','precipice=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(6, 'What you see first <br>img/6.jpg', 'crocodile=1','mountains and water=2','people in boat=3',null,'text',8)");
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(7,'What you see first <br>img/7.jpg','whale=1','moon and light on water=2','a person surfing=3',null,'text',8)");
+    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(1,'What you see first;img/1.png', 'face=1','apple=2','person sitting=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(2, 'What you see first ;img/2.png', 'car=1','Man with binocular=2','letter A=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(3, 'What you see first ;img/3.png', 'Bowling pins=1','footprints=2','nesting dolls=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(4,'What you see first;img/4.png', 'apple=1','butterfly=2','knife=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(5, 'What you see first ;img/5.png', 'face=1','dog=2','precipice=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(6, 'What you see first ;img/6.png', 'crocodile=1','mountains and water=2','people in boat=3',null,'text',8)");
+     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(7,'What you see first;img/7.png','whale=1','moon and light on water=2','a person surfing=3',null,'text',8)");
     
     //EQ 
-  
+    })
+     db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[8,"You're on an airplane which suddenly hits extremely bad turbulence and begins rocking from side to side. What do you do?", "Continue to read your book or magazine, or watch the movie, paying little attention to the turbulence.","Become wary of an emergency, carefully monitoring the flight attendants and reading the emergency instructions card.","A little of both above.","I’m not sure; I’ve never noticed."]);
+     });
+ db.transaction(function (tx) {
+     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[9,"You've taken a group of 4-year-olds to the park, and one of them starts crying because the others won't play with her. What do you do?", "Stay out of it; let the kids deal with it on their own.","Talk to her and help her to figure out ways in which to get the other kids to play with her.","Tell her in a kind voice not to cry.","Try to distract the crying girl by showing her some other things she could play with."]);
+ });
+     db.transaction(function (tx) {
+     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[10,"Assume you had hoped to get an A in one of your courses, but you have just found out you got a C– on the midterm. What do you do?", "Sketch out a specific plan for ways to improve your grade and resolve to follow through on your plans.","Resolve to do better in the future.","Tell yourself it really doesn't matter much how you do in that particular course, and concentrate instead on other classes where your grades are higher.","Go to the professor and try to talk her into giving you a better grade."]);
     
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["1","You're on an airplane which suddenly hits extremely bad turbulence and begins rocking from side to side. What do you do?", "Continue to read your book or magazine, or watch the movie, paying little attention to the turbulence.","Become wary of an emergency, carefully monitoring the flight attendants and reading the emergency instructions card.","A little of both above.","I’m not sure; I’ve never noticed."]);
+     });
+ db.transaction(function (tx) {
+     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[11,"Imagine you are an insurance salesman calling prospective clients. Fifteen people in a row have hung up on you, and you are getting discouraged. What do you do?", "Call it a day and hope you have better luck tomorrow.","Reassess what you are doing that may be undermining your ability to make a sale.","Try something new on the next call, and keep plugging away.","Consider another line of work."]);
     
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["2","You've taken a group of 4-year-olds to the park, and one of them starts crying because the others won't play with her. What do you do?", "Stay out of it; let the kids deal with it on their own.","Talk to her and help her to figure out ways in which to get the other kids to play with her.","Tell her in a kind voice not to cry.","Try to distract the crying girl by showing her some other things she could play with."]);
+ });
+ db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[12,"You are a manager in an organization that is trying to encourage respect for racial and ethnic diversity. You overhear someone telling a racist joke. What do you do?", "Ignore it—it's only a joke.","Call the person into your office for a reprimand.","Speak up on the spot, saying that such jokes are inappropriate and will not be tolerated in your organization.","Suggest to the person telling the joke he go through a diversity training program."]);
+ });
+     db.transaction(function (tx) {
+   tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[13,"You are trying to calm down a friend who has worked himself up into a fury at a driver in another car who has cut dangerously close in front of him. What do you do?","Tell him to forget it; he`s okay now and it`s no big deal.","Put on one of his favourite tapes and try to distract him.","Join him in putting down the other driver, but exaggerate your reaction.","Tell him about a time something like this happened to you and how you felt as mad as he does now, but then you saw that the other driver was on the way to the hospital emergency room."]); 
+     });
+     db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[14,"You and your boyfriend/girlfriend have gotten into an argument that has escalated into a shouting match. In the heat of the moment, you are both making personal attacks that you don`t really mean. What`s the best thing to do?","Take a 20-minute break and then continue the discussion.","Stop the argument - stay silent, no matter what your partner says.","Say that you're sorry and ask your partner to apologize too.","Stop for a moment, collect your thoughts, and then state your side of the argument as clearly as you can."]);
+     });
     
+     db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[15,"You have been assigned to lead a work group that is trying to come up with a creative solution to a nagging problem at work. What is the first thing you do?","Draw up an agenda and allot time for discussion of each item so you make best use of your time together.","Have people take the time to get to know each other better.","Begin by asking each person for ideas about how to solve the problem, while ideas are fresh.","Start with a brainstorming session, encouraging everyone to say whatever comes to mind, no matter how wild their idea is."]);
+     });
+     db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[16,"Imagine that you have a 5-year-old son who is extremely timid, and has been hypersensitive about—and a bit fearful of—new people and places since he was born. What do you do?","Accept that he has a shy temperament and think of ways to shelter him from situations that would upset him.","Take him to a child psychiatrist for help.","Deliberately expose him to lots of new people and places so he can get over his fear..","Engineer an ongoing series of challenging but manageable experiences that will teach him that he can handle new people and places."]);
     
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["3","Assume you had hoped to get an A in one of your courses, but you have just found out you got a C– on the midterm. What do you do?", "Sketch out a specific plan for ways to improve your grade and resolve to follow through on your plans.","Resolve to do better in the future.","Tell yourself it really doesn't matter much how you do in that particular course, and concentrate instead on other classes where your grades are higher.","Go to the professor and try to talk her into giving you a better grade."]);
-    
-    
-     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["4","Imagine you are an insurance salesman calling prospective clients. Fifteen people in a row have hung up on you, and you are getting discouraged. What do you do?', 'Call it a day and hope you have better luck tomorrow.","Reassess what you are doing that may be undermining your ability to make a sale.","Try something new on the next call, and keep plugging away.","Consider another line of work."]);
-    
-    
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",("5","You are a manager in an organization that is trying to encourage respect for racial and ethnic diversity. You overhear someone telling a racist joke. What do you do?', 'Ignore it—it's only a joke.","Call the person into your office for a reprimand.","Speak up on the spot, saying that such jokes are inappropriate and will not be tolerated in your organization.","Suggest to the person telling the joke he go through a diversity training program."]);
-    
-    
-   tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["6","You are trying to calm down a friend who has worked himself up into a fury at a driver in another car who has cut dangerously close in front of him. What do you do?","Tell him to forget it; he`s okay now and it`s no big deal.","Put on one of his favourite tapes and try to distract him.","Join him in putting down the other driver, but exaggerate your reaction.","Tell him about a time something like this happened to you and how you felt as mad as he does now, but then you saw that the other driver was on the way to the hospital emergency room."]); 
-    
-    
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["7","You and your boyfriend/girlfriend have gotten into an argument that has escalated into a shouting match. In the heat of the moment, you are both making personal attacks that you don`t really mean. What`s the best thing to do?","Take a 20-minute break and then continue the discussion.","Stop the argument - stay silent, no matter what your partner says.","Say that you're sorry and ask your partner to apologize too.","Stop for a moment, collect your thoughts, and then state your side of the argument as clearly as you can."]);
-    
-    
-    
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["8","You have been assigned to lead a work group that is trying to come up with a creative solution to a nagging problem at work. What is the first thing you do?","Draw up an agenda and allot time for discussion of each item so you make best use of your time together.","Have people take the time to get to know each other better.","Begin by asking each person for ideas about how to solve the problem, while ideas are fresh.","Start with a brainstorming session, encouraging everyone to say whatever comes to mind, no matter how wild their idea is."]);
-    
-    
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["9","Imagine that you have a 5-year-old son who is extremely timid, and has been hypersensitive about—and a bit fearful of—new people and places since he was born. What do you do?","Accept that he has a shy temperament and think of ways to shelter him from situations that would upset him.","Take him to a child psychiatrist for help.","Deliberately expose him to lots of new people and places so he can get over his fear..","Engineer an ongoing series of challenging but manageable experiences that will teach him that he can handle new people and places."]);
-    
-    
-    tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(?,?,?,?,?,?,'text',8)",["10","For some time now, you have wanted to return to playing the musical instrument you learned to play when you were younger. You have finally gotten around to practicing again, and want to make the best use of your time. What do you do?","Hold yourself to a strict practice time every day.","Choose pieces that stretch your abilities a bit.","Practice only when you are really in the mood.","Pick pieces that are far beyond your current ability, but that you can master with diligent effort."]);
+     });
+ db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',8)",[17,"For some time now, you have wanted to return to playing the musical instrument you learned to play when you were younger. You have finally gotten around to practicing again, and want to make the best use of your time. What do you do?","Hold yourself to a strict practice time every day.","Choose pieces that stretch your abilities a bit.","Practice only when you are really in the mood.","Pick pieces that are far beyond your current ability, but that you can master with diligent effort."]);
     
     
         

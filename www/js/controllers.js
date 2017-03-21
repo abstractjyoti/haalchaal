@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
         $scope.getCatId = function (category) {
             questioncategory = category;
             db.transaction(function (tx) {
-                tx.executeSql('SELECT * FROM `questioncategory` where catname="' + category + '"', [], function (tx, results) {
+                tx.executeSql('SELECT * FROM `questioncategory` where category="' + category + '"', [], function (tx, results) {
 
                     if (results.rows.length > 0) {
 
@@ -102,10 +102,13 @@ angular.module('starter.controllers', [])
         var getQuestionsById = function () {
 
             db.transaction(function (tx) {
-                tx.executeSql('SELECT id FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, results) {
+                tx.executeSql('SELECT * FROM `questioncategory` where id="' + $stateParams.id + '"', [], function (tx, results) {
+                   
 
-                    if (results.rows.length <= 0) {
-                        tx.executeSql('SELECT * FROM `questions` where catid="' + $stateParams.id + '"', [], function (tx, results) {
+                    if (results.rows.item(0).parentid == 0) {
+                        
+                        tx.executeSql('SELECT * FROM `'+results.rows.item(0).type_of_eval+ '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
+                             console.log(results.rows.item(0));
                             console.log(results.rows.length);
 
                             for (var i = 0; i < results.rows.length; i++) {
