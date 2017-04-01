@@ -96,38 +96,48 @@ angular.module('starter.controllers', [])
     })
     .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
         console.log(questioncategory);
-        $scope.messagebeforequestion = questioncategory = "personality" ? "What you see FIRST" : "";
+        $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
+        // console.log($scope.messagebeforequestion);
         $scope.questionarray = [{}];
-        $scope.answers=[];
+        $scope.answers = {};
+        $scope.display = [];
+        var questioncategory = [];
+
         var getQuestionsById = function () {
 
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM `questioncategory` where id="' + $stateParams.id + '"', [], function (tx, results) {
-                   
 
-                    if (results.rows.item(0).parentid == 0) {
-                        
-                        tx.executeSql('SELECT * FROM `'+results.rows.item(0).type_of_eval+ '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
-                             console.log(results.rows.item(0));
-                            console.log(results.rows.length);
+                    tx.executeSql('SELECT * FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, results) {
+                        if (results.rows.length > 0) {
+                            for (var i = 0; i < results.rows.length; i++)
+                                questioncategory.push({
+                                    id: results.rows.item(i).id,
+                                    category: results.rows.item(i).category,
+                                    scores: 0
+                                });
+                        }
+                    });
+                    tx.executeSql('SELECT * FROM `' + results.rows.item(0).type_of_eval + '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
+                        console.log(results.rows.item(0));
+                        console.log(results.rows.length);
 
-                            for (var i = 0; i < results.rows.length; i++) {
-                                // console.log(results.rows.item(i));
-                                $scope.questionarray[i] = results.rows.item(i);
-
-
-
-                                console.log($scope.questionarray[i]);
-
-
-                            }
+                        for (var i = 0; i < results.rows.length; i++) {
+                            // console.log(results.rows.item(i));
+                            $scope.questionarray[i] = results.rows.item(i);
+                            $scope.display[i] = i == 0 ? true : false;
 
 
 
 
-                        }, null);
 
-                    }
+                        }
+
+
+
+
+                    }, null);
+
 
 
                 }, null);
@@ -139,7 +149,72 @@ angular.module('starter.controllers', [])
 
 
         getQuestionsById();
+        $scope.submit = function () {
+            console.log($scope.answers);
+        };
+        $scope.changequestion = function (index, indextobchanged) {
 
+            if (indextobchanged < $scope.display.length && indextobchanged >= 0) {
+                $scope.display[indextobchanged] = true;
+                $scope.display[index] = false;
+
+            } else
+                $scope.calculateresult();
+        };
+
+        $scope.calculateresult = function () {
+
+
+            for (var i = 0; i < $scope.questionarray.length; i++) {
+                if (questioncategory.length > 0) {
+                    for (var j = 0; j < questioncategory.length; j++) {
+                        if ($scope.questionarray[i].sub_type == questioncategory[j].id)
+                          //  questioncategory[j].scores += $scope.answers[i];
+                            if($scope.answers[i])
+                           questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                    }
+
+                }
+
+            }
+            console.log(questioncategory);
+            
+        };
+
+
+
+        $scope.value = 1.5;
+        $scope.upperLimit = 6;
+        $scope.lowerLimit = 0;
+        $scope.unit = "kW";
+        $scope.precision = 2;
+        $scope.ranges = [
+            {
+                min: 0,
+                max: 1.5,
+                color: '#DEDEDE'
+        },
+            {
+                min: 1.5,
+                max: 2.5,
+                color: '#8DCA2F'
+        },
+            {
+                min: 2.5,
+                max: 3.5,
+                color: '#FDC702'
+        },
+            {
+                min: 3.5,
+                max: 4.5,
+                color: '#FF7700'
+        },
+            {
+                min: 4.5,
+                max: 6.0,
+                color: '#C50200'
+        }
+    ];
     })
 
 .controller('SignupCtrl', function ($scope, MyDatabase, $location) {

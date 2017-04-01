@@ -32,6 +32,14 @@ vertical-align: middle !important;
    transform: scale(1,1);
 
 }
+.questiondiv
+{
+    margin-top: 5% !important;
+
+
+
+
+}
 @keyframes example {
      from {transform: scale(0.5,0.5);
       

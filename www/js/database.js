@@ -2,28 +2,35 @@ var db = openDatabase('fettle_fling', '1.0', 'Test DB', 2 * 1024 * 1024);
 
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `users` (id integer primary key AUTOINCREMENT, name varchar,username varchar,gender varchar,age number)');
-   /* tx.executeSql('drop table users');
+    /* tx.executeSql('drop table users');
     tx.executeSql('drop table questioncategory');
     tx.executeSql('drop table direct_questions');
     tx.executeSql('drop table combinational');
 */
-   
+});
+db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key , category varchar,parentid integer,type_of_eval varchar)');
+
+});
+db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `direct_questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,question_type varchar, categoryid integer)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS `combinational_question` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,question_type varchar, categoryid integer)');
-    
+});
+db.transaction(function (tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `combinational_question` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,que_format varchar,sub_type integer, categoryid integer,que_set integer)');
+});
+
 /*=======
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key, catname varchar,parentid integer)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,explanation varchar,catid integer,questiontype varchar)');
 >>>>>>> origin/master*/
-    // tx.executeSql('drop table users');
+// tx.executeSql('drop table users');
+//});
+db.transaction(function (tx) {
+    tx.executeSql("insert into users(id,name,username,gender,age) values(1,'Jyoti','jp','female',20)");
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into users(name,username,gender,age) values('Jyoti','jp','female',20)");
-})
-db.transaction(function (tx) {
     //user
-      // 
+    // 
     //QUESTIONCATEGORY TABLE DATA
     tx.executeSql("insert into questioncategory values(1,'cocentration',0,'combinational_question')");
     tx.executeSql("insert into questioncategory values(2,'eq',0,'combinational_question')");
@@ -34,10 +41,25 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(6,'classification',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(7,'logic',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(8,'personality',0,'combinational_question')");
-   
+    
+    
+    
+
 });
-  // modified IQ analogy
-     db.transaction(function (tx) {             
+db.transaction(function (tx) {
+    tx.executeSql("insert into questioncategory values(9,'sensitivity',2,'combinational_question')");
+});db.transaction(function (tx) {
+    tx.executeSql("insert into questioncategory values(10,'maturity',2,'combinational_question')");
+});db.transaction(function (tx) {
+    tx.executeSql("insert into questioncategory values(11,'competency',2,'combinational_question')");
+});/*db.transaction(function (tx) {
+    tx.executeSql("insert into questioncategory values(12,'personality',0,'combinational_question')");
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into questioncategory values(13,'personality',0,'combinational_question')");
+});*/
+// modified IQ analogy
+/*   db.transaction(function (tx) {             
       tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(1,'Choose the picture that would go in the empty box so that the two bottom pictures are related in the same way as the top two are related.<br>img/analog1.jpg', 1, 2, 3, 4, null, 1, 'analogy', 5)");   
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(2,'Choose the picture that would go in the empty box so that the two bottom pictures are related in the same way as the top two are related.<br> img/analog2.jpg', 1, 2, 3, 4, null, 4, 'analogy', 5)");   
      tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(3,'The words beside each other are related in the same way as the words in next sequence. For each item, find the word that completes the second word.  candle : hut   lamp : cottage   floodlight : ?' , 'tent',' city', 'dwelling', 'house', null, 'house', 'analogy', 5)");   
@@ -65,7 +87,8 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(7,'classification',3)");
     tx.executeSql("insert into questioncategory values(8,'logic',3)");
     tx.executeSql("insert into questioncategory values(9,'personality',0)");*/
-    //QUESTION TABLE DATA
+//QUESTION TABLE DATA
+/*
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(17,'EXPLORE : DISCOVER','read : skim','research : learn','write : print','think : relate','sleep : wake','research : learn',6)");
     tx.executeSql("insert into direct_questionsid,(question,option1,option2,option3,option4,option5,correctanswer,catid) values(18,'COBBLER : SHOE','jockey : horse','contractor : building','mason : stone','cowboy : boot','potter : paint','contractor : building',6)");
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(19,'Odometer is to mileage as compass is to','speed','hiking','needle','direction',null,'direction',6)");
@@ -79,15 +102,15 @@ db.transaction(function (tx) {
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(27,'Choose the word which is different from the rest.','Volume','Size','Large','Shape','Weight','Large',7)");
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(28,'Choose the word which is different from the rest.','Walk','Pull','Hear','Jump','Run','Hear',7)");
     /*  tx.executeSql("insert into direct_questions(question,option1,option2,option3,option4,option5,correctanswer,catid) values('Choose the word which is different from the rest.','Teach','Instruct','Educate','Explain','null','Instruct',7)");*/
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(29,'At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?','100','20','45','50','90','45',8)");
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(30,'The day before the day before yesterday is three days after Saturday. What day is it today?','Monday','Tuesday','Wednesday','Thursday','Friday','Friday',8)");
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(31,' Which number should come next in the series<br>1, 3, 6, 10, 15,','8','11','24','21','27','21',8)");
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(32,'165135 is to peace as 1215225 is to','lead','love ','loop','castle',null,'love',8)");
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(33,'Library is to book as book is to','page','copy ','binding','cover',null,'page',8)");
-    
- 
-    
-   /* //Personality
+/*  tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(29,'At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?','100','20','45','50','90','45',8)");
+  tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(30,'The day before the day before yesterday is three days after Saturday. What day is it today?','Monday','Tuesday','Wednesday','Thursday','Friday','Friday',8)");
+  tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(31,' Which number should come next in the series<br>1, 3, 6, 10, 15,','8','11','24','21','27','21',8)");
+  tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(32,'165135 is to peace as 1215225 is to','lead','love ','loop','castle',null,'love',8)");
+  tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,catid) values(33,'Library is to book as book is to','page','copy ','binding','cover',null,'page',8)");*/
+
+
+
+/* //Personality
     tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/1.jpg', 'face,1','apple,2','person sitting,3',9,'img')");
                   
     tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/2.jpg', 'car,1','Man with binocular,2','letter A,3',9,'img')");
@@ -97,10 +120,10 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype ) values ('img/6.jpg', 'crocodile,1','mountains and water,2','people in boat,3',9,'img')");
     tx.executeSql("insert into questions(question,option1 ,option2 ,option3,catid,questiontype) values ('img/7.jpg', 'whale,1','moon and light on water,2','a person surfing,3',9,'img')");
 >>>>>>> origin/master*/
-                  
-       //iq logic
-    
-    tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(34,'At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?','100','20','45','50','90','45','logic',7)");
+
+//iq logic
+
+/* tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(34,'At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?','100','20','45','50','90','45','logic',7)");
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(35,'The day before the day before yesterday is three days after Saturday. What day is it today?','Monday','Tuesday','Wednesday','Thursday','Friday','Friday','logic',7)");
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(36,' Which number should come next in the series<br>1, 3, 6, 10, 15,','8','11','24','21','27','21','logic',7)");
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(37,'165135 is to peace as 1215225 is to','lead','love ','loop','castle',null,'love','logic',7)");
@@ -154,17 +177,182 @@ db.transaction(function (tx) {
     
     
         
+});*/
+//EQ QUESTIONS
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [1, " How frequently do you moderately exercise? ", "Daily or more often ", "Once or twice a week ", "Once or twice a month ", "Seldom ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [2, " How often do you get a full, restful night of sleep? ", "Most every night ", "Four to five times a each week ", "Two to three times each week ", "Seldom ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [3, " To what extent is your energy sufficient for our work and daily activities? ", "to a very great extent ", "to some extent ", "to little extent ", "to very little extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [4, " How closely does your weight approach the ideal level? ", "My weight is at the ideal level ", "My weight is close to the idea level ", "My weight is not close to the ideal level ", "I am dangerously overweight (underweight) ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [5, " To what extent do you eat a nutritious diet? ", "to a very great extent ", "to some extent ", "to little extent ", "to very little extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [6, " Which of the following best describes your use of tobacco? ", "In no period of my life have I had the habit of smoking or chewing tobacco. ", "Early in my life for a short period I smoked or chewed tobacco ", "I stopped smoking or chewing tobacco over the past two years ", "I currently smoke or chew tobacco ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [7, " Which of the following best describes your use of alcohol? ","I do not abuse alcohol, and never have. (Abuse is defined as drinking more than two drinks within a short period such as an evening.)","Very occasionally I abuse alcohol. ", "I have a history of abusing alcohol, but am not presently abusing it. ","I am presently abusing alcohol. ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [8, " To what extent do you believe that you have a history of coping well with highly stressful ", "ituations? ", "to a very great extent ", "to a great extent ", "to a little extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [9, "  How confident are you of being able to control your emotions in stressful situations? ", "I never let my emotions run away me. ", "I seldom let my emotions run away with me. ", "I sometimes let my emotions run away with me. ", "I often let my emotions run away with me. ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [10, " When things are not going well, how likely are you to view the situation as being temporary    ", "ather than permanent? ", "very likely ", "likely ", "unlikely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [11, " When something bad happens to you, how likely are you to exaggerate its importance? ", "very unlikely ", "unlikely ", "likely ", "very likely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [12, " When stressed by a complex situation, how likely are you to focus your attention on those  ", "spects of the situation that you can manage? ", "very likely ", "likely ", "unlikely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [13, " When highly stressed, how capable are you of changing your thinking to calm down? ", "very capable ", "capable ", "incapable ", "very incapable ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [14, " When confronted with a stressful situation, how likely are you to wait passively for events to   ", "evelop rather than to take charge? ", "very unlikely ", "unlikely ", "likely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [15, " Which of the following courses of action are you most likely to take when you have become ", "horoughly frustrated? ", "identify an alternate goal and pursue it ", "pursue a relaxing activity ", "withdraw and fell sorry for yourself ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [16, " If you had worn an article of clothing one day and then found it to be flawed, how likely would ", "ou be to return it and ask for a refund? ", "very likely ", "likely ", "unlikely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [17, " When an unexpected, negative event happens to you, how likely are you to actively seek ", "nformation about the event and how to cope with it? ", "very likely ", "likely ", "unlikely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [18, " How much decision-making power so you have in your family? ", "more power than any other member of my family ", "as much power as any other member of my family ", "less power than most members of my family ", "less power than any other member of my family ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [19, " How much decision-making power do you have in your working environment?  (if not working ", "utside the home at present, use your last job as a basis for answering this question.) ", "more power than most members of my work team ", "as much power as any other member of my work team ", "less power than most members of my work team ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [20, " To what extent do you believe that events in your life are merely the result of luck, fate, or ", "hance? ", "to very little extent ", "to little extent ", "to some extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [21, " What is your best guess as to the extent and quality of contact you had with your parent(s) ", "hortly after birth? ", "was given an above average amount of contact by happy parent(s) ", "was given an average amount of contact by happy parent(s) ", "was given an average amount of contact by unhappy (perhaps angry) parent(s) ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [22, " During your early childhood, to what extent was your mother both calm and generally ", "ermissive? ", "to a very great extent ", "to some extent ", "to little extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [23, " How easily do you make friends in a strange situation? ", "very easily ", "easily ", "uneasily ", "very uneasily ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [24, " When highly stressed, how likely are you to ask friends or relatives for help? ", "very likely ", "likely ", "unlikely ", "very unlikely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [25, " In comparison with other people, how likely are you to see others as threatening, ", "ncooperative, or exploitative? ", "highly unlikely ", "unlikely ", "likely ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [26, " How often are you confused about the intentions of others toward you? ", "very infrequently ", "infrequently ", "frequently ", "very frequently ", "", 1]);
 });
 
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [27, " To what extent are you aware of practical, healthy ways of relaxing? ", "to a very great extent ", "to some extent ", "to little extent ", "to very little extent ", "", 1]);
+});
 
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [28, " How frequently do you pursue some highly relaxing practice? ", "daily or more often ", "once or twice a week ", "once or twice a month ", "seldom ", "", 1]);
+});
 
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [29, " How often do you engage in a spiritual practice such as prayer, mediation, or inspirational ", "eading to enrich your interior life? ", "daily or more often ", "once or twice a week ", "once or twice a month ", "", 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [30, " How connected do you feel to your conception of a higher power or to a worthy cause? ", "to a very great extent ", "to some extent ", "to little extent ", "to very little extent ", "", 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [31, " To what extent do you believe your life has purpose? ", "to a very great extent ", "to some extent ", "to little extent ", "to very little extent ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [32, " How much contact do you have with what you would consider a spiritual community? ", "very much ", "much ", "very little ", "none ", "", 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [33, " You have been denied a promotion by the management for which you were eligible. Moreover,one of your juniors has been promoted. You are emotionally upset and feel frustrated. What will you do?  ", "Talk it over with your boss and ask for reconsideration of the management’s decision.|15", "Start abusing the colleague who superseded you.|5", "Move to court and obtain a stay order to get justice.|10", "Identify your shortcomings and try to improve your performance.|20", 11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [34, " A freshly recruited professional graduate joins your organisation as a management trainee. Aftera few weeks, she complains to you that she was not being taken seriously by her subordinates. What will you suggest her?  ", "Ask her to handle the situation herself and not bother you with trivial matters.|5", "Tell her that such behaviour should be ignored.|10", "Ask her to be bold, face the challenge and overcome the problem.|15", "Empathize with her and help her figure out ways to get others to work with her.|20", 9, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [35, " At the workplace, due to some misunderstanding, your colleagues stop talking to you. You areconvinced that there was no fault of yours. How will you react? ", "Wait till they come and start talking to you again.|15", "Take the initiative, go forward and start talking to them.|20", "Let things take their own time to improve.|5", "Ask someone to mediate.|10", 11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [36, " You get into an argument with your colleague and end up attacking him/her personally. Lateryou realize that you never intended to tarnish the image of your colleague. How will you handle such ugly situation? ", "Sit calmly and consider what triggered off the arguments and was it possible to control youranger at that point of time.|20", "Avoid future arguments and leave the room.|15", "Apologise to your colleague for your behaviour.|10", "Continue with the argument till you reach some definite conclusion.|5",10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [37, " Imagine you are an insurance salesperson selling insurance policies. You approach a number ofprospective clients who slam the door on your face and refuse to buy policies. What will you do? ", "Blame yourself and stop work for the day.|5", "Reassess your capabilities as an insurance salesperson.|20", "Come out with fresh strategies to overcome similar situations in future.|15", "Contact the clients again some other day.|10", 11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [38, " When someone directly criticizes your behaviour, how will you behave?", "Tend to close up and stop listening.|10", "Carefully listen to their opinion.|20", "Tend to get upset about it.|5", "Think of ways to change your behaviour.|15",10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [39, " You are on an aircraft and suddenly the air‐hostess announces that it has been hijacked by theterrorists. Everyone is in a state of shock. What will be your reaction? ", "Blame yourself for choosing an inauspicious day for travelling.|5", "Be in emotional control and attend to the instructions of the pilot/air hostess.|20", "Continue to read your magazine and pay little attention to the incident.|15", "Cry out and vow not to travel by air in future.|10",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [40, " Imagine that you are a police officer posted in a sensitive area. You get information of violentethnic clashes between two religious communities in which people have been killed from both sides and property damaged. What action will you take? ", "Decide not to visit the spot personally as there may be a danger to your life.|10", "Relax; this is not the first time riots have taken place.|5", "Try to handle the situation by taking action as per law.|20", "Reach the spot and assuage the feelings of the victims.|15", 9, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [41, " Your grown up daughter starts arguing with you every now and then. She tells you that youcannot impose your old‐fashioned attitudes and outdated values on her. How will you tackle her? ", "Accept her statement in helplessness and take a low profile position in the family.|5", "Send her to a psychologist to learn her adjust with her environment.|10", "Manage your emotions and explain your point of view as patiently as possible.|20", "Talk to her and understand her emotions, beliefs and attitudes.|15", 10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [42, " After  weeks  of  merger  of  two  largest  financial  firms,  hundreds  of  employees  were expected to lose their jobs. You, being the General Manager (HQ), were told to convey to the employee the decision of the management. How will you convey the message? ", "Give a gloomy picture and tell them you have no option but to fire half of them.|5", "Give a bright picture and tell them that the company will be blessed with talented people fromboth firms.|20", "Tell them that you will collect more information to be fair and update them every few days onhow things will take shape.|15", "Announce the decision and let the employees take a decision about what they want.|10",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [43, " You are a professor in a college. While delivering a lecture, a student comments that you havenot prepared the topic properly and you are just passing the time. This has hurt your self esteem. What will be your reaction? ", "Report to the principal of the college about the unruly behavior of the student.|5", "Order the student to leave the classroom at once.|10", "Ask him/her to meet you in your chamber after the class to explain what he/she wants.|15", "Judge the emotions of the class and promise to make amendments accordingly.|20",10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [44, " As CEO of a company, while taking a meeting with the union, one of the union leaders levelsserious allegations of corruption and favoritism against you. How will you react? ", "Continue with the discussion and listen to their demands with a cool head.|20", "Ask union leader to make allegations in writing and offer an impartial enquiry.|15", "Cancel further negotiation and ask the union leader to apologise first.|10", "Leave the room after assigning the responsibility to your subordinate to continue with the|5",10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [45, "You had an argument with your spouse on some trivial family matter and are not on speakingterms for sometime. The situation is causing mental disturbance to both of you. What will you do? ", "Stick to your stand; after all you were never at fault.|5", "Try to break the ice by analysing the reasons for the conflict.|15", "Make first move and ease the situation.|20", "Wait for your spouse to make the first move to restore normalcy.|10",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [46, " You hail from a rural area and take admission in a city college. You find your classmates tauntingyou as you are not smart and are unable to speak good English. How will you manage yourself? ", "Ignore them.|10", "Shout back and tell them to mind their own business.|15", "Leave studies half way and go back to your village.|5", "Accept their challenge and prove that you can match them.|20",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [47, " While speaking to an audience, you feel that:", "It is difficult to convey your speech.|10", "You are partly comfortable in conveying your speech.|15", "You are comfortable in conveying your speech.|20", "You feel that you will do better with some more practice.|5",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [48, "Your friend’s sister, who got married just one year back, is heading for a divorce. She is highlyeducated and economically self dependent. She comes to you for guidance. What will you advise her?  ", "Tell her to go ahead with the divorce as she is a first class MBA and her husband can not takeher for granted|5", "Empathize with her for marring an academically average person.|10", "Advise her to talk to her husband and figure out the reasons behind the mal‐adjustment.|20", "Tell  her  that  academic  qualifications  are  important  but  these  do  not  help  in  leading  a|15",9, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [49, "There is blind girl in your class. She trips on her way out of the class. You see a few of yourfriends making fun of her and laughing at her. What will you do? ", "Laugh along with your friends.|5", "Ignore the incident as they are your friends.|10", "Help the blind girl make her way out of the class room but say nothing to your friends.|15", "Help the girl and then confront your friends for being so insensitive.|20",9, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [50, " While having an argument with someone, if you lose, you:", "Feel totally beaten.|5", "Wait for the next opportunity to beat your opponents.|10", "Winning and losing are part of the game.|15", "Analyse the reasons for the loss.|20",10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [51, "  You are working as HRD General Manager in a large multi‐national company that recruit dozensof fresh MBAs, engineers and other professionals on senior positions every year. This requires time, energy and money. However, you find that 75 percent of the young recruits are leaving the company after around two years of work experience to join more attractive jobs. What will you do? ", "Ignore the trend. There is rampant unemployment and you can find more people lined up tojoin your company.|5", "Try to find out the root cause of their leaving the job and take corrective measures to retainthem as you have already invested in them heavily.|20", "Increase the pay package and lure them in working with you.|15", "Change the selection criteria and recruit people on the basis of their need and requirements.|10",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [52, "You have been involuntarily transferred to a remote project and posted under a new boss.Although you have been given a pay hike and also a promise for promotion in near future yet, you are not comfortableYour family can not shift along with you due to education of your children. You are in a sensitive area and your security is also at risk. You are undergoing a mild level of stress. How will you diffuse the stress? ", "Enjoy. After all there has been a hike in your pay for working in a sensitive area.|15", "Wait. It may turn out to be an opportunity for early promotion.|20", "Lament. Why should such terrible things happen to you only?|10", "Act in haste. Think to resign and find out a new job for you.|5",11, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [53, "You have lived your life for so many years on this earth. How would you like to explain your life atthe moment in one sentence? ", "Successful: Well, I am a contended person who got whatever could make me feel happy.|20", "OK: Well, it’s a mixed experience for me. It’s 50:50.|15", "Comfortable: Well, destiny is in the hand of God. Man is just a puppet.|10", "Uncomfortable: Well, I feel I deserved better but could not get it.|5", 10, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [54, " As an HRD manager you have to recruit a large number of employees for a multinational firm.After the written test and interview you find that most of candidates who qualified are women. What will be your reaction? ", "Hire women employees. They deserve it as they have qualified the selection criteria.|20", "Well it’s a women’s world. Hire them any way.|15", "Hire male and female employees in equal number.|10", "Avoid women employees as they are a liability.|5",9, 1]);
+});
 angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast, $location) {
         return {
             insertUser: function (userinfo, scope) {
                 db.transaction(function (tx) {
                     tx.executeSql('INSERT INTO `users` ( name,username,gender,age) VALUES ("' + userinfo.firstname + " " + userinfo.lastname + '","' + userinfo.username + '","' + userinfo.gender + '",' + userinfo.age + ')');
- $location.path('/app/login');
+                    $location.path('/app/login');
                 });
             },
 
