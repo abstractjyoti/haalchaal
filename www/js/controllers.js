@@ -110,15 +110,26 @@ angular.module('starter.controllers', [])
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM `questioncategory` where id="' + $stateParams.id + '"', [], function (tx, results) {
 
-                    tx.executeSql('SELECT * FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, results) {
-                        if (results.rows.length > 0) {
-                            for (var i = 0; i < results.rows.length; i++)
+                    tx.executeSql('SELECT * FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, result) {
+                        
+                         questioncategory=[];
+                        if (result.rows.length > 0) {
+                           
+                            for (var i = 0; i < result.rows.length; i++)
                                 questioncategory.push({
-                                    id: results.rows.item(i).id,
-                                    category: results.rows.item(i).category,
+                                    id: result.rows.item(i).id,
+                                    category: result.rows.item(i).category,
                                     scores: 0
                                 });
                         }
+                        else
+                             questioncategory.push({
+                                    id: $stateParams.id,
+                                    category:results.rows.item(0).category ,
+                                    scores: 0
+                                });
+                            
+                        
                     });
                     tx.executeSql('SELECT * FROM `' + results.rows.item(0).type_of_eval + '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
                         console.log(results.rows.item(0));
@@ -159,24 +170,33 @@ angular.module('starter.controllers', [])
             if (indextobchanged < $scope.display.length && indextobchanged >= 0) {
                 $scope.display[indextobchanged] = true;
                 $scope.display[index] = false;
+                console.log($scope.answers[index]);
 
             } else
                 $scope.calculateresult();
         };
 
         $scope.calculateresult = function () {
-
+var score=0;
 
             for (var i = 0; i < $scope.questionarray.length; i++) {
-                if (questioncategory.length > 0) {
+                
                     for (var j = 0; j < questioncategory.length; j++) {
+                        if (questioncategory.length > 1) {
                         if ($scope.questionarray[i].sub_type == questioncategory[j].id)
                         //  questioncategory[j].scores += $scope.answers[i];
                             if ($scope.answers[i])
                             questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
                     }
+                        else
+                        {
+                             questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+
+                            }
+                            
 
                 }
+                
 
             }
             console.log(questioncategory);
