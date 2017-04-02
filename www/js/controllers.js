@@ -1,4 +1,6 @@
-var questioncategory = "";
+var questioncat = "";
+var questioncategory = [];
+var questionset = [];
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
@@ -71,7 +73,7 @@ angular.module('starter.controllers', [])
     })
     .controller('OptionsCtrl', function ($scope, MyDatabase, $location) {
         $scope.getCatId = function (category) {
-            questioncategory = category;
+            questioncat = category;
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM `questioncategory` where category="' + category + '"', [], function (tx, results) {
 
@@ -95,13 +97,13 @@ angular.module('starter.controllers', [])
 
     })
     .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
-        console.log(questioncategory);
+       // console.log(questioncategory);
         $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
         // console.log($scope.messagebeforequestion);
         $scope.questionarray = [{}];
         $scope.answers = {};
         $scope.display = [];
-        var questioncategory = [];
+        //  var questioncategory = [];
 
         var getQuestionsById = function () {
 
@@ -132,7 +134,7 @@ angular.module('starter.controllers', [])
 
 
                         }
-
+                        questionset = $scope.questionarray;
 
 
 
@@ -169,20 +171,26 @@ angular.module('starter.controllers', [])
                 if (questioncategory.length > 0) {
                     for (var j = 0; j < questioncategory.length; j++) {
                         if ($scope.questionarray[i].sub_type == questioncategory[j].id)
-                          //  questioncategory[j].scores += $scope.answers[i];
-                            if($scope.answers[i])
-                           questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                        //  questioncategory[j].scores += $scope.answers[i];
+                            if ($scope.answers[i])
+                            questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
                     }
 
                 }
 
             }
             console.log(questioncategory);
-            
+
         };
 
 
 
+
+    })
+    .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
+        $scope.result = [];
+        for (var i = 0; i < questioncategory.length; i++)
+            $scope.result.push();
         $scope.value = 1.5;
         $scope.upperLimit = 6;
         $scope.lowerLimit = 0;
@@ -215,50 +223,53 @@ angular.module('starter.controllers', [])
                 color: '#C50200'
         }
     ];
+
+
+
+
     })
+    .controller('SignupCtrl', function ($scope, MyDatabase, $location) {
+        $scope.user = {};
+        $scope.user.username = "";
+        $scope.user.firstname = "";
+        $scope.user.lastname = "";
+        $scope.user.gender = "";
+        $scope.user.age = "";
+        $scope.validateForAge = function () {
 
-.controller('SignupCtrl', function ($scope, MyDatabase, $location) {
-    $scope.user = {};
-    $scope.user.username = "";
-    $scope.user.firstname = "";
-    $scope.user.lastname = "";
-    $scope.user.gender = "";
-    $scope.user.age = "";
-    $scope.validateForAge = function () {
+            if ($scope.user.age < 0 || $scope.user.age > 999) {
+                console.log("called");
+                $scope.user.age = "";
+            }
 
-        if ($scope.user.age < 0 || $scope.user.age > 999) {
-            console.log("called");
-            $scope.user.age = "";
+
+        }
+        $scope.checkUniqueUser = function () {
+
+            if (!$scope.user.username == "") {
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
+
+                        if (results.rows.length > 0) {
+                            $scope.userexists = "User already exists !";
+                            console.log($scope.userexists);
+                        }
+
+                    }, null);
+                });
+            }
+
+
+        }
+
+        $scope.signup = function () {
+
+            MyDatabase.insertUser($scope.user, $scope);
+
         }
 
 
-    }
-    $scope.checkUniqueUser = function () {
-
-        if (!$scope.user.username == "") {
-            db.transaction(function (tx) {
-                tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
-
-                    if (results.rows.length > 0) {
-                        $scope.userexists = "User already exists !";
-                        console.log($scope.userexists);
-                    }
-
-                }, null);
-            });
-        }
-
-
-    }
-
-    $scope.signup = function () {
-
-        MyDatabase.insertUser($scope.user, $scope);
-
-    }
 
 
 
-
-
-});
+    });
