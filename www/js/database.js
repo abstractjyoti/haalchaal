@@ -19,6 +19,11 @@ db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `combinational_question` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,que_format varchar,sub_type integer, categoryid integer,que_set integer)');
 });
 
+db.transaction(function (tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `eq_evaluation` (id integer primary key, min_score integer,max_score integer,behaviour varchar,recommend varchar)');
+});
+
+
 /*=======
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key, catname varchar,parentid integer)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,explanation varchar,catid integer,questiontype varchar)');
@@ -337,7 +342,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [51, "  You are working as HRD General Manager in a large multi‐national company that recruit dozensof fresh MBAs, engineers and other professionals on senior positions every year. This requires time, energy and money. However, you find that 75 percent of the young recruits are leaving the company after around two years of work experience to join more attractive jobs. What will you do? ", "Ignore the trend. There is rampant unemployment and you can find more people lined up tojoin your company.|5", "Try to find out the root cause of their leaving the job and take corrective measures to retainthem as you have already invested in them heavily.|20", "Increase the pay package and lure them in working with you.|15", "Change the selection criteria and recruit people on the basis of their need and requirements.|10", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [52, "You have been involuntarily transferred to a remote project and posted under a new boss.Although you have been given a pay hike and also a promise for promotion in near future yet, you are not comfortableYour family can not shift along with you due to education of your children. You are in a sensitive area and your security is also at risk. You are undergoing a mild level of stress. How will you diffuse the stress? ", "Enjoy. After all there has been a hike in your pay for working in a sensitive area.|15", "Wait. It may turn out to be an opportunity for early promotion.|20", "Lament. Why should such terrible things happen to you only?|10", "Act in haste. Think to resign and find out a new job for you.|5", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [52, "You have been involuntarily transferred to a remote project and posted under a new boss.Although you have been given a pay hike and also a promise for promotion in near future yet, you are not comfortable.Your family can not shift along with you due to education of your children. You are in a sensitive area and your security is also at risk. You are undergoing a mild level of stress. How will you diffuse the stress? ", "Enjoy. After all there has been a hike in your pay for working in a sensitive area.|15", "Wait. It may turn out to be an opportunity for early promotion.|20", "Lament. Why should such terrible things happen to you only?|10", "Act in haste. Think to resign and find out a new job for you.|5", 11, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [53, "You have lived your life for so many years on this earth. How would you like to explain your life atthe moment in one sentence? ", "Successful: Well, I am a contended person who got whatever could make me feel happy.|20", "OK: Well, it’s a mixed experience for me. It’s 50:50.|15", "Comfortable: Well, destiny is in the hand of God. Man is just a puppet.|10", "Uncomfortable: Well, I feel I deserved better but could not get it.|5", 10, 1]);
@@ -345,6 +350,31 @@ db.transaction(function (tx) {
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [54, " As an HRD manager you have to recruit a large number of employees for a multinational firm.After the written test and interview you find that most of candidates who qualified are women. What will be your reaction? ", "Hire women employees. They deserve it as they have qualified the selection criteria.|20", "Well it’s a women’s world. Hire them any way.|15", "Hire male and female employees in equal number.|10", "Avoid women employees as they are a liability.|5", 9, 1]);
 });
+
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [1, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods. "]);
+    });
+    
+    db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [2, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl."]);
+});
+
+
+  db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [3, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely, In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk"]);
+});
+
+ db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [4, 31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free."]);
+});
+
+
+ db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [5, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes"]);
+});
+
+
 angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast, $location) {
         return {
