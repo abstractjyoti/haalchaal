@@ -353,25 +353,25 @@ db.transaction(function (tx) {
 
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [1, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods. "]);
+    tx.executeSql("insert into eq_evaluation values(id, category, min_score ,max_score ,behaviour, recommend)", [1,9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods. "]);
     });
     
     db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [2, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl."]);
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2 ,9, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl."]);
 });
 
 
   db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [3, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely, In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk"]);
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3, 9, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely, In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk"]);
 });
 
  db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [4, 31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free."]);
+    tx.executeSql("insert into eq_evaluation values(id, category, min_score ,max_score ,behaviour, recommend)", [4, 9,31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free."]);
 });
 
 
  db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, min_score ,max_score ,behaviour, recommend)", [5, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes"]);
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes"]);
 });
 
 
