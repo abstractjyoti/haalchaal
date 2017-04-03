@@ -207,6 +207,50 @@ var score=0;
 
 
     })
+    .controller('GameCtrl', function ($scope, MyDatabase, $location) {
+$scope.ambiguousletterpairs=[[7,1],["B",8],["Q","O"]];
+$scope.gameplay=function()
+{
+
+$scope.parent=Math.floor(Math.random() * 8);
+$scope.random=Math.floor(Math.random() * 3);
+
+
+$scope.child=Math.floor(Math.random() * 8);
+
+$scope.parent=$scope.parent==0?4:$scope.parent;
+$scope.parent=$scope.parent==0?4:$scope.parent;
+console.log($scope.random+"  "+$scope.parent+"  "+$scope.child );
+
+
+
+
+
+
+
+
+
+
+}
+$scope.gameplay();
+
+
+
+
+
+
+
+
+
+console.log($scope.ambiguousletterpairs);
+
+
+$scope.getNumber = function(num) {
+    return new Array(num);   
+}
+
+
+    })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
         $scope.result = [];
         for (var i = 0; i < questioncategory.length; i++)
