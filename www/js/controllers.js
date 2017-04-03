@@ -209,7 +209,8 @@ var score=0;
     })
     .controller('GameCtrl', function ($scope, MyDatabase, $location) {
 $scope.ambiguousletterpairs=[[7,1],["B",8],["Q","O"]];
-$scope.gameplay=function()
+$scope.message="";
+var gameplay=function()
 {
 
 $scope.parent=Math.floor(Math.random() * 8);
@@ -222,17 +223,12 @@ $scope.parent=$scope.parent==0?4:$scope.parent;
 $scope.parent=$scope.parent==0?4:$scope.parent;
 console.log($scope.random+"  "+$scope.parent+"  "+$scope.child );
 
-
-
-
-
-
-
-
-
-
 }
-$scope.gameplay();
+
+
+
+$scope.checkfornext
+gameplay();
 
 
 
