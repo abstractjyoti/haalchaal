@@ -97,39 +97,56 @@ angular.module('starter.controllers', [])
 
     })
     .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
-       // console.log(questioncategory);
+        // console.log(questioncategory);
         $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
         // console.log($scope.messagebeforequestion);
         $scope.questionarray = [{}];
         $scope.answers = {};
         $scope.display = [];
         //  var questioncategory = [];
+// Array shuffling 
+    
+     var questionshuffling = function () {
 
+          //  console.log(inputarray);
+            for(var i=0;i<$scope.questionarray.length;i++){
+                var randomvalue=Math.floor(Math.random()*$scope.questionarray.length);
+                var t;
+                t=$scope.questionarray[i];
+           $scope.questionarray[i]=$scope.questionarray[randomvalue];
+$scope.questionarray[randomvalue]=t;
+            }
+              console.log($scope.questionarray);
+        }
+     
+     
+     
+     
+     //Get Questions
         var getQuestionsById = function () {
 
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM `questioncategory` where id="' + $stateParams.id + '"', [], function (tx, results) {
 
                     tx.executeSql('SELECT * FROM `questioncategory` where parentid="' + $stateParams.id + '"', [], function (tx, result) {
-                        
-                         questioncategory=[];
+
+                        questioncategory = [];
                         if (result.rows.length > 0) {
-                           
+
                             for (var i = 0; i < result.rows.length; i++)
                                 questioncategory.push({
                                     id: result.rows.item(i).id,
                                     category: result.rows.item(i).category,
                                     scores: 0
                                 });
-                        }
-                        else
-                             questioncategory.push({
-                                    id: $stateParams.id,
-                                    category:results.rows.item(0).category ,
-                                    scores: 0
-                                });
-                            
-                        
+                        } else
+                            questioncategory.push({
+                                id: $stateParams.id,
+                                category: results.rows.item(0).category,
+                                scores: 0
+                            });
+
+
                     });
                     tx.executeSql('SELECT * FROM `' + results.rows.item(0).type_of_eval + '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
                         console.log(results.rows.item(0));
@@ -145,8 +162,10 @@ angular.module('starter.controllers', [])
 
 
                         }
-                        questionset = $scope.questionarray;
+                        questionshuffling();
 
+                        questionset = $scope.questionarray;
+                        console.log("QUESTIONSET :"+questionset);
 
 
                     }, null);
@@ -177,26 +196,24 @@ angular.module('starter.controllers', [])
         };
 
         $scope.calculateresult = function () {
-var score=0;
+            var score = 0;
 
             for (var i = 0; i < $scope.questionarray.length; i++) {
-                
-                    for (var j = 0; j < questioncategory.length; j++) {
-                        if (questioncategory.length > 1) {
+
+                for (var j = 0; j < questioncategory.length; j++) {
+                    if (questioncategory.length > 1) {
                         if ($scope.questionarray[i].sub_type == questioncategory[j].id)
                         //  questioncategory[j].scores += $scope.answers[i];
                             if ($scope.answers[i])
                             questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
-                    }
-                        else
-                        {
-                             questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                    } else {
+                        questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
 
-                            }
-                            
+                    }
+
 
                 }
-                
+
 
             }
             console.log(questioncategory);
@@ -207,44 +224,79 @@ var score=0;
 
 
     })
-    .controller('GameCtrl', function ($scope, MyDatabase, $location) {
-$scope.ambiguousletterpairs=[[7,1],["B",8],["Q","O"]];
-$scope.message="";
-var gameplay=function()
-{
+    .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval) {
+        $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"]];
+        $scope.message = "";
+        var timecount = 0;
+        var changeindex = function () {
 
-$scope.parent=Math.floor(Math.random() * 8);
-$scope.random=Math.floor(Math.random() * 3);
+            $scope.child = Math.floor(Math.random() * 8);
+            $scope.parent = Math.floor(Math.random() * 8);
+            $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
+            $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
+            console.log($scope.random + "  " + $scope.parent + "  " + $scope.child);
 
-
-$scope.child=Math.floor(Math.random() * 8);
-
-$scope.parent=$scope.parent==0?4:$scope.parent;
-$scope.parent=$scope.parent==0?4:$scope.parent;
-console.log($scope.random+"  "+$scope.parent+"  "+$scope.child );
-
-}
+        }
+        var gameplay = function () {
 
 
-
-$scope.checkfornext
-gameplay();
+            $scope.random = Math.floor(Math.random() * 3);
+            changeindex();
 
 
 
+        }
+        var timer = function () {
+            timecount += 1;
+            if (timecount <= 1000) {
+                console.log(timecount);
+                $timeout(timer(), 1000);
+
+
+
+            }
+
+
+
+        }
+
+
+        $scope.checkfornext = function (pindex, cindex) {
+
+            if (pindex == $scope.parent && cindex == $scope.child) {
+                $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
+                changeindex();
+
+
+            } else {
+
+                // $location.path('/app/options');
+            }
+
+        }
+        gameplay();
+
+
+        // timer();
 
 
 
 
 
 
-console.log($scope.ambiguousletterpairs);
 
 
-$scope.getNumber = function(num) {
-    return new Array(num);   
-}
+        console.log($scope.ambiguousletterpairs);
 
+
+        $scope.getNumber = function (num) {
+            return new Array(num);
+        }
+
+       
+       
+      
+            
 
     })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
