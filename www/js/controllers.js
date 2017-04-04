@@ -104,25 +104,25 @@ angular.module('starter.controllers', [])
         $scope.answers = {};
         $scope.display = [];
         //  var questioncategory = [];
-// Array shuffling 
-    
-     var questionshuffling = function () {
+        // Array shuffling 
 
-          //  console.log(inputarray);
-            for(var i=0;i<$scope.questionarray.length;i++){
-                var randomvalue=Math.floor(Math.random()*$scope.questionarray.length);
+        var questionshuffling = function () {
+
+            //  console.log(inputarray);
+            for (var i = 0; i < $scope.questionarray.length; i++) {
+                var randomvalue = Math.floor(Math.random() * $scope.questionarray.length);
                 var t;
-                t=$scope.questionarray[i];
-           $scope.questionarray[i]=$scope.questionarray[randomvalue];
-$scope.questionarray[randomvalue]=t;
+                t = $scope.questionarray[i];
+                $scope.questionarray[i] = $scope.questionarray[randomvalue];
+                $scope.questionarray[randomvalue] = t;
             }
-              console.log($scope.questionarray);
+            console.log($scope.questionarray);
         }
-     
-     
-     
-     
-     //Get Questions
+
+
+
+
+        //Get Questions
         var getQuestionsById = function () {
 
             db.transaction(function (tx) {
@@ -165,7 +165,7 @@ $scope.questionarray[randomvalue]=t;
                         questionshuffling();
 
                         questionset = $scope.questionarray;
-                        console.log("QUESTIONSET :"+questionset);
+                        console.log("QUESTIONSET :" + questionset);
 
 
                     }, null);
@@ -224,7 +224,7 @@ $scope.questionarray[randomvalue]=t;
 
 
     })
-    .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval) {
+    .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
         $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"]];
         $scope.message = "";
         var timecount = 0;
@@ -237,40 +237,67 @@ $scope.questionarray[randomvalue]=t;
             console.log($scope.random + "  " + $scope.parent + "  " + $scope.child);
 
         }
+        var showpopup = function (title, msg, path) {
+            $ionicPopup.alert({
+                title: title,
+                template: msg,
+            }).then(function (res) {
+                if (path)
+                    $location.path(path);
+                else {
+                    changeindex();
+                    $scope.timerCountdown();
+                }
+
+            });
+        }
+
         var gameplay = function () {
 
-
+            
             $scope.random = Math.floor(Math.random() * 3);
-            changeindex();
+            showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
 
 
 
         }
-        var timer = function () {
-            timecount += 1;
-            if (timecount <= 1000) {
-                console.log(timecount);
-                $timeout(timer(), 1000);
 
 
+        //    $scope.countDown = 0; // number of seconds remaining
+        var stop;
+        $scope.timerCountdown = function () {
+            // set number of seconds until the pizza is ready
+            $scope.countDown = 1;
 
-            }
+            // start the countdown
+            stop = $interval(function () {
+                // decrement remaining seconds
+                console.log($scope.countDown);
+                $scope.countDown++;
+                // if zero, stop $interval and show the popup
+                if ($scope.countDown === 15) {
+                    $interval.cancel(stop);
+                    var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
 
-
-
-        }
+                }
+            }, 1000, 0); // invoke every 1 second
+        };
+       
 
 
         $scope.checkfornext = function (pindex, cindex) {
-
+            $interval.cancel(stop);
+            timecount++;
             if (pindex == $scope.parent && cindex == $scope.child) {
-                $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
-                changeindex();
 
+
+                $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
+
+               timecount!=3? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]):showpopup('Congratulations !', 'You did a great job !','/app/options');
 
             } else {
 
-                // $location.path('/app/options');
+                showpopup('Oops !Wrong selection..!', 'Try again later', '/app/options');
             }
 
         }
@@ -293,10 +320,10 @@ $scope.questionarray[randomvalue]=t;
             return new Array(num);
         }
 
-       
-       
-      
-            
+
+
+
+
 
     })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location) {

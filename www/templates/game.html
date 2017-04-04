@@ -4,9 +4,11 @@
        
     </ion-header-bar>
     <ion-content>
+        
+         <div  ng-style="{'height':'20% !important', 'width': (countDown*6.7) + '%', 'background-color': '#ccffcc' }">{{countDown}}</div>
 <h4>Game<h4>
-    <div ng-show="message!=''">{{message}}</div>
-<div ng-hide="message!=''">
+    
+ <div>  
 <div class="wrapper" ng-repeat="i in getNumber(8) track by $index">
   <div class="box a" ng-repeat="j in getNumber(8) track by $index" ng-click="checkfornext($parent.$index,$index)">
   {{$parent.$index==parent && $index==child?ambiguousletterpairs[random][1]:ambiguousletterpairs[random][0]}}</div>
