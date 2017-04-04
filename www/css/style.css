@@ -5,7 +5,7 @@
 .heading {
     font-size: 15px !important;
     padding: 5px !important;
-    font-weight:500 !important;
+    font-weight: 500 !important;
 }
 
 .buttonstyle {
@@ -13,67 +13,68 @@
     margin-top: -20px;
     margin-right: 1px;
 }
-.questionimg
-{
 
-width:50% !important;
-    height:50 !important%;
-
-
+.questionimg {
+    width: 50% !important;
+    height: 50 !important%;
 }
-.questiontext
-{
-text-align: -webkit-center;
+
+.questiontext {
+    text-align: -webkit-center;
     margin-top: 50%;
-vertical-align: middle !important;
-   
-     animation-name: example;
+    vertical-align: middle !important;
+    animation-name: example;
     animation-duration: 5s;
-   transform: scale(1,1);
-
+    transform: scale(1, 1);
 }
-.questiondiv
-{
+
+.questiondiv {
     margin-top: 5% !important;
-
-
-
-
 }
+
 @keyframes example {
-     from {transform: scale(0.5,0.5);
-      
-   
+    from {
+        transform: scale(0.5, 0.5);
     }
     to {
-          
-        
-        transform: scale(1,1);
+        transform: scale(1, 1);
         /*transition-delay: 3s;
          transform: scale(0,0);
        transition-timing-function: ease-in-out;*/
-    
     }
 }
 
-
-
 .wrapper {
-  display: grid;
-  grid-template-columns: 12% 12% 12% 12% 12% 12% 12% 12%;
-  grid-gap: 2px;
-  grid-template-rows: repeat(2, 0.001fr);
-  grid-row-gap: 2px;
-  background-color: #fff;
-  color: #444;
+    display: grid;
+    grid-template-columns: 12% 12% 12% 12% 12% 12% 12% 12%;
+    grid-gap: 2px;
+    grid-template-rows: repeat(2, 0.001fr);
+    grid-row-gap: 2px;
+    background-color: #fff;
+    color: #444;
 }
 
 .box {
-  background-color: #444;
-  color: #fff;
-  border-radius: 10%;
-  text-align: center;
-  padding:25%;
-  font-size: 50%;
+    background-color: #444;
+    color: #fff;
+    border-radius: 10%;
+    text-align: center;
+    padding: 25%;
+    font-size: 50%;
+}
 
+.second .item-content {
+    background-color: #ffe0b2;
+}
+
+.first .item-content {
+    background-color: #e1bee7;
+}
+
+.third .item-content {
+    background-color:#b9f6ca;
+}
+
+.forth .item-content {
+    background-color: #f8bbd0;
 }
