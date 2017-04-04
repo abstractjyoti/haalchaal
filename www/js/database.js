@@ -20,7 +20,7 @@ db.transaction(function (tx) {
 });
 
 db.transaction(function (tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS `eq_evaluation` (id integer primary key, min_score integer,max_score integer,behaviour varchar,recommend varchar)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `evaluation` (id integer primary key, min_score integer,max_score integer,behaviour varchar,recommend varchar, status varchar, que_set integer)');
 });
 
 
@@ -138,6 +138,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into direct_questions(id,question,option1,option2,option3,option4,option5,correctanswer,question_type,categoryid) values(38,'Library is to book as book is to','page','copy ','binding','cover',null,'page','logic',7)");
      });
     //personality
+    
     db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(1,'What you see first;img/1.png', 'face=1','apple=2','person sitting=3',null,'text',8)");
      tx.executeSql("insert into combinational_question(id,question,option1,option2,option3,option4,question_type,categoryid) values(2, 'What you see first ;img/2.png', 'car=1','Man with binocular=2','letter A=3',null,'text',8)");
@@ -353,66 +354,85 @@ db.transaction(function (tx) {
 
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, category, min_score ,max_score ,behaviour, recommend)", [1,9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods. "]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [1,9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods.","extremely high eq"]);
     });
     
     db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2 ,9, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [2 ,9, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl.", "high eq"]);
 });
 
 
   db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3, 9, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely, In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk"]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1))", [3, 9, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely, In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk", "moderate eq"]);
 });
 
  db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id, category, min_score ,max_score ,behaviour, recommend)", [4, 9,31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [4, 9,31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free.","low eq"]);
 });
 
 
  db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes"]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [5,9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes","very low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [1,10, 121,140, "Maturity grows from a seed of awareness; an awareness of the self and the actions you take.Once you have established a robust awareness of yourself, you are better positioned to exert a degree of self-control.You accept that we are all accountable for our own choices and the wider impact they may have on the world.", "Try belly breathing. Find a healthy distraction.Speak to your highest self."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [6,10, 121,140, "Maturity grows from a seed of awareness; an awareness of the self and the actions you take.Once you have established a robust awareness of yourself, you are better positioned to exert a degree of self-control.You accept that we are all accountable for our own choices and the wider impact they may have on the world.", "Try belly breathing. Find a healthy distraction.Speak to your highest self.","extremely high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2,10, 101,120, "Even though you appreciate the importance of each decision you take, you remain a humble and modest person. You never take yourself to be above others, regardless of your status, wealth, power, or influence. you are able to accept yourselves for who you are; you practice kindness even in the face of their shortcomings.You can seek to improve yourself and grow as an individual.", "Celebrate your strengths.Forgive yourself, and move on. "]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [7,10, 101,120, "Even though you appreciate the importance of each decision you take, you remain a humble and modest person. You never take yourself to be above others, regardless of your status, wealth, power, or influence. you are able to accept yourselves for who you are; you practice kindness even in the face of their shortcomings.You can seek to improve yourself and grow as an individual.", "Celebrate your strengths.Forgive yourself, and move on. ", "high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3,10, 81,100, "Alongside acceptance of yourself comes a sense of gratitude for all of the wonderful things that exist in your life. You develop the ability to see the immense benefits and value of both big and the small.A side effect of being grateful is that you feel more empathy and concern for others.you can’t help always but wish well upon those around you.You celebrate the success of others and embrace movements that seek to improve the welfare of everyone and not just the privileged few. ", "Shush your inner critic.Perform charitable acts. Fake it ‘til you make it. "]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [8,10, 81,100, "Alongside acceptance of yourself comes a sense of gratitude for all of the wonderful things that exist in your life. You develop the ability to see the immense benefits and value of both big and the small.A side effect of being grateful is that you feel more empathy and concern for others.you can’t help always but wish well upon those around you.You celebrate the success of others and embrace movements that seek to improve the welfare of everyone and not just the privileged few. ", "Shush your inner critic.Perform charitable acts. Fake it ‘til you make it. ", "moderate eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [4,10, 46,80, " Everything Is A Joke for you.Yeah, it's great to be  witty and playful, but everything in life isn't a joke. you lack self-awareness, your words don't match their actions. your Personality is Fluid. you are not Open-minded you see things as black and white or right and wrong.", "Develop your interests.Know when it is okay to be silly,think twice before acting."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [9,10, 46,80, " Everything Is A Joke for you.Yeah, it's great to be  witty and playful, but everything in life isn't a joke. you lack self-awareness, your words don't match their actions. your Personality is Fluid. you are not Open-minded you see things as black and white or right and wrong.", "Develop your interests.Know when it is okay to be silly,think twice before acting.","low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,10, 0,45, " you can't Handle your Scandals. you don't look for solutions to problems because that might entail uncomfortable emotions. Love and intimacy can be hard for you people to deal with.you are not good at letting the little things go for the sake of keeping the peace. you can't deal with loneliness. you are not flexible to your surrounding", "Be respectful of others. Avoid gossip, rumors, and talking about others behind their backs.Be genuine.Think beyond yourself."]);
+    tx.executeSql("insert into eq_evaluation (?,?,?,?,?,?,?,?,1)", [10,10, 0,45, " you can't Handle your Scandals. you don't look for solutions to problems because that might entail uncomfortable emotions. Love and intimacy can be hard for you people to deal with.you are not good at letting the little things go for the sake of keeping the peace. you can't deal with loneliness. you are not flexible to your surrounding", "Be respectful of others. Avoid gossip, rumors, and talking about others behind their backs.Be genuine.Think beyond yourself.","very low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [1,11, 126,200, " you have Positive vision,you believe that you have the skills needed to figure out things, find the resources, build a team, and consistently deliver the desired results, you are perfectly comfortable telling people that they don’t have all the answers. you are comfortable choosing your words carefully to make yourr point, and are equally comfortable listening to others.", "Expanding Your Vision in your field of interest.Create a Vision: Start by Dreaming."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [11,11, 126,200, " you have Positive vision,you believe that you have the skills needed to figure out things, find the resources, build a team, and consistently deliver the desired results, you are perfectly comfortable telling people that they don’t have all the answers. you are comfortable choosing your words carefully to make yourr point, and are equally comfortable listening to others.", "Expanding Your Vision in your field of interest.Create a Vision: Start by Dreaming.","extremely high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2,11, 96,125, " you think Asking questions is a great way to signal to others that you don’t assume you already know the answer and, secondly that you value the other person’s opinion.you feel truly blessed with your life and find it easy to acknowledge the good work of others. you Are open to risks or, at least, calculated risks.you learn from your mistakes. you believe you can successfully accomplish your goals, and pursue them regardless of uncertainty. ", "Explore The Power of the Mind, Drink loads of water frequently to handle risk overheads."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [12,11, 96,125, " you think Asking questions is a great way to signal to others that you don’t assume you already know the answer and, secondly that you value the other person’s opinion.you feel truly blessed with your life and find it easy to acknowledge the good work of others. you Are open to risks or, at least, calculated risks.you learn from your mistakes. you believe you can successfully accomplish your goals, and pursue them regardless of uncertainty. ", "Explore The Power of the Mind, Drink loads of water frequently to handle risk overheads.", "high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3,11, 76, 95, " When you are complimented, you feel comfortable and worthy of accepting the compliment.you love to be told, “You can’t do that,” or “It won’t work here.” When you hear those words, it triggers the “Watch me!” response. even in difficult or stressful situations, you remain calm", "Question the thought.Replace the negativity in your surroundings.Try to relax your muscles."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [13,11, 76, 95, " When you are complimented, you feel comfortable and worthy of accepting the compliment.you love to be told, 'You can’t do that,' or 'It won’t work here.' When you hear those words, it triggers the 'Watch me!' response. even in difficult or stressful situations, you remain calm", "Question the thought.Replace the negativity in your surroundings.Try to relax your muscles.", "moderate eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [4,11, 51, 75, "Because you people believe you “can,” you set more goals, take decisive action, and get more things done. you don’t sit around wasting time second guessing yourselves. When people feel your confidence radiate, they are naturally inclined to trust you.you have both the knowledge to recognize a hazard and the authority to correct it.", "Get some exercise.Focus on your senses."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [14,11, 51, 75, "Because you people believe you “can,” you set more goals, take decisive action, and get more things done. you don’t sit around wasting time second guessing yourselves. When people feel your confidence radiate, they are naturally inclined to trust you.you have both the knowledge to recognize a hazard and the authority to correct it.", "Get some exercise.Focus on your senses.","low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,11, 0, 50, " you believe that you can't make a difference in the world, you consider yourself an ordinary person. you hesitate to admit what you don’t know.you talk a lot and Talking too much is a common sign of lacking confidence. you are not good in formulating questions and you dont feel like exploring things out. you cant express gratitude for others", "talk less and choose your words carefully.Stop making mountains out of molehills.Live in and come back to this moment."]);
+    tx.executeSql("insert into evaluation (?,?,?,?,?,?,?,?,1)", [15,11, 0, 50, " you believe that you can't make a difference in the world, you consider yourself an ordinary person. you hesitate to admit what you don’t know.you talk a lot and Talking too much is a common sign of lacking confidence. you are not good in formulating questions and you dont feel like exploring things out. you cant express gratitude for others", "talk less and choose your words carefully.Stop making mountains out of molehills.Live in and come back to this moment.","very low eq"]);
 });
+
+
+//personality
+
+
+ db.transaction(function (tx) {
+    tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?)", [1,'What you see first;img/1.png', 'face|1','apple|2','person sitting|3',null,'img', null,8, 1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?)", [2, 'What you see first ;img/2.png', 'car|1','Man with binocular|2','letter A|3',null,'img',null,8,1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?) ",[3, 'What you see first ;img/3.png', 'Bowling pins|1','footprints|2','nesting dolls|3',null,'img',null,8,1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?) "[4,'What you see first;img/4.png', 'apple|1','butterfly|2','knife|3',null,'img',null,8,1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?)" [5, 'What you see first ;img/5.png', 'face|1','dog|2','precipice|3',null,'img',null,8,1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?)" [6, 'What you see first ;img/6.png', 'crocodile|1','mountains and water|2','people in boat|3',null,'img',null,8,1]);
+     
+     tx.executeSql("insert into combinational_question(?,?,?,?,?,?,?,?,?,?)" [7,'What you see first;img/7.png','whale|1','moon and light on water|2','a person surfing|3',null,'img',null,8,1]);
 
 angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast, $location) {
