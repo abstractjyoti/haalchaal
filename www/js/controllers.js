@@ -267,7 +267,7 @@ angular.module('starter.controllers', [])
         var stop;
         $scope.timerCountdown = function () {
             // set number of seconds until the pizza is ready
-            $scope.countDown = 1;
+            $scope.countDown = 0;
 
             // start the countdown
             stop = $interval(function () {
