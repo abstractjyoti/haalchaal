@@ -80,6 +80,7 @@ angular.module('starter.controllers', [])
                     if (results.rows.length > 0) {
 
                         $location.path('/app/questions/' + results.rows.item(0).id);
+                         $location.replace();
                         console.log(results.rows.item(0).id);
                         $scope.$apply();
                     }
@@ -97,7 +98,8 @@ angular.module('starter.controllers', [])
 
     })
     .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
-        // console.log(questioncategory);
+    $scope.maincategory=questioncat.toUpperCase();
+         console.log(questioncat);
         $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
         // console.log($scope.messagebeforequestion);
         $scope.questionarray = [{}];
