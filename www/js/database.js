@@ -374,6 +374,45 @@ db.transaction(function (tx) {
     tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes"]);
 });
 
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [1,10, 121,140, "Maturity grows from a seed of awareness; an awareness of the self and the actions you take.Once you have established a robust awareness of yourself, you are better positioned to exert a degree of self-control.You accept that we are all accountable for our own choices and the wider impact they may have on the world.", "Try belly breathing. Find a healthy distraction.Speak to your highest self."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2,10, 101,120, "Even though you appreciate the importance of each decision you take, you remain a humble and modest person. You never take yourself to be above others, regardless of your status, wealth, power, or influence. you are able to accept yourselves for who you are; you practice kindness even in the face of their shortcomings.You can seek to improve yourself and grow as an individual.", "Celebrate your strengths.Forgive yourself, and move on. "]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3,10, 81,100, "Alongside acceptance of yourself comes a sense of gratitude for all of the wonderful things that exist in your life. You develop the ability to see the immense benefits and value of both big and the small.A side effect of being grateful is that you feel more empathy and concern for others.you can’t help always but wish well upon those around you.You celebrate the success of others and embrace movements that seek to improve the welfare of everyone and not just the privileged few. ", "Shush your inner critic.Perform charitable acts. Fake it ‘til you make it. "]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [4,10, 46,80, " Everything Is A Joke for you.Yeah, it's great to be  witty and playful, but everything in life isn't a joke. you lack self-awareness, your words don't match their actions. your Personality is Fluid. you are not Open-minded you see things as black and white or right and wrong.", "Develop your interests.Know when it is okay to be silly,think twice before acting."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,10, 0,45, " you can't Handle your Scandals. you don't look for solutions to problems because that might entail uncomfortable emotions. Love and intimacy can be hard for you people to deal with.you are not good at letting the little things go for the sake of keeping the peace. you can't deal with loneliness. you are not flexible to your surrounding", "Be respectful of others. Avoid gossip, rumors, and talking about others behind their backs.Be genuine.Think beyond yourself."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [1,11, 126,200, " you have Positive vision,you believe that you have the skills needed to figure out things, find the resources, build a team, and consistently deliver the desired results, you are perfectly comfortable telling people that they don’t have all the answers. you are comfortable choosing your words carefully to make yourr point, and are equally comfortable listening to others.", "Expanding Your Vision in your field of interest.Create a Vision: Start by Dreaming."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [2,11, 96,125, " you think Asking questions is a great way to signal to others that you don’t assume you already know the answer and, secondly that you value the other person’s opinion.you feel truly blessed with your life and find it easy to acknowledge the good work of others. you Are open to risks or, at least, calculated risks.you learn from your mistakes. you believe you can successfully accomplish your goals, and pursue them regardless of uncertainty. ", "Explore The Power of the Mind, Drink loads of water frequently to handle risk overheads."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [3,11, 76, 95, " When you are complimented, you feel comfortable and worthy of accepting the compliment.you love to be told, “You can’t do that,” or “It won’t work here.” When you hear those words, it triggers the “Watch me!” response. even in difficult or stressful situations, you remain calm", "Question the thought.Replace the negativity in your surroundings.Try to relax your muscles."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [4,11, 51, 75, "Because you people believe you “can,” you set more goals, take decisive action, and get more things done. you don’t sit around wasting time second guessing yourselves. When people feel your confidence radiate, they are naturally inclined to trust you.you have both the knowledge to recognize a hazard and the authority to correct it.", "Get some exercise.Focus on your senses."]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into eq_evaluation values(id,category, min_score ,max_score ,behaviour, recommend)", [5,11, 0, 50, " you believe that you can't make a difference in the world, you consider yourself an ordinary person. you hesitate to admit what you don’t know.you talk a lot and Talking too much is a common sign of lacking confidence. you are not good in formulating questions and you dont feel like exploring things out. you cant express gratitude for others", "talk less and choose your words carefully.Stop making mountains out of molehills.Live in and come back to this moment."]);
+});
 
 angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast, $location) {
