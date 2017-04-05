@@ -1,0 +1,11 @@
+<ion-view>
+    <ion-header-bar>
+       
+    </ion-header-bar>
+    <ion-content>
+        
+        <div width="75%" ng-repeat="results in result" ng-radial-gauge ranges="results.ranges" value="results.value" value-unit="results.unit"  precision="results.precision" lower-limit="results.lowerLimit" upper-limit="results.upperLimit" >
+</div>
+        
+    </ion-content>
+</ion-view>

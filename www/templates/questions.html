@@ -5,41 +5,61 @@
             <h4 class="questiontext"> {{messagebeforequestion}}</h4>
 
         </div>-->
-
+<div  ng-style="{'width': (countDown*10)+ '%', 'background-color': '#aabbff' }" ng-if="maincategory=='PERSONALITY'&&!showoption"><center><p>{{showoption}}&nbsp;</p></center></div>
         <div ng-repeat="questions in questionarray" ng-if=display[$index] class="questiondiv">
 
-            <div class="card">
+            <div class="card" ng-if="questions.que_format!='img'">
                 <div class="item item-text-wrap">
-                   {{questions.question}}
+                    {{questions.question}}
                 </div>
             </div>
-            <div class="buttons">
+            <div class="card" ng-if="questions.que_format=='img'">
+                <div class="row">
+                    <div class="col s12 m6">
+
+                        <div class="card-image">
+                            <img src="{{questions.question.split(';')[1]}}">
+
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                <center>{{questions.question.split(';')[0]}}</center>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="buttons" ng-if="maincategory!='PERSONALITY'|| showoption">
                 <ion-radio class="card item item-text-wrap first " style="background-color:'blue' !important" ng-model=answers[$index] value={{questions.option1}} name={{$iindex}} ng-click="changequestion($index,$index+1)">{{questions.option1.split("|")[0]}}</ion-radio>
                 <ion-radio class="card item item-text-wrap second" ng-model=answers[$index] value={{questions.option2}} name={{$iindex}} ng-click="changequestion($index,$index+1)">{{questions.option2.split("|")[0]}}</ion-radio>
                 <ion-radio class="card item item-text-wrap third" ng-model=answers[$index] value={{questions.option3}} name={{$iindex}} ng-click="changequestion($index,$index+1)">{{questions.option3.split("|")[0]}}</ion-radio>
-                <ion-radio class="card item item-text-wrap forth" ng-model=answers[$index] value={{questions.option4}} name={{$iindex}} ng-click="changequestion($index,$index+1)">{{questions.option4.split("|")[0]}}</ion-radio>
+                <ion-radio class="card item item-text-wrap forth" ng-model=answers[$index] value={{questions.option4}} name={{$iindex}} ng-click="changequestion($index,$index+1)" ng-if="questions.option4!=null">{{questions.option4.split("|")[0]}}</ion-radio>
             </div>
-            <br><br>
-            <button class="waves-effect waves-light btn"  name="action" style="float:right" ng-click="changequestion($index,$index+1)" ng-if="$index<questionarray.length-1">Next
-    <i class="mdi mdi-chevron-double-right"></i>
-  </button>
-            <button class="waves-effect waves-light btn"  name="action" style="float:left" ng-click="changequestion($index,$index-1)" ng-if="$index>0">Previous
-    <i class="mdi mdi-chevron-double-left" style="float:left"></i>
-  </button>
-              <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right" ng-if="$index>=questionarray.length-1" ng-click="calculateresult()">Submit
-    <i class="mdi mdi-chevron-double-right"></i>
-  </button>
+            <br>
+            <br>
+            <div ng-if="maincategory=='IQ'">
+            <button class="waves-effect waves-light btn" name="action" style="float:right" ng-click="changequestion($index,$index+1)" ng-if="$index<questionarray.length-1" >Next
+                <i class="mdi mdi-chevron-double-right"></i>
+            </button>
+            <button class="waves-effect waves-light btn" name="action" style="float:left" ng-click="changequestion($index,$index-1)" ng-if="$index>0">Previous
+                <i class="mdi mdi-chevron-double-left" style="float:left"></i>
+            </button>
+            <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right" ng-if="$index>=questionarray.length-1" ng-click="calculateresult()">Submit
+                <i class="mdi mdi-chevron-double-right"></i>
+            </button>
         </div>
-      
-        
-        
-     <!-- <div width="300" ng-radial-gauge ranges="ranges" value="value" value-unit="unit" 
+
+
+
+        <!-- <div width="300" ng-radial-gauge ranges="ranges" value="value" value-unit="unit" 
      precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit">
 </div>-->
-        
-        
-        
-        
+
+
+
+
     </ion-content>
 </ion-view>
 
@@ -48,19 +68,19 @@
 
 <script type="text/javascript">
     /*  $(document).ready(
-                                            function () {
-                                                $('#questionmessage').show();
-                                                $('.questions').hide();
-                                                setTimeout(function () {
-                                                    $(".questiontext").animate({
-                                                        opacity: 0
-                                                    });
-                                                    $('#questionmessage').hide();
-                                                    $('.questions').show();
-                                                }, 1000);
+                                                    function () {
+                                                        $('#questionmessage').show();
+                                                        $('.questions').hide();
+                                                        setTimeout(function () {
+                                                            $(".questiontext").animate({
+                                                                opacity: 0
+                                                            });
+                                                            $('#questionmessage').hide();
+                                                            $('.questions').show();
+                                                        }, 1000);
 
-                                            }
-                                        );*/
+                                                    }
+                                                );*/
     $(document).ready(
         function () {
 

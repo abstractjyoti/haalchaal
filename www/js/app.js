@@ -60,6 +60,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
                 }
             }
         })
+     .state('app.result', {
+            url: '/result',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/result.html',
+                     controller: 'ResultCtrl'
+                }
+            }
+        })
         .state('app.login', {
             url: '/login',
             views: {

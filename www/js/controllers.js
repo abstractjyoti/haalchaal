@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
                     if (results.rows.length > 0) {
 
                         $location.path('/app/questions/' + results.rows.item(0).id);
-                         $location.replace();
+                        //  $location.replace();
                         console.log(results.rows.item(0).id);
                         $scope.$apply();
                     }
@@ -97,14 +97,15 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams) {
-    $scope.maincategory=questioncat.toUpperCase();
-         console.log(questioncat);
+    .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams, $interval) {
+        $scope.maincategory = questioncat.toUpperCase();
+        console.log($scope.maincategory + "  " + questioncat);
         $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
         // console.log($scope.messagebeforequestion);
         $scope.questionarray = [{}];
         $scope.answers = {};
         $scope.display = [];
+        $scope.showoption = false;
         //  var questioncategory = [];
         // Array shuffling 
 
@@ -121,6 +122,24 @@ angular.module('starter.controllers', [])
             console.log($scope.questionarray);
         }
 
+        var stop;
+        $scope.timerCountdown = function () {
+            // set number of seconds until the pizza is ready
+            $scope.countDown = 0;
+
+            // start the countdown
+            stop = $interval(function () {
+                // decrement remaining seconds
+                console.log($scope.countDown);
+                $scope.countDown++;
+                // if zero, stop $interval and show the popup
+                if ($scope.countDown === 10) {
+                    $interval.cancel(stop);
+                    $scope.showoption = true;
+
+                }
+            }, 1000, 0); // invoke every 1 second
+        };
 
 
 
@@ -167,8 +186,11 @@ angular.module('starter.controllers', [])
                         questionshuffling();
 
                         questionset = $scope.questionarray;
-                        console.log("QUESTIONSET :" + questionset);
-
+                        console.log("QUESTIONSET :" + questionset + "  " + $scope.showoption);
+                        if (questioncat == 'personality') {
+                            console.log("called");
+                            $scope.timerCountdown();
+                        }
 
                     }, null);
 
@@ -187,14 +209,20 @@ angular.module('starter.controllers', [])
             console.log($scope.answers);
         };
         $scope.changequestion = function (index, indextobchanged) {
+            $scope.showoption = false;
 
             if (indextobchanged < $scope.display.length && indextobchanged >= 0) {
                 $scope.display[indextobchanged] = true;
                 $scope.display[index] = false;
                 console.log($scope.answers[index]);
 
-            } else
+            } else {
                 $scope.calculateresult();
+                $location.path('/app/result');
+            }
+            if (questioncat == 'personality')
+                $scope.timerCountdown();
+
         };
 
         $scope.calculateresult = function () {
@@ -227,7 +255,7 @@ angular.module('starter.controllers', [])
 
     })
     .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
-        $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"]];
+        $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"], [1, "I"]];
         $scope.message = "";
         var timecount = 0;
         var changeindex = function () {
@@ -256,8 +284,8 @@ angular.module('starter.controllers', [])
 
         var gameplay = function () {
 
-            
-            $scope.random = Math.floor(Math.random() * 3);
+
+            $scope.random = Math.floor(Math.random() * $scope.ambiguousletterpairs.length);
             showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
 
 
@@ -284,7 +312,7 @@ angular.module('starter.controllers', [])
                 }
             }, 1000, 0); // invoke every 1 second
         };
-       
+
 
 
         $scope.checkfornext = function (pindex, cindex) {
@@ -295,7 +323,7 @@ angular.module('starter.controllers', [])
 
                 $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
 
-               timecount!=3? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]):showpopup('Congratulations !', 'You did a great job !','/app/options');
+                timecount != 3 ? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]) : showpopup('Congratulations !', 'You did a great job !', '/app/options');
 
             } else {
 
@@ -329,10 +357,82 @@ angular.module('starter.controllers', [])
 
     })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
+
         $scope.result = [];
-        for (var i = 0; i < questioncategory.length; i++)
-            $scope.result.push();
-        $scope.value = 1.5;
+
+        var color = ['#DEDEDE', '#8DCA2F', '#FDC702', '#FF7700', '#C50200'];
+        var upperLimit = 0,
+            lowerLimit = 0,
+            value = 0,
+            precision =0,
+            unit = "";
+        var ranges = [];
+        db.transaction(function (tx) {
+            for (var i = 0; i < questioncategory.length; i++) {
+                value = questioncategory[i].scores;
+
+                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
+                    upperLimit = results.rows.item(results.rows.length - 1).max_score;
+                    lowerLimit = results.rows.item(0).min_score;
+                    console.log(upperLimit + " " + lowerLimit + " " + value);
+                    ranges = [];
+                    for (var j = 0; j < results.rows.length; j++) {
+                        ranges.push({
+                            min: results.rows.item(j).min_score,
+                            max: results.rows.item(j).max_score,
+                            color: color[j]
+                        });
+                     
+
+                    };
+
+
+                    $scope.result.push({
+                        value: value,
+                        upperLimit: upperLimit,
+                        lowerLimit: lowerLimit,
+                        unit: unit,
+                        precision: precision,
+                        ranges: ranges
+                    });
+                     console.log($scope.result);
+                    /*
+                  
+                     upperLimit = results.rows.item(results.rows.length - 1).max_score;
+                      lowerLimit = results.rows.item(0).min_score;
+                      value = questioncategory[i].scores;
+                      console.log( upperLimit+" "+lowerLimit+" "+ value);
+                    $scope.result.push({
+                          value: value,
+                          upperLimit: upperLimit,
+                          lowerLimit: lowerLimit,
+                          unit: unit,
+                          precision: precision,
+                          ranges: ranges
+                      });*/
+                    /* console.log(results.rows.item(results.rows.length - 1).max_score + "   " + ranges);
+                   
+                     $scope.$apply();
+                   
+                     console.log(ranges);
+                     $scope.result.push({
+                         value: value,
+                         upperLimit: upperLimit,
+                         lowerLimit: lowerLimit,
+                         unit: unit,
+                         precision: precision,
+                         ranges: ranges*/
+                    //  $scope.$apply();
+                }, null);
+               
+            }
+             console.log($scope.result[1]);
+        });
+
+
+
+        $scope.result.push();
+        $scope.value = 2;
         $scope.upperLimit = 6;
         $scope.lowerLimit = 0;
         $scope.unit = "kW";
