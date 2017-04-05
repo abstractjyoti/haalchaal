@@ -455,6 +455,23 @@ db.transaction(function (tx) {
 db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4,8, 18, 21, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "",""]);
 });
+//iq evaluation
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1,3, 121, 165, "you are highly adaptable. you have no special talents, you are only passionately curious.you have insatiable curiosity.you don't close yourselves off to new ideas or opportunities.you are willing to accept and consider other views with value and broad-mindedness and that you are open to alternative solutions.you like your own company.you people tend to be very individualistic.you people are able to overcome impulsiveness by planning, clarifying goals, exploring alternative strategies and considering consequences before starting.you people tend to have a great sense of humor.", "Keep learning and update yourself routinely","Gifted"]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2,3, 121, 130, "you are sensitive to other people's experiences. you people always strive to learn as much as they can from their mistakes and move on. you have the ability to adapt to any situations.you people are problem solvers and analyze every situation they come across and apply the knowledge they have to tackle them.you have high Self-Control.you take calculated risks.you are Humble: pride always comes before a fall, you know this too well. Disagreements frequently arise because of a misunderstanding between people, and this will usually be the case with you", "Explore as much as you can.Do regular high cardio exercise. ","High IQ"]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3,3, 90, 120, "you people are often the most quiet people in the room.you tend to know a lot about a wide range of topics, and not just a few basic things. you look for ways to educate yourselves.you easily find a way to manage work, home life and outside interests very well. you are often bored with one type of work.you people typically never make other people look stupid by mocking them or making them feel inferior. you people realize the value of balance in every area of their lives.", " meditate that will allow your brain to function efficiently and it also maintains your mood and stress level. Learn an instrument well. Play the brain game:  It will improve your working memory","Average IQ"]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4,3, 50, 89, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.","Low IQ"]);
+});
 
 
 angular.module('fettleflingdb', ['ngCordova'])
