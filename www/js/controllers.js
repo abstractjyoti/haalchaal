@@ -43,36 +43,8 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('PlaylistsCtrl', function ($scope, $cordovaToast) {
-        $scope.playlists = [
-            {
-                title: 'Reggae',
-                id: 1
-        },
-            {
-                title: 'Chill',
-                id: 2
-        },
-            {
-                title: 'Dubstep',
-                id: 3
-        },
-            {
-                title: 'Indie',
-                id: 4
-        },
-            {
-                title: 'Rap',
-                id: 5
-        },
-            {
-                title: 'Cowbell',
-                id: 6
-        }
-  ];
 
-    })
-    .controller('OptionsCtrl', function ($scope, MyDatabase, $location) {
+.controller('OptionsCtrl', function ($scope, MyDatabase, $location) {
         $scope.getCatId = function (category) {
             questioncat = category;
             db.transaction(function (tx) {
@@ -135,7 +107,7 @@ angular.module('starter.controllers', [])
                 console.log($scope.countDown);
                 $scope.countDown++;
                 // if zero, stop $interval and show the popup
-                if ($scope.countDown === 10) {
+                if ($scope.countDown === 5) {
                     $interval.cancel(stop);
                     $scope.showoption = true;
 
@@ -270,103 +242,108 @@ angular.module('starter.controllers', [])
 
     })
     .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
-        $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"], [1, "I"]];
-        $scope.message = "";
-        var timecount = 0;
-        var changeindex = function () {
+        $scope.$on('$ionicView.enter', function () {
+            game();
 
-            $scope.child = Math.floor(Math.random() * 8);
-            $scope.parent = Math.floor(Math.random() * 8);
-            $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
-            $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
-            console.log($scope.random + "  " + $scope.parent + "  " + $scope.child);
+        })
+        var game = function () {
+            $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"], [1, "I"]];
+            $scope.message = "";
+            var timecount = 0;
+            var changeindex = function () {
 
-        }
-        var showpopup = function (title, msg, path) {
-            $ionicPopup.alert({
-                title: title,
-                template: msg,
-            }).then(function (res) {
-                if (path)
-                    $location.path(path);
-                else {
-                    changeindex();
-                    $scope.timerCountdown();
-                }
+                $scope.child = Math.floor(Math.random() * 8);
+                $scope.parent = Math.floor(Math.random() * 8);
+                $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
+                $scope.parent = $scope.parent == 0 ? 4 : $scope.parent;
+                console.log($scope.random + "  " + $scope.parent + "  " + $scope.child);
 
-            });
-        }
+            }
+            var showpopup = function (title, msg, path) {
+                $ionicPopup.alert({
+                    title: title,
+                    template: msg,
+                }).then(function (res) {
+                    if (path)
+                        $location.path(path);
+                    else {
+                        changeindex();
+                        $scope.timerCountdown();
+                    }
 
-        var gameplay = function () {
-
-
-            $scope.random = Math.floor(Math.random() * $scope.ambiguousletterpairs.length);
-            showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
-
-
-
-        }
-
-
-        //    $scope.countDown = 0; // number of seconds remaining
-        var stop;
-        $scope.timerCountdown = function () {
-            // set number of seconds until the pizza is ready
-            $scope.countDown = 0;
-
-            // start the countdown
-            stop = $interval(function () {
-                // decrement remaining seconds
-                console.log($scope.countDown);
-                $scope.countDown++;
-                // if zero, stop $interval and show the popup
-                if ($scope.countDown === 15) {
-                    $interval.cancel(stop);
-                    var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
-
-                }
-            }, 1000, 0); // invoke every 1 second
-        };
-
-
-
-        $scope.checkfornext = function (pindex, cindex) {
-            $interval.cancel(stop);
-            timecount++;
-            if (pindex == $scope.parent && cindex == $scope.child) {
-
-
-                $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
-
-                timecount != 3 ? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]) : showpopup('Congratulations !', 'You did a great job !', '/app/options');
-
-            } else {
-
-                showpopup('Oops !Wrong selection..!', 'Try again later', '/app/options');
+                });
             }
 
+            var gameplay = function () {
+
+
+                $scope.random = Math.floor(Math.random() * $scope.ambiguousletterpairs.length);
+                showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
+
+
+
+            }
+
+
+            //    $scope.countDown = 0; // number of seconds remaining
+            var stop;
+            $scope.timerCountdown = function () {
+                // set number of seconds until the pizza is ready
+                $scope.countDown = 0;
+
+                // start the countdown
+                stop = $interval(function () {
+                    // decrement remaining seconds
+                    console.log($scope.countDown);
+                    $scope.countDown++;
+                    // if zero, stop $interval and show the popup
+                    if ($scope.countDown === 15) {
+                        $interval.cancel(stop);
+                        var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
+
+                    }
+                }, 1000, 0); // invoke every 1 second
+            };
+
+
+
+            $scope.checkfornext = function (pindex, cindex) {
+                $interval.cancel(stop);
+                timecount++;
+                if (pindex == $scope.parent && cindex == $scope.child) {
+
+
+                    $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
+
+                    timecount != 3 ? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]) : showpopup('Congratulations !', 'You did a great job !', '/app/options');
+
+                } else {
+
+                    showpopup('Oops !Wrong selection..!', 'Try again later', '/app/options');
+                }
+
+            }
+            gameplay();
+
+
+            // timer();
+
+
+
+
+
+
+
+
+            console.log($scope.ambiguousletterpairs);
+
+
+            $scope.getNumber = function (num) {
+                return new Array(num);
+            }
+
+
         }
-        gameplay();
-
-
-        // timer();
-
-
-
-
-
-
-
-
-        console.log($scope.ambiguousletterpairs);
-
-
-        $scope.getNumber = function (num) {
-            return new Array(num);
-        }
-
-
-
 
 
 
@@ -385,50 +362,66 @@ angular.module('starter.controllers', [])
             precision = 0,
             unit = "";
         var ranges = [];
-    var prepareValueMeter=function(results){
-        
-           upperLimit = results.rows.item(results.rows.length - 1).max_score;
-                    lowerLimit = results.rows.item(0).min_score;
-                    console.log(upperLimit + " " + lowerLimit + " " + value);
-                    ranges = [];
-                    for (var j = 0; j < results.rows.length; j++) {
-                        ranges.push({
-                            min: results.rows.item(j).min_score,
-                            max: results.rows.item(j).max_score,
-                            color: color[j]
-                        });
-                        if (questioncategory[count].scores <= results.rows.item(j).max_score && questioncategory[count].scores >= results.rows.item(j).min_score)
-                            $scope.recommendation.push({
-                                category: questioncategory[count].category,
-                                prediction: results.rows.item(j).behaviour,
-                                suggestion: results.rows.item(j).recommend,
-                                status: results.rows.item(j).status
+        if (questioncat == "stress") {
+            var totalscores = 0;
 
-                            });
+            for (var i = 0; i < questioncategory.length; i++)
+                totalscores += questioncategory[i].scores / questioncategory[i].length;
+
+            questioncategory = [];
 
 
-                    };
+            questioncategory.push({
+                id: maincatid,
+                category: questioncat,
+                scores: totalscores,
+                length: questionset.length
+            });
+        }
+        var prepareValueMeter = function (results) {
 
-                    console.log(count);
-                    $scope.result.push({
-                        value: questioncategory[count].scores,
-                        upperLimit: upperLimit,
-                        lowerLimit: lowerLimit,
-                        unit: unit,
-                        precision: precision,
-                        ranges: ranges
+            upperLimit = results.rows.item(results.rows.length - 1).max_score;
+            lowerLimit = results.rows.item(0).min_score;
+            console.log(upperLimit + " " + lowerLimit + " " + value);
+            ranges = [];
+            for (var j = 0; j < results.rows.length; j++) {
+                ranges.push({
+                    min: results.rows.item(j).min_score,
+                    max: results.rows.item(j).max_score,
+                    color: color[j]
+                });
+                if (questioncategory[count].scores <= results.rows.item(j).max_score && questioncategory[count].scores >= results.rows.item(j).min_score)
+                    $scope.recommendation.push({
+                        category: questioncategory[count].category,
+                        prediction: results.rows.item(j).behaviour,
+                        suggestion: results.rows.item(j).recommend,
+                        status: results.rows.item(j).status
+
                     });
-                    count++;
-                    console.log($scope.result);
-        
-    }
+
+
+            };
+
+            console.log(count);
+            $scope.result.push({
+                value: questioncategory[count].scores,
+                upperLimit: upperLimit,
+                lowerLimit: lowerLimit,
+                unit: unit,
+                precision: precision,
+                ranges: ranges
+            });
+            count++;
+            console.log($scope.result);
+
+        }
         db.transaction(function (tx) {
             for (var i = 0; i < questioncategory.length; i++) {
                 totalscore += questioncategory[i].scores;
 
                 tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
 
-                 prepareValueMeter(results);
+                    prepareValueMeter(results);
                     /*
                   
                      upperLimit = results.rows.item(results.rows.length - 1).max_score;
@@ -476,7 +469,7 @@ angular.module('starter.controllers', [])
         });
 
 
-        //  $scope.result.push();
+        /*    //  $scope.result.push();
         $scope.value = 2;
         $scope.upperLimit = 6;
         $scope.lowerLimit = 0;
@@ -511,7 +504,7 @@ angular.module('starter.controllers', [])
     ];
 
 
-
+*/
 
     })
     .controller('SignupCtrl', function ($scope, MyDatabase, $location) {
@@ -521,6 +514,7 @@ angular.module('starter.controllers', [])
         $scope.user.lastname = "";
         $scope.user.gender = "";
         $scope.user.age = "";
+        $scope.user.password = "";
         $scope.validateForAge = function () {
 
             if ($scope.user.age < 0 || $scope.user.age > 999) {
@@ -531,15 +525,16 @@ angular.module('starter.controllers', [])
 
         }
         $scope.checkUniqueUser = function () {
-
+ $scope.usernamerequired="";
             if (!$scope.user.username == "") {
                 db.transaction(function (tx) {
-                    tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
+                    tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username.toLowerCase() + '"', [], function (tx, results) {
 
                         if (results.rows.length > 0) {
                             $scope.userexists = "User already exists !";
                             console.log($scope.userexists);
-                        }
+                        } else
+                            $scope.userexists = "";
 
                     }, null);
                 });
@@ -547,9 +542,19 @@ angular.module('starter.controllers', [])
 
 
         }
+        $scope.checkPassword = function () {
+
+            $scope.passwordrequired ="";
+            $scope.password = $scope.user.password.length < 6 ? "Minimum password length should be 6 !" : "";
+
+
+        }
 
         $scope.signup = function () {
-
+            $scope.namerequired = $scope.user.lastname == "" || $scope.user.firstname == "" ? "Name is required !" : "";
+            $scope.usernamerequired = $scope.user.username == "" ? "Username is required !" : "";
+            $scope.passwordrequired = $scope.user.password == "" ? "Password is required !" : "";
+            if($scope.namerequired=="" &&  $scope.usernamerequired==""&&$scope.passwordrequired=="")
             MyDatabase.insertUser($scope.user, $scope);
 
         }

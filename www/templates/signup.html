@@ -3,8 +3,9 @@
         <div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="firstname" type="text" class="validate" ng-model="user.firstname">
+                    <input id="firstname" type="text" class="validate" ng-model="user.firstname" ng-change="namerequired=''">
                     <label for="firstname">First Name</label>
+                    <span>{{namerequired}}</span>
                 </div>
                 <div class="input-field col s6">
                     <input id="lastname" type="text" class="validate" ng-model="user.lastname">
@@ -13,14 +14,16 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="username" type="text" class="validate" ng-model="user.username" ng-blur="checkUniqueUser()">
-                    <label for="username" data-success={{message}}>User Name</label>
+                    <input id="username" type="text" ng-model="user.username" ng-change="checkUniqueUser()">
+                    <label for="username">User Name</label>
+                    <span>{{usernamerequired}}</span><span>{{userexists}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" ng-model="user.password">
-                    <label for="password" data-success={{message}}>Password</label>
+                    <input id="password" type="password" class="validate" ng-model="user.password" ng-change="checkPassword()">
+                    <label for="password">Password (minimum length 6)</label>
+                    <span>{{passwordrequired}}</span> <span>{{password}}</span>
                 </div>
             </div>
             <div class="row">

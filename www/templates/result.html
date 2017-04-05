@@ -11,7 +11,7 @@
                     </div>
                 </div>
 
-               
+
 
 
 
@@ -26,7 +26,7 @@
         </div>
         <div ng-hide="showresult">
             <ul class="collapsible popout" data-collapsible="accordion">
-                <li ng-repeat="recommendations in recommendation">
+                <li class="mycards" ng-repeat="recommendations in recommendation" ng-if="recommendations.behaviour!=''">
                     <div class="collapsible-header active">
                         {{recommendations.category.charAt(0).toUpperCase()+recommendations.category.substr(1,(recommendations.category.length-1))}}
                     </div>

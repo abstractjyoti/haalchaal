@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngCordova','ngRadialGauge'])
+angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngCordova', 'ngRadialGauge'])
 
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -42,30 +42,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
                 }
             }
         })
-     .state('app.questions', {
+        .state('app.questions', {
             url: '/questions/:id',
             views: {
                 'menuContent': {
                     templateUrl: 'templates/questions.html',
-                     controller: 'QuestionsCtrl'
+                    controller: 'QuestionsCtrl'
                 }
             }
         })
-     .state('app.game', {
+        .state('app.game', {
             url: '/game',
             views: {
                 'menuContent': {
                     templateUrl: 'templates/game.html',
-                     controller: 'GameCtrl'
+                    controller: 'GameCtrl'
                 }
             }
         })
-     .state('app.result', {
+        .state('app.result', {
             url: '/result',
             views: {
                 'menuContent': {
                     templateUrl: 'templates/result.html',
-                     controller: 'ResultCtrl'
+                    controller: 'ResultCtrl'
                 }
             }
         })
@@ -80,23 +80,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
         })
 
     .state('app.options', {
-            url: '/options',
-            views: {
-                'menuContent': {
-                    templateUrl: 'templates/options.html',
-                    controller: 'OptionsCtrl'
-                }
+        url: '/options',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/options.html',
+                controller: 'OptionsCtrl'
             }
-        })
-        .state('app.playlists', {
-            url: '/playlists',
-            views: {
-                'menuContent': {
-                    templateUrl: 'templates/playlists.html',
-                    controller: 'PlaylistsCtrl'
-                }
-            }
-        })
+        }
+    })
 
     .state('app.single', {
         url: '/signup',

@@ -1,7 +1,7 @@
 var db = openDatabase('fettle_fling', '1.0', 'Test DB', 2 * 1024 * 1024);
 
 db.transaction(function (tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS `users` (id integer primary key AUTOINCREMENT, name varchar,username varchar,gender varchar,age number)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `users` (id integer primary key AUTOINCREMENT, name varchar,username varchar,password varchar,gender varchar,age number)');
     /* tx.executeSql('drop table users');
     tx.executeSql('drop table questioncategory');
     tx.executeSql('drop table direct_questions');
@@ -286,31 +286,31 @@ db.transaction(function (tx) {
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [33,"You have been denied a promotion by the management for which you were eligible. Moreover,one of your juniors has been promoted. You are emotionally upset and feel frustrated. What will you do?", "Talk it over with your boss and ask for reconsideration of the management’s decision.|15", "Start abusing the colleague who superseded you.|5", "Move to court and obtain a stay order to get justice.|10", "Identify your shortcomings and try to improve your performance.|20", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [33, "You have been denied a promotion by the management for which you were eligible. Moreover,one of your juniors has been promoted. You are emotionally upset and feel frustrated. What will you do?", "Talk it over with your boss and ask for reconsideration of the management’s decision.|15", "Start abusing the colleague who superseded you.|5", "Move to court and obtain a stay order to get justice.|10", "Identify your shortcomings and try to improve your performance.|20", 11, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [34, " A freshly recruited professional graduate joins your organisation as a management trainee. Aftera few weeks, she complains to you that she was not being taken seriously by her subordinates. What will you suggest her?  ", "Ask her to handle the situation herself and not bother you with trivial matters.|5", "Tell her that such behaviour should be ignored.|10", "Ask her to be bold, face the challenge and overcome the problem.|15", "Empathize with her and help her figure out ways to get others to work with her.|20", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [35,"At the workplace, due to some misunderstanding, your colleagues stop talking to you. You areconvinced that there was nofault of yours. How will you react? ", "Wait till they come and start talking to you again.|15", "Take the initiative, go forward and start talking to them.|20", "Let things take their own time to improve.|5", "Ask someone to mediate.|10", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [35, "At the workplace, due to some misunderstanding, your colleagues stop talking to you. You areconvinced that there was nofault of yours. How will you react? ", "Wait till they come and start talking to you again.|15", "Take the initiative, go forward and start talking to them.|20", "Let things take their own time to improve.|5", "Ask someone to mediate.|10", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [36,"You get into an argument with your colleague and end up attacking him/her personally. Lateryou realize that you never intended to tarnish the image of your colleague. How will you handle such ugly situation? ", "Sit calmly and consider what triggered off the arguments and was it possible to control youranger at that point of time.|20", "Avoid future arguments and leave the room.|15", "Apologise to your colleague for your behaviour.|10", "Continue with the argument till you reach some definite conclusion.|5", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [36, "You get into an argument with your colleague and end up attacking him/her personally. Lateryou realize that you never intended to tarnish the image of your colleague. How will you handle such ugly situation? ", "Sit calmly and consider what triggered off the arguments and was it possible to control youranger at that point of time.|20", "Avoid future arguments and leave the room.|15", "Apologise to your colleague for your behaviour.|10", "Continue with the argument till you reach some definite conclusion.|5", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [37,"Imagine you are an insurance salesperson selling insurance policies. You approach a number ofprospective clients who slam the door on your face and refuse to buy policies. What will you do? ", "Blame yourself and stop work for the day.|5", "Reassess your capabilities as an insurance salesperson.|20", "Come out with fresh strategies to overcome similar situations in future.|15", "Contact the clients again some other day.|10", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [37, "Imagine you are an insurance salesperson selling insurance policies. You approach a number ofprospective clients who slam the door on your face and refuse to buy policies. What will you do? ", "Blame yourself and stop work for the day.|5", "Reassess your capabilities as an insurance salesperson.|20", "Come out with fresh strategies to overcome similar situations in future.|15", "Contact the clients again some other day.|10", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [38,"When someone directly criticizes your behaviour, how will you behave?", "Tend to close up and stop listening.|10", "Carefully listen to their opinion.|20", "Tend to get upset about it.|5", "Think of ways to change your behaviour.|15", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [38, "When someone directly criticizes your behaviour, how will you behave?", "Tend to close up and stop listening.|10", "Carefully listen to their opinion.|20", "Tend to get upset about it.|5", "Think of ways to change your behaviour.|15", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [39,"You are on an aircraft and suddenly the airhostess announces that it has been hijacked by theterrorists. Everyone is ina state of shock. What will be your reaction? ", "Blame yourself for choosing an inauspicious day for travelling.|5", "Be in emotional control and attend to the instructions of the pilot/air hostess.|20", "Continue to read your magazine and pay little attention to the incident.|15", "Cry out and vow not to travel by air in future.|10", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [39, "You are on an aircraft and suddenly the airhostess announces that it has been hijacked by theterrorists. Everyone is ina state of shock. What will be your reaction? ", "Blame yourself for choosing an inauspicious day for travelling.|5", "Be in emotional control and attend to the instructions of the pilot/air hostess.|20", "Continue to read your magazine and pay little attention to the incident.|15", "Cry out and vow not to travel by air in future.|10", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [40,"Imagine that you are a police officer posted in a sensitive area. You get information of violentethnic clashes between two religious communities in which people have been killed from both sides and property damaged. What action will you take? ", "Decide not to visit the spot personally as there may be a danger to your life.|10", "Relax; this is not the first time riots have taken place.|5", "Try to handle the situation by taking action as per law.|20", "Reach the spot and assuage the feelings of the victims.|15", 9, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [40, "Imagine that you are a police officer posted in a sensitive area. You get information of violentethnic clashes between two religious communities in which people have been killed from both sides and property damaged. What action will you take? ", "Decide not to visit the spot personally as there may be a danger to your life.|10", "Relax; this is not the first time riots have taken place.|5", "Try to handle the situation by taking action as per law.|20", "Reach the spot and assuage the feelings of the victims.|15", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [41,"Your grown up daughter starts arguing with you every now and then. She tells you that youcannot impose your old fashioned attitudes and outdated values on her. How will you tackle her? ", "Accept her statement in helplessness and take a low profile position in the family.|5", "Send her to a psychologist to learn her adjust with her environment.|10", "Manage your emotions and explain your point of view as patiently as possible.|20", "Talk to her and understand her emotions, beliefs and attitudes.|15", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [41, "Your grown up daughter starts arguing with you every now and then. She tells you that youcannot impose your old fashioned attitudes and outdated values on her. How will you tackle her? ", "Accept her statement in helplessness and take a low profile position in the family.|5", "Send her to a psychologist to learn her adjust with her environment.|10", "Manage your emotions and explain your point of view as patiently as possible.|20", "Talk to her and understand her emotions, beliefs and attitudes.|15", 10, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [42, "After weeks of merger of two  largest  financial  firms,  hundreds  of  employees  were expected to lose their jobs.You, being the General Manager (HQ),  were told to convey to the employee the decision of the management. How will you convey the message? ", "Give a gloomy picture and tell them you have no option but to fire half of them.|5", "Give a bright picture and tell them that the company will be blessed with talented people fromboth firms.|20", "Tell them that you will collect more information to be fair and update them every few days onhow things will take shape.|15", "Announce the decision and let the employees take a decision about what they want.|10", 11, 1]);
@@ -319,7 +319,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [43, "You are a professor in a college. While delivering a lecture, a student comments that you havenot prepared the topic properly and you are just passing the time. This has hurt your self esteem. What will be your reaction? ", "Report to the principal of the college about the unruly behavior of the student.|5", "Order the student to leave the classroom at once.|10", "Ask him/her to meet you in your chamber after the class to explain what he/she wants.|15", "Judge the emotions of the class and promise to make amendments accordingly.|20", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [44,"As CEO of a company, while taking a meeting with the union, one of the union leaders levelsserious allegations of corruption and favoritism against you. How will you react? ", "Continue with the discussion and listen to their demands with a cool head.|20", "Ask union leader to make allegations in writing and offer an impartial enquiry.|15", "Cancel further negotiation and ask the union leader to apologise first.|10", "Leave the room after assigning the responsibility to your subordinate to continue with the|5", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [44, "As CEO of a company, while taking a meeting with the union, one of the union leaders levelsserious allegations of corruption and favoritism against you. How will you react? ", "Continue with the discussion and listen to their demands with a cool head.|20", "Ask union leader to make allegations in writing and offer an impartial enquiry.|15", "Cancel further negotiation and ask the union leader to apologise first.|10", "Leave the room after assigning the responsibility to your subordinate to continue with the|5", 10, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [45, "You had an argument with your spouse on some trivial family matter and are not on speakingterms for sometime. The situationis causing mental disturbance to both of you. What will you do? ", "Stick to your stand; after all you were never at fault.|5", "Try to break the ice by analysing the reasons for the conflict.|15", "Make first move and ease the situation.|20", "Wait for your spouse to make the first move to restore normalcy.|10", 11, 1]);
@@ -354,106 +354,106 @@ db.transaction(function (tx) {
 
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1,9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods.","extremely high eq"]);
-    });
-    
-    db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2 ,9, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl.", "high eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1, 9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods.", "extremely high eq"]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2, 9, 81, 90, "you are well mannered and polite,you are passionate, you believe in karma and how everything happens for a reason, They have strong intuitions, you can always put the shoe on the other foot, and understand what it must be like for someone else to go through certain struggles in life, you can truly hold concern for other people when you see others in a difficult situation, you put others before yourself", "Write down what is upsetting you. If you are too upset to write a formal sentence, feel free to write anything, write messy, or even scrawl.", "high eq"]);
 });
 
 
-  db.transaction(function (tx) {
+db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3, 9, 56, 80, "you can read people well,you have a special bond with animals in whereby animals trust them completely ,In order to make sense of the world, you ask a lot of questions, you make very calculated decisions,you are problem solvers and you gain satisfaction with decision-making,you stand up for what you feel is right and you can admit when you are wrong.", "Physically distract yourself- To break the cycle of negative thoughts try to distract yourself with music or simply go for a walk", "moderate eq"]);
 });
 
- db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4, 9,31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free.","low eq"]);
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4, 9, 31, 55, "you generally avoid new experiences, ideas, or people, you focus only on self,you stay ignorant about inner motives,you embrace negativity,you fight with your head and heart,You just lose it—almost every time.", "Get feedback as You can’t work on a problem you don’t understand, Press the pause button for some while and try to stay free.", "low eq"]);
 });
 
 
- db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [5,9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes","very low eq"]);
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [5, 9, 0, 30, "You consistently perform poorly at work, You criticize others on every chance you get, You can’t lead, or work in, a team, You can’t lead, or work in, a team, You’re afraid to try anything new, You let all kinds of negativity get you, You keep on arguing—even when there’s no point already.", "Speak Up Your Mind,Beware of the gap between intent and impact and try to Wear both shoes", "very low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [6,10, 121,140, "Maturity grows from a seed of awareness; an awareness of the self and the actions you take.Once you have established a robust awareness of yourself, you are better positioned to exert a degree of self-control.You accept that we are all accountable for our own choices and the wider impact they may have on the world.", "Try belly breathing. Find a healthy distraction.Speak to your highest self.","extremely high eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [6, 10, 121, 140, "Maturity grows from a seed of awareness; an awareness of the self and the actions you take.Once you have established a robust awareness of yourself, you are better positioned to exert a degree of self-control.You accept that we are all accountable for our own choices and the wider impact they may have on the world.", "Try belly breathing. Find a healthy distraction.Speak to your highest self.", "extremely high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [7,10, 101,120, "Even though you appreciate the importance of each decision you take, you remain a humble and modest person. You never take yourself to be above others, regardless of your status, wealth, power, or influence. you are able to accept yourselves for who you are; you practice kindness even in the face of their shortcomings.You can seek to improve yourself and grow as an individual.", "Celebrate your strengths.Forgive yourself, and move on. ", "high eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [7, 10, 101, 120, "Even though you appreciate the importance of each decision you take, you remain a humble and modest person. You never take yourself to be above others, regardless of your status, wealth, power, or influence. you are able to accept yourselves for who you are; you practice kindness even in the face of their shortcomings.You can seek to improve yourself and grow as an individual.", "Celebrate your strengths.Forgive yourself, and move on. ", "high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [8,10, 81,100, "Alongside acceptance of yourself comes a sense of gratitude for all of the wonderful things that exist in your life. You develop the ability to see the immense benefits and value of both big and the small.A side effect of being grateful is that you feel more empathy and concern for others.you can’t help always but wish well upon those around you.You celebrate the success of others and embrace movements that seek to improve the welfare of everyone and not just the privileged few. ", "Shush your inner critic.Perform charitable acts. Fake it ‘til you make it. ", "moderate eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [8, 10, 81, 100, "Alongside acceptance of yourself comes a sense of gratitude for all of the wonderful things that exist in your life. You develop the ability to see the immense benefits and value of both big and the small.A side effect of being grateful is that you feel more empathy and concern for others.you can’t help always but wish well upon those around you.You celebrate the success of others and embrace movements that seek to improve the welfare of everyone and not just the privileged few. ", "Shush your inner critic.Perform charitable acts. Fake it ‘til you make it. ", "moderate eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [9,10, 46,80, " Everything Is A Joke for you.Yeah, it's great to be  witty and playful, but everything in life isn't a joke. you lack self-awareness, your words don't match their actions. your Personality is Fluid. you are not Open-minded you see things as black and white or right and wrong.", "Develop your interests.Know when it is okay to be silly,think twice before acting.","low eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [9, 10, 46, 80, " Everything Is A Joke for you.Yeah, it's great to be  witty and playful, but everything in life isn't a joke. you lack self-awareness, your words don't match their actions. your Personality is Fluid. you are not Open-minded you see things as black and white or right and wrong.", "Develop your interests.Know when it is okay to be silly,think twice before acting.", "low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [10,10, 0,45, " you can't Handle your Scandals. you don't look for solutions to problems because that might entail uncomfortable emotions. Love and intimacy can be hard for you people to deal with.you are not good at letting the little things go for the sake of keeping the peace. you can't deal with loneliness. you are not flexible to your surrounding", "Be respectful of others. Avoid gossip, rumors, and talking about others behind their backs.Be genuine.Think beyond yourself.","very low eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [10, 10, 0, 45, " you can't Handle your Scandals. you don't look for solutions to problems because that might entail uncomfortable emotions. Love and intimacy can be hard for you people to deal with.you are not good at letting the little things go for the sake of keeping the peace. you can't deal with loneliness. you are not flexible to your surrounding", "Be respectful of others. Avoid gossip, rumors, and talking about others behind their backs.Be genuine.Think beyond yourself.", "very low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [11,11, 126,200, " you have Positive vision,you believe that you have the skills needed to figure out things, find the resources, build a team, and consistently deliver the desired results, you are perfectly comfortable telling people that they don’t have all the answers. you are comfortable choosing your words carefully to make yourr point, and are equally comfortable listening to others.", "Expanding Your Vision in your field of interest.Create a Vision: Start by Dreaming.","extremely high eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [11, 11, 126, 200, " you have Positive vision,you believe that you have the skills needed to figure out things, find the resources, build a team, and consistently deliver the desired results, you are perfectly comfortable telling people that they don’t have all the answers. you are comfortable choosing your words carefully to make yourr point, and are equally comfortable listening to others.", "Expanding Your Vision in your field of interest.Create a Vision: Start by Dreaming.", "extremely high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [12,11, 96,125, " you think Asking questions is a great way to signal to others that you don’t assume you already know the answer and, secondly that you value the other person’s opinion.you feel truly blessed with your life and find it easy to acknowledge the good work of others. you Are open to risks or, at least, calculated risks.you learn from your mistakes. you believe you can successfully accomplish your goals, and pursue them regardless of uncertainty. ", "Explore The Power of the Mind, Drink loads of water frequently to handle risk overheads.", "high eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [12, 11, 96, 125, " you think Asking questions is a great way to signal to others that you don’t assume you already know the answer and, secondly that you value the other person’s opinion.you feel truly blessed with your life and find it easy to acknowledge the good work of others. you Are open to risks or, at least, calculated risks.you learn from your mistakes. you believe you can successfully accomplish your goals, and pursue them regardless of uncertainty. ", "Explore The Power of the Mind, Drink loads of water frequently to handle risk overheads.", "high eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [13,11, 76, 95, " When you are complimented, you feel comfortable and worthy of accepting the compliment.you love to be told, 'You can’t do that,' or 'It won’t work here.' When you hear those words, it triggers the 'Watch me!' response. even in difficult or stressful situations, you remain calm", "Question the thought.Replace the negativity in your surroundings.Try to relax your muscles.", "moderate eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [13, 11, 76, 95, " When you are complimented, you feel comfortable and worthy of accepting the compliment.you love to be told, 'You can’t do that,' or 'It won’t work here.' When you hear those words, it triggers the 'Watch me!' response. even in difficult or stressful situations, you remain calm", "Question the thought.Replace the negativity in your surroundings.Try to relax your muscles.", "moderate eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [14,11, 51, 75, "Because you people believe you “can,” you set more goals, take decisive action, and get more things done. you don’t sit around wasting time second guessing yourselves. When people feel your confidence radiate, they are naturally inclined to trust you.you have both the knowledge to recognize a hazard and the authority to correct it.", "Get some exercise.Focus on your senses.","low eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [14, 11, 51, 75, "Because you people believe you “can,” you set more goals, take decisive action, and get more things done. you don’t sit around wasting time second guessing yourselves. When people feel your confidence radiate, they are naturally inclined to trust you.you have both the knowledge to recognize a hazard and the authority to correct it.", "Get some exercise.Focus on your senses.", "low eq"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [15,11, 0, 50, " you believe that you can't make a difference in the world, you consider yourself an ordinary person. you hesitate to admit what you don’t know.you talk a lot and Talking too much is a common sign of lacking confidence. you are not good in formulating questions and you dont feel like exploring things out. you cant express gratitude for others", "talk less and choose your words carefully.Stop making mountains out of molehills.Live in and come back to this moment.","very low eq"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [15, 11, 0, 50, " you believe that you can't make a difference in the world, you consider yourself an ordinary person. you hesitate to admit what you don’t know.you talk a lot and Talking too much is a common sign of lacking confidence. you are not good in formulating questions and you dont feel like exploring things out. you cant express gratitude for others", "talk less and choose your words carefully.Stop making mountains out of molehills.Live in and come back to this moment.", "very low eq"]);
 });
 
 
 //personality
 
 
- db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [55,"What you see first;img/1.png", "face|1","apple|2","person sitting|3",null,"img", null,8, 1]);
- });
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [56, 'What you see first ;img/2.png', 'car|1','Man with binocular|2','letter A|3',null,'img',null,8,1]);
-     });
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [55, "What you see first;img/1.png", "face|1", "apple|2", "person sitting|3", null, "img", null, 8, 1]);
+});
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?) ",[57, 'What you see first ;img/3.png', 'Bowling pins|1','footprints|2','nesting dolls|3',null,'img',null,8,1]);
-     });
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [56, 'What you see first ;img/2.png', 'car|1', 'Man with binocular|2', 'letter A|3', null, 'img', null, 8, 1]);
+});
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?) ",[58,'What you see first;img/4.png', 'apple|1','butterfly|2','knife|3',null,'img',null,8,1]);
-     });
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?) ", [57, 'What you see first ;img/3.png', 'Bowling pins|1', 'footprints|2', 'nesting dolls|3', null, 'img', null, 8, 1]);
+});
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [59, 'What you see first ;img/5.png', 'face|1','dog|2','precipice|3',null,'img',null,8,1]);
-     });
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?) ", [58, 'What you see first;img/4.png', 'apple|1', 'butterfly|2', 'knife|3', null, 'img', null, 8, 1]);
+});
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [60, 'What you see first ;img/6.png', 'crocodile|1','mountains and water|2','people in boat|3',null,'img',null,8,1]);
-     });
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [59, 'What you see first ;img/5.png', 'face|1', 'dog|2', 'precipice|3', null, 'img', null, 8, 1]);
+});
 db.transaction(function (tx) {
-     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [61,'What you see first;img/7.png','whale|1','moon and light on water|2','a person surfing|3',null,'img',null,8,1]);
- });
-
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [60, 'What you see first ;img/6.png', 'crocodile|1', 'mountains and water|2', 'people in boat|3', null, 'img', null, 8, 1]);
+});
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1,8, 7, 9, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "",""]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [61, 'What you see first;img/7.png', 'whale|1', 'moon and light on water|2', 'a person surfing|3', null, 'img', null, 8, 1]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2,8, 10, 13, "Stable personality: you are happiest when your life plans have been 'cast in iron'. changes simply stress you out. you are very attentive, but sometimes you can miss important details which might help you see the bigger picture. you have the ability to pay attention to your feelings and know the difference between your need and desires. you have a fairly stable opinion of yourself. you know what your strong point are. Stability for you means personal development & growth. the two most important things for you are planning and consistency", "",""]);
-});
-db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3,8, 14, 17, "Optimistic Personality: you have an incredibly optimistic personality. you can adapt to new situations with striking ease. you can find a common language with people, and very rarely feel lonely. you strongly value all expressions of love, as well as friendly relationships. you try not to judge people by their appearance, and always strive to get to know them better. you're also a very strong person. if something bad happens, you dont lose your head-instead you do your best to get to the root of the problem.", "",""]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1, 8, 7, 9, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", ""]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4,8, 18, 21, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "",""]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2, 8, 10, 13, "Stable personality: you are happiest when your life plans have been 'cast in iron'. changes simply stress you out. you are very attentive, but sometimes you can miss important details which might help you see the bigger picture. you have the ability to pay attention to your feelings and know the difference between your need and desires. you have a fairly stable opinion of yourself. you know what your strong point are. Stability for you means personal development & growth. the two most important things for you are planning and consistency", "", ""]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3, 8, 14, 17, "Optimistic Personality: you have an incredibly optimistic personality. you can adapt to new situations with striking ease. you can find a common language with people, and very rarely feel lonely. you strongly value all expressions of love, as well as friendly relationships. you try not to judge people by their appearance, and always strive to get to know them better. you're also a very strong person. if something bad happens, you dont lose your head-instead you do your best to get to the root of the problem.", "", ""]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4, 8, 18, 21, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", ""]);
 });
 
 
@@ -462,8 +462,9 @@ angular.module('fettleflingdb', ['ngCordova'])
         return {
             insertUser: function (userinfo, scope) {
                 db.transaction(function (tx) {
-                    tx.executeSql('INSERT INTO `users` ( name,username,gender,age) VALUES ("' + userinfo.firstname + " " + userinfo.lastname + '","' + userinfo.username + '","' + userinfo.gender + '",' + userinfo.age + ')');
+                    tx.executeSql('INSERT INTO `users` ( name,username,password,gender,age) VALUES(?,?,?,?,?)', [userinfo.firstname+" "+ userinfo.lastname , userinfo.username.toLowerCase() , userinfo.password , userinfo.gender , userinfo.age ]);
                     $location.path('/app/login');
+                    scope.$apply();
                 });
             },
 
