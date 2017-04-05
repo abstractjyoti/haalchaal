@@ -1,11 +1,49 @@
 <ion-view>
     <ion-header-bar>
-       
+
     </ion-header-bar>
     <ion-content>
-        
-        <div width="75%" ng-repeat="results in result" ng-radial-gauge ranges="results.ranges" value="results.value" value-unit="results.unit"  precision="results.precision" lower-limit="results.lowerLimit" upper-limit="results.upperLimit" >
-</div>
-        
+        <div ng-show="showresult">
+            <div class="row" ng-repeat="results in result">
+                <div class="col s3 m2">
+                    <div width="60%" ng-radial-gauge ranges="results.ranges" value="results.value" value-unit="results.unit" precision="results.precision" lower-limit="results.lowerLimit" upper-limit="results.upperLimit">
+                        <h5><b>{{recommendation[$index].category.charAt(0).toUpperCase()+recommendation[$index].category.substr(1,(recommendation[$index].category.length-1))}} :</b> {{recommendation[$index].status.charAt(0).toUpperCase()+recommendation[$index].status.substr(1,(recommendation[$index].status.length-1))}}</h5>
+                    </div>
+                </div>
+
+               
+
+
+
+
+            </div>
+            <!-- <div width="50%"  ng-radial-gauge ranges="ranges" value="value" value-unit="unit"  precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit" >
+</div>-->
+
+            <center>
+                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="showresult=!showresult">Get suggestions</button>
+            </center>
+        </div>
+        <div ng-hide="showresult">
+            <ul class="collapsible popout" data-collapsible="accordion">
+                <li ng-repeat="recommendations in recommendation">
+                    <div class="collapsible-header active">
+                        {{recommendations.category.charAt(0).toUpperCase()+recommendations.category.substr(1,(recommendations.category.length-1))}}
+                    </div>
+                    <div class="collapsible-body"><span><h5>Prediction of your behaviour :</h5>{{recommendations.prediction}}<h5>Suggestions :</h5>{{recommendations.suggestion}}</span>
+                    </div>
+                </li>
+            </ul>
+
+            <center>
+                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="showresult=!showresult">Back</button>
+
+        </div>
     </ion-content>
 </ion-view>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+
+    });
+</script>

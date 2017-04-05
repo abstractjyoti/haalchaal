@@ -1,6 +1,7 @@
 var questioncat = "";
 var questioncategory = [];
 var questionset = [];
+var maincatid;
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
@@ -105,6 +106,7 @@ angular.module('starter.controllers', [])
         $scope.questionarray = [{}];
         $scope.answers = {};
         $scope.display = [];
+        maincatid = $stateParams.id;
         $scope.showoption = false;
         //  var questioncategory = [];
         // Array shuffling 
@@ -158,13 +160,15 @@ angular.module('starter.controllers', [])
                                 questioncategory.push({
                                     id: result.rows.item(i).id,
                                     category: result.rows.item(i).category,
-                                    scores: 0
+                                    scores: 0,
+                                    length: 0
                                 });
                         } else
                             questioncategory.push({
                                 id: $stateParams.id,
                                 category: results.rows.item(0).category,
-                                scores: 0
+                                scores: 0,
+                                length: 0
                             });
 
 
@@ -226,26 +230,37 @@ angular.module('starter.controllers', [])
         };
 
         $scope.calculateresult = function () {
-            var score = 0;
+            var score = 0,
+                totalscore = 0,
+                totallength = $scope.questionarray.length;
 
             for (var i = 0; i < $scope.questionarray.length; i++) {
 
                 for (var j = 0; j < questioncategory.length; j++) {
                     if (questioncategory.length > 1) {
-                        if ($scope.questionarray[i].sub_type == questioncategory[j].id)
-                        //  questioncategory[j].scores += $scope.answers[i];
+                        if ($scope.questionarray[i].sub_type == questioncategory[j].id) {
+                            //  questioncategory[j].scores += $scope.answers[i];
                             if ($scope.answers[i])
-                            questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                                questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                            questioncategory[j].length++;
+                        }
                     } else {
-                        questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
-
+                        if ($scope.answers[i])
+                            questioncategory[j].scores += parseInt($scope.answers[i].split("|")[1]);
+                        questioncategory[j].length++;
                     }
 
 
                 }
-
-
+                if ($scope.answers[i])
+                    totalscore += parseInt($scope.answers[i].split("|")[1]);
             }
+
+
+
+
+
+
             console.log(questioncategory);
 
         };
@@ -357,22 +372,22 @@ angular.module('starter.controllers', [])
 
     })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
-
+        $scope.showresult = true;
         $scope.result = [];
-
+        $scope.recommendation = [];
+        var count = 0,
+            totalscore = 0,
+            totallength = 0;
         var color = ['#DEDEDE', '#8DCA2F', '#FDC702', '#FF7700', '#C50200'];
         var upperLimit = 0,
             lowerLimit = 0,
             value = 0,
-            precision =0,
+            precision = 0,
             unit = "";
         var ranges = [];
-        db.transaction(function (tx) {
-            for (var i = 0; i < questioncategory.length; i++) {
-                value = questioncategory[i].scores;
-
-                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
-                    upperLimit = results.rows.item(results.rows.length - 1).max_score;
+    var prepareValueMeter=function(results){
+        
+           upperLimit = results.rows.item(results.rows.length - 1).max_score;
                     lowerLimit = results.rows.item(0).min_score;
                     console.log(upperLimit + " " + lowerLimit + " " + value);
                     ranges = [];
@@ -382,20 +397,38 @@ angular.module('starter.controllers', [])
                             max: results.rows.item(j).max_score,
                             color: color[j]
                         });
-                     
+                        if (questioncategory[count].scores <= results.rows.item(j).max_score && questioncategory[count].scores >= results.rows.item(j).min_score)
+                            $scope.recommendation.push({
+                                category: questioncategory[count].category,
+                                prediction: results.rows.item(j).behaviour,
+                                suggestion: results.rows.item(j).recommend,
+                                status: results.rows.item(j).status
+
+                            });
+
 
                     };
 
-
+                    console.log(count);
                     $scope.result.push({
-                        value: value,
+                        value: questioncategory[count].scores,
                         upperLimit: upperLimit,
                         lowerLimit: lowerLimit,
                         unit: unit,
                         precision: precision,
                         ranges: ranges
                     });
-                     console.log($scope.result);
+                    count++;
+                    console.log($scope.result);
+        
+    }
+        db.transaction(function (tx) {
+            for (var i = 0; i < questioncategory.length; i++) {
+                totalscore += questioncategory[i].scores;
+
+                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
+
+                 prepareValueMeter(results);
                     /*
                   
                      upperLimit = results.rows.item(results.rows.length - 1).max_score;
@@ -424,14 +457,26 @@ angular.module('starter.controllers', [])
                          ranges: ranges*/
                     //  $scope.$apply();
                 }, null);
-               
+
             }
-             console.log($scope.result[1]);
+            console.log($scope.result[1]);
+        });
+
+        db.transaction(function (tx) {
+            if (questioncategory.length > 1) {
+
+                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
+
+                    prepareValueMeter(results);
+
+                }, null)
+
+
+            }
         });
 
 
-
-        $scope.result.push();
+        //  $scope.result.push();
         $scope.value = 2;
         $scope.upperLimit = 6;
         $scope.lowerLimit = 0;
