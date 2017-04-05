@@ -441,6 +441,22 @@ db.transaction(function (tx) {
      tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [61,'What you see first;img/7.png','whale|1','moon and light on water|2','a person surfing|3',null,'img',null,8,1]);
  });
 
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1,8, 7, 9, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "",""]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2,8, 10, 13, "Stable personality: you are happiest when your life plans have been 'cast in iron'. changes simply stress you out. you are very attentive, but sometimes you can miss important details which might help you see the bigger picture. you have the ability to pay attention to your feelings and know the difference between your need and desires. you have a fairly stable opinion of yourself. you know what your strong point are. Stability for you means personal development & growth. the two most important things for you are planning and consistency", "",""]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3,8, 14, 17, "Optimistic Personality: you have an incredibly optimistic personality. you can adapt to new situations with striking ease. you can find a common language with people, and very rarely feel lonely. you strongly value all expressions of love, as well as friendly relationships. you try not to judge people by their appearance, and always strive to get to know them better. you're also a very strong person. if something bad happens, you dont lose your head-instead you do your best to get to the root of the problem.", "",""]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4,8, 18, 21, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "",""]);
+});
+
+
 angular.module('fettleflingdb', ['ngCordova'])
     .factory('MyDatabase', function ($cordovaToast, $location) {
         return {
