@@ -462,7 +462,7 @@ angular.module('fettleflingdb', ['ngCordova'])
         return {
             insertUser: function (userinfo, scope) {
                 db.transaction(function (tx) {
-                    tx.executeSql('INSERT INTO `users` ( name,username,password,gender,age) VALUES(?,?,?,?,?)', [userinfo.firstname+" "+ userinfo.lastname , userinfo.username.toLowerCase() , userinfo.password , userinfo.gender , userinfo.age ]);
+                    tx.executeSql('INSERT INTO `users` (name,username,password,gender,age) VALUES(?,?,?,?,?)', [userinfo.firstname+" "+ userinfo.lastname , userinfo.username.toLowerCase() , userinfo.password , userinfo.gender , userinfo.age ]);
                     $location.path('/app/login');
                     scope.$apply();
                 });
