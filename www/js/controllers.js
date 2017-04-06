@@ -359,25 +359,26 @@ angular.module('starter.controllers', [])
         var upperLimit = 0,
             lowerLimit = 0,
             value = 0,
-            precision = 0,
+            precision = 2,
             unit = "";
         var ranges = [];
         if (questioncat == "stress") {
-            var totalscores = 0;
+            
+     var totalscores = 0;
 
-            for (var i = 0; i < questioncategory.length; i++)
-                totalscores += questioncategory[i].scores / questioncategory[i].length;
+     for (var i = 0; i < questioncategory.length; i++)
+         totalscores += questioncategory[i].scores / questioncategory[i].length;
 
-            questioncategory = [];
+     questioncategory = [];
 
 
-            questioncategory.push({
-                id: maincatid,
-                category: questioncat,
-                scores: totalscores,
-                length: questionset.length
-            });
-        }
+     questioncategory.push({
+         id: maincatid,
+         category: questioncat,
+         scores: Math.round(totalscores / 6),
+         length: questionset.length
+     });
+ }
         var prepareValueMeter = function (results) {
 
             upperLimit = results.rows.item(results.rows.length - 1).max_score;
@@ -420,7 +421,7 @@ angular.module('starter.controllers', [])
                 totalscore += questioncategory[i].scores;
 
                 tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
-
+                    console.log(questioncategory);
                     prepareValueMeter(results);
                     /*
                   
@@ -457,6 +458,19 @@ angular.module('starter.controllers', [])
 
         db.transaction(function (tx) {
             if (questioncategory.length > 1) {
+                var totalscores = 0;
+
+                for (var i = 0; i < questioncategory.length; i++)
+                    totalscores += questioncategory[i].scores;
+
+                questioncategory.push({
+                    id: maincatid,
+                    category: "Over all " + questioncat,
+                    scores: totalscores,
+                    length: questionset.length
+                });
+
+
 
                 tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
                     if (results.rows.length > 0)

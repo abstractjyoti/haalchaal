@@ -46,6 +46,12 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(6,'classification',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(7,'logic',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(8,'personality',0,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(9,'Wellness Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(10,'Thought Control Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(11,'Active Coping Scale',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(12,'Social Ease Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(13,'Tension reduction Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(14,'Spiritual Practice Scale ',4,'combinational_question')");
 
 
 
@@ -189,100 +195,100 @@ db.transaction(function (tx) {
 });*/
 //EQ QUESTIONS
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [1, " How frequently do you moderately exercise? ", "Daily or more often |1", "Once or twice a week |2", "Once or twice a month |3", "Seldom |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [1, " How frequently do you moderately exercise? ", "Daily or more often |1", "Once or twice a week |2", "Once or twice a month |3", "Seldom |4",9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [2, " How often do you get a full,restful night of sleep? ", "Most every night |1", "Four to five times a each week |2", "Two to three times each week |3", "Seldom |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [2, " How often do you get a full,restful night of sleep? ", "Most every night |1", "Four to five times a each week |2", "Two to three times each week |3", "Seldom |4", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [3, " To what extent is your energy sufficient for our work and daily activities? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [3, " To what extent is your energy sufficient for our work and daily activities? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [4, " How closely does your weight approach the ideal level? ", "My weight is at the ideal level |1", "My weight is close to the idea level |2", "My weight is not close to the ideal level |3", "I am dangerously overweight (underweight) |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [4, " How closely does your weight approach the ideal level? ", "My weight is at the ideal level |1", "My weight is close to the idea level |2", "My weight is not close to the ideal level |3", "I am dangerously overweight (underweight) |4", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [5, " To what extent do you eat a nutritious diet? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [5, " To what extent do you eat a nutritious diet? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4",9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [6, " Which of the following best describes your use of tobacco? ", "In no period of my life have I had the habit of smoking or chewing tobacco. |1", "Early in my life for a short period I smoked or chewed tobacco |2", "I stopped smoking or chewing tobacco over the past two years |3", "I currently smoke or chew tobacco |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [6, " Which of the following best describes your use of tobacco? ", "In no period of my life have I had the habit of smoking or chewing tobacco. |1", "Early in my life for a short period I smoked or chewed tobacco |2", "I stopped smoking or chewing tobacco over the past two years |3", "I currently smoke or chew tobacco |4", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [7, " Which of the following best describes your use of alcohol? ", "I do not abuse alcohol, and never have.  (Abuse is defined as drinking more than two |1", " |2", "Very occasionally I abuse alcohol. |3", "I have a history of abusing alcohol, but am not presently abusing it. |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [7, " Which of the following best describes your use of alcohol? ", "I do not abuse alcohol, and never have.  (Abuse is defined as drinking more than two |1", " |2", "Very occasionally I abuse alcohol. |3", "I have a history of abusing alcohol, but am not presently abusing it. |4", 9, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [8, " To what extent do you believe that you have a history of coping well with highly stressful situations? ", "to a very great extent |1", "to a great extent |2", "to a little extent |3", "to a very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [8, " To what extent do you believe that you have a history of coping well with highly stressful situations? ", "to a very great extent |1", "to a great extent |2", "to a little extent |3", "to a very little extent |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [9, "  How confident are you of being able to control your emotions in stressful situations? ", "I never let my emotions run away me. |1", "I seldom let my emotions run away with me. |2", "I sometimes let my emotions run away with me. |3", "I often let my emotions run away with me. |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [9, "  How confident are you of being able to control your emotions in stressful situations? ", "I never let my emotions run away me. |1", "I seldom let my emotions run away with me. |2", "I sometimes let my emotions run away with me. |3", "I often let my emotions run away with me. |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [10, " When things are not going well, how likely are you to view the situation as being temporary    rather than permanent? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [10, " When things are not going well, how likely are you to view the situation as being temporary    rather than permanent? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [11, " When something bad happens to you, how likely are you to exaggerate its importance? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [11, " When something bad happens to you, how likely are you to exaggerate its importance? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [12, " When stressed by a complex situation, how likely are you to focus your attention on those  aspects of the situation that you can manage? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [12, " When stressed by a complex situation, how likely are you to focus your attention on those  aspects of the situation that you can manage? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [13, " When highly stressed, how capable are you of changing your thinking to calm down? ", "very capable |1", "capable |2", "incapable |3", "very incapable |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [13, " When highly stressed, how capable are you of changing your thinking to calm down? ", "very capable |1", "capable |2", "incapable |3", "very incapable |4", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [14, " When confronted with a stressful situation, how likely are you to wait passively for events to   develop rather than to take charge? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [14, " When confronted with a stressful situation, how likely are you to wait passively for events to   develop rather than to take charge? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4",11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [15, " Which of the following courses of action are you most likely to take when you have become thoroughly frustrated? ", "identify an alternate goal and pursue it |1", "pursue a relaxing activity |2", "withdraw and fell sorry for yourself |3", "vent your aggression on someone weaker than  you |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [15, " Which of the following courses of action are you most likely to take when you have become thoroughly frustrated? ", "identify an alternate goal and pursue it |1", "pursue a relaxing activity |2", "withdraw and fell sorry for yourself |3", "vent your aggression on someone weaker than  you |4", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [16, " If you had worn an article of clothing one day and then found it to be flawed, how likely would you be to return it and ask for a refund? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [16, " If you had worn an article of clothing one day and then found it to be flawed, how likely would you be to return it and ask for a refund? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4",11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [17, " When an unexpected, negative event happens to you, how likely are you to actively seek information about the event and how to cope with it? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [17, " When an unexpected, negative event happens to you, how likely are you to actively seek information about the event and how to cope with it? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4",11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [18, " How much decision-making power so you have in your family? ", "more power than any other member of my family |1", "as much power as any other member of my family |2", "less power than most members of my family |3", "less power than any other member of my family |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [18, " How much decision-making power so you have in your family? ", "more power than any other member of my family |1", "as much power as any other member of my family |2", "less power than most members of my family |3", "less power than any other member of my family |4", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [19, " How much decision-making power do you have in your working environment?  (if not working outside the home at present, use your last job as a basis for answering this question.) ", "more power than most members of my work team |1", "as much power as any other member of my work team |2", "less power than most members of my work team |3", "less power than any other member of my work team |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [19, " How much decision-making power do you have in your working environment?  (if not working outside the home at present, use your last job as a basis for answering this question.) ", "more power than most members of my work team |1", "as much power as any other member of my work team |2", "less power than most members of my work team |3", "less power than any other member of my work team |4",11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [20, " To what extent do you believe that events in your life are merely the result of luck, fate, or chance? ", "to very little extent |1", "to little extent |2", "to some extent |3", "to a great extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [20, " To what extent do you believe that events in your life are merely the result of luck, fate, or chance? ", "to very little extent |1", "to little extent |2", "to some extent |3", "to a great extent |4", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [21, " What is your best guess as to the extent and quality of contact you had with your parent(s) shortly after birth? ", "was given an above average amount of contact by happy parent(s) |1", "was given an average amount of contact by happy parent(s) |2", "was given an average amount of contact by unhappy (perhaps angry) parent(s) |3", "was given a below average amount of contact by unhappy (perhaps angry) parent(s) |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [21, " What is your best guess as to the extent and quality of contact you had with your parent(s) shortly after birth? ", "was given an above average amount of contact by happy parent(s) |1", "was given an average amount of contact by happy parent(s) |2", "was given an average amount of contact by unhappy (perhaps angry) parent(s) |3", "was given a below average amount of contact by unhappy (perhaps angry) parent(s) |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [22, " During your early childhood, to what extent was your mother both calm and generally permissive? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [22, " During your early childhood, to what extent was your mother both calm and generally permissive? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [23, " How easily do you make friends in a strange situation? ", "very easily |1", "easily |2", "uneasily |3", "very uneasily |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [23, " How easily do you make friends in a strange situation? ", "very easily |1", "easily |2", "uneasily |3", "very uneasily |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [24, " When highly stressed, how likely are you to ask friends or relatives for help? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [24, " When highly stressed, how likely are you to ask friends or relatives for help? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [25, " In comparison with other people, how likely are you to see others as threatening, uncooperative, or exploitative? ", "highly unlikely |1", "unlikely |2", "likely |3", "highly likely |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [25, " In comparison with other people, how likely are you to see others as threatening, uncooperative, or exploitative? ", "highly unlikely |1", "unlikely |2", "likely |3", "highly likely |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [26, " How often are you confused about the intentions of others toward you? ", "very infrequently |1", "infrequently |2", "frequently |3", "very frequently |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [26, " How often are you confused about the intentions of others toward you? ", "very infrequently |1", "infrequently |2", "frequently |3", "very frequently |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [27, " To what extent are you aware of practical, healthy ways of relaxing? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [27, " To what extent are you aware of practical, healthy ways of relaxing? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 13, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [28, " How frequently do you pursue some highly relaxing practice? ", "daily or more often |1", "once or twice a week |2", "once or twice a month |3", "seldom |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [28, " How frequently do you pursue some highly relaxing practice? ", "daily or more often |1", "once or twice a week |2", "once or twice a month |3", "seldom |4", 13, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [29, " How often do you engage in a spiritual practice such as prayer, mediation, or inspirational reading to enrich your interior life? ", "daily or more often |1", "once or twice a week |2", "once or twice a month |3", "seldom |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [29, " How often do you engage in a spiritual practice such as prayer, mediation, or inspirational reading to enrich your interior life? ", "daily or more often |1", "once or twice a week |2", "once or twice a month |3", "seldom |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [30, " How connected do you feel to your conception of a higher power or to a worthy cause? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [30, " How connected do you feel to your conception of a higher power or to a worthy cause? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [31, " To what extent do you believe your life has purpose? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [31, " To what extent do you believe your life has purpose? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [32, " How much contact do you have with what you would consider a spiritual community? ", "very much |1", "much |2", "very little |3", "none |4", "", 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [32, " How much contact do you have with what you would consider a spiritual community? ", "very much |1", "much |2", "very little |3", "none |4", 14, 1]);
 });
 
 db.transaction(function (tx) {
@@ -416,6 +422,13 @@ db.transaction(function (tx) {
 });
 
 
+
+
+
+
+
+
+
 //personality
 
 
@@ -441,38 +454,76 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,?,?,?,?)", [61, 'What you see first;img/7.png', 'whale|1', 'moon and light on water|2', 'a person surfing|3', null, 'img', null, 8, 1]);
 });
 
+
+
+//evaluation
+
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1, 8, 7, 9, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", ""]);
+    tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set ,status) values(16,2,0,125,1,'Try  the  Test  some  other Day')");
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set ,status) values(17,2,126,200,1,'Low EQ')");
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set ,status) values(18,2,201,270,1,'Moderate EQ')");
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set,status ) values(19,2,271,310,1,'High EQ')");
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set ,status) values(20,2,311,440,1,'Extremely  high EQ')");
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2, 8, 10, 13, "Stable personality: you are happiest when your life plans have been 'cast in iron'. changes simply stress you out. you are very attentive, but sometimes you can miss important details which might help you see the bigger picture. you have the ability to pay attention to your feelings and know the difference between your need and desires. you have a fairly stable opinion of yourself. you know what your strong point are. Stability for you means personal development & growth. the two most important things for you are planning and consistency", "", ""]);
-});
-db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3, 8, 14, 17, "Optimistic Personality: you have an incredibly optimistic personality. you can adapt to new situations with striking ease. you can find a common language with people, and very rarely feel lonely. you strongly value all expressions of love, as well as friendly relationships. you try not to judge people by their appearance, and always strive to get to know them better. you're also a very strong person. if something bad happens, you dont lose your head-instead you do your best to get to the root of the problem.", "", ""]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [21, 8, 7, 9, "you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", "Creative Personality"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4, 8, 18, 21, "Creative Personality: you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", ""]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [22, 8, 10, 13, "you are happiest when your life plans have been 'cast in iron'. changes simply stress you out. you are very attentive, but sometimes you can miss important details which might help you see the bigger picture. you have the ability to pay attention to your feelings and know the difference between your need and desires. you have a fairly stable opinion of yourself. you know what your strong point are. Stability for you means personal development & growth. the two most important things for you are planning and consistency", "", "Stable personality"]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [23, 8, 14, 17, "you have an incredibly optimistic personality. you can adapt to new situations with striking ease. you can find a common language with people, and very rarely feel lonely. you strongly value all expressions of love, as well as friendly relationships. you try not to judge people by their appearance, and always strive to get to know them better. you're also a very strong person. if something bad happens, you dont lose your head-instead you do your best to get to the root of the problem.", "", "Optimistic Personality"]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [24, 8, 18, 21, "you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", "Creative Personality"]);
 });
 
 //iq evaluation
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1,3, 121, 165, "you are highly adaptable. you have no special talents, you are only passionately curious.you have insatiable curiosity.you don't close yourselves off to new ideas or opportunities.you are willing to accept and consider other views with value and broad-mindedness and that you are open to alternative solutions.you like your own company.you people tend to be very individualistic.you people are able to overcome impulsiveness by planning, clarifying goals, exploring alternative strategies and considering consequences before starting.you people tend to have a great sense of humor.", "Keep learning and update yourself routinely","Gifted"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [25, 3, 121, 165, "you are highly adaptable. you have no special talents, you are only passionately curious.you have insatiable curiosity.you don't close yourselves off to new ideas or opportunities.you are willing to accept and consider other views with value and broad-mindedness and that you are open to alternative solutions.you like your own company.you people tend to be very individualistic.you people are able to overcome impulsiveness by planning, clarifying goals, exploring alternative strategies and considering consequences before starting.you people tend to have a great sense of humor.", "Keep learning and update yourself routinely", "Gifted"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [2,3, 121, 130, "you are sensitive to other people's experiences. you people always strive to learn as much as they can from their mistakes and move on. you have the ability to adapt to any situations.you people are problem solvers and analyze every situation they come across and apply the knowledge they have to tackle them.you have high Self-Control.you take calculated risks.you are Humble: pride always comes before a fall, you know this too well. Disagreements frequently arise because of a misunderstanding between people, and this will usually be the case with you", "Explore as much as you can.Do regular high cardio exercise. ","High IQ"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [26, 3, 121, 130, "you are sensitive to other people's experiences. you people always strive to learn as much as they can from their mistakes and move on. you have the ability to adapt to any situations.you people are problem solvers and analyze every situation they come across and apply the knowledge they have to tackle them.you have high Self-Control.you take calculated risks.you are Humble: pride always comes before a fall, you know this too well. Disagreements frequently arise because of a misunderstanding between people, and this will usually be the case with you", "Explore as much as you can.Do regular high cardio exercise. ", "High IQ"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [3,3, 90, 120, "you people are often the most quiet people in the room.you tend to know a lot about a wide range of topics, and not just a few basic things. you look for ways to educate yourselves.you easily find a way to manage work, home life and outside interests very well. you are often bored with one type of work.you people typically never make other people look stupid by mocking them or making them feel inferior. you people realize the value of balance in every area of their lives.", " meditate that will allow your brain to function efficiently and it also maintains your mood and stress level. Learn an instrument well. Play the brain game:  It will improve your working memory","Average IQ"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [27, 3, 90, 120, "you people are often the most quiet people in the room.you tend to know a lot about a wide range of topics, and not just a few basic things. you look for ways to educate yourselves.you easily find a way to manage work, home life and outside interests very well. you are often bored with one type of work.you people typically never make other people look stupid by mocking them or making them feel inferior. you people realize the value of balance in every area of their lives.", " meditate that will allow your brain to function efficiently and it also maintains your mood and stress level. Learn an instrument well. Play the brain game:  It will improve your working memory", "Average IQ"]);
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [4,3, 50, 89, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.","Low IQ"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [28, 3, 50, 89, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
 });
+
+
+// Stree 
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [28, 4, 0, 1.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [29, 4, 1.5, 2.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [30, 4, 2.5, 3.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [31, 4, 3.5, 4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
+});
+
+
+
 
 
 angular.module('fettleflingdb', ['ngCordova'])
@@ -480,7 +531,7 @@ angular.module('fettleflingdb', ['ngCordova'])
         return {
             insertUser: function (userinfo, scope) {
                 db.transaction(function (tx) {
-                    tx.executeSql('INSERT INTO `users` (name,username,password,gender,age) VALUES(?,?,?,?,?)', [userinfo.firstname+" "+ userinfo.lastname , userinfo.username.toLowerCase() , userinfo.password , userinfo.gender , userinfo.age ]);
+                    tx.executeSql('INSERT INTO `users` (name,username,password,gender,age) VALUES(?,?,?,?,?)', [userinfo.firstname + " " + userinfo.lastname, userinfo.username.toLowerCase(), userinfo.password, userinfo.gender, userinfo.age]);
                     $location.path('/app/login');
                     scope.$apply();
                 });
