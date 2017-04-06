@@ -1,22 +1,26 @@
-<ion-view>
+<ion-view view-title="Game">
     <ion-header-bar>
-        <h1 class="title">Game</h1>
-       
+      
+
     </ion-header-bar>
     <ion-content>
-         <div  class="timer">
-<div  class="timerfill" style="width:{{countDown*7}}%" ></div></div>
-<h4>Game<h4>
-    
- <div>  
-<div class="wrapper" ng-repeat="i in getNumber(8) track by $index">
-  <div class="box a" ng-repeat="j in getNumber(8) track by $index" ng-click="checkfornext($parent.$index,$index)">
-  {{$parent.$index==parent && $index==child?ambiguousletterpairs[random][1]:ambiguousletterpairs[random][0]}}</div>
-</div>
-</div>
+        <div class="timer">
+            <div class="timerfill" style="width:{{countDown*7}}%"></div>
+        </div>
 
+<h4>
+        <div>
+            <div class="wrapper" ng-repeat="i in getNumber(8) track by $index">
+                <div class="box a" ng-repeat="j in getNumber(8) track by $index" ng-click="checkfornext($parent.$index,$index)">
+                    {{$parent.$index==parent && $index==child?ambiguousletterpairs[random][1]:ambiguousletterpairs[random][0]}}</div>
+            </div>
+        </div>
+   </h4>
 
+       <a href="#/app/options"> <button class="waves-effect waves-light btn" name="action" style="float:left" >Back
+            <i class="mdi mdi-chevron-double-left" style="float:left"></i>
+        </button>
 
 
     </ion-content>
-    </ion-view>
+</ion-view>

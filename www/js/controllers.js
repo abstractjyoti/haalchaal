@@ -2,45 +2,65 @@ var questioncat = "";
 var questioncategory = [];
 var questionset = [];
 var maincatid;
+//var jstoragevalue = {};
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast,$location) {
 
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
-    // Form data for the login modal
-    $scope.loginData = {};
-    // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-        scope: $scope
-    }).then(function (modal) {
-        $scope.modal = modal;
-    });
-
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function () {
-        $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.login = function () {
-        $scope.modal.show();
-    };
+if ($.jStorage.get("user") != null) 
+    $location.path('/app/options');
+    else
+        $location.path('/app/login');
     $scope.user = {};
-    $scope.user.username = ""
-
+    $scope.user.username = "";
+    $scope.user.password = "";
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-        //  $cordovaToast.show('This might take several minutes, please hold on...', 'long', 'bottom');
-        // console.log($cordovaToast);
-        MyDatabase.checkLogin($scope.user.username, $scope);
+
+       
+        $scope.passwordrequired = $scope.user.password == "" ? "Please enter password !" : "";
+        $scope.usernamerequired = $scope.user.username == "" ? "Please enter username !" : "";
+        if ($scope.passwordrequired == "" && $scope.usernamerequired == "") {
+
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
+                    // console.log($cordovaToast.show("Here's a message", 'long', 'center'));
+                    if (results.rows.length == 1) {
+                        if (results.rows.item(0).password == $scope.user.password)
+                        {
+                             $scope.userdoesnotexist='';
+                            $scope.passwordnotmatched='';
+                             console.log("matched");
+                              $.jStorage.set("user",{id:results.rows.item(0).id,name: $scope.user.username});
+
+                            $location.path('/app/options');
+                        }
+                        else {
+                            console.log("not matched");
+                            $scope.passwordnotmatched = "Wrong password !";
+                        }
+                    } else {
+                        console.log("not exits matched");
+                        $scope.userdoesnotexist = "User does no exists !";
+
+                    }
+                    $scope.$apply();
+
+                }, null);
+            });
+
+
+
+
+
+        }
 
     };
+    $scope.signUp=function()
+    {
+
+$location.path('/app/signup');
+}
 })
 
 
@@ -363,22 +383,22 @@ angular.module('starter.controllers', [])
             unit = "";
         var ranges = [];
         if (questioncat == "stress") {
-            
-     var totalscores = 0;
 
-     for (var i = 0; i < questioncategory.length; i++)
-         totalscores += questioncategory[i].scores / questioncategory[i].length;
+            var totalscores = 0;
 
-     questioncategory = [];
+            for (var i = 0; i < questioncategory.length; i++)
+                totalscores += questioncategory[i].scores / questioncategory[i].length;
+
+            questioncategory = [];
 
 
-     questioncategory.push({
-         id: maincatid,
-         category: questioncat,
-         scores: Math.round(totalscores / 6),
-         length: questionset.length
-     });
- }
+            questioncategory.push({
+                id: maincatid,
+                category: questioncat,
+                scores: Math.round(totalscores / 6),
+                length: questionset.length
+            });
+        }
         var prepareValueMeter = function (results) {
 
             upperLimit = results.rows.item(results.rows.length - 1).max_score;

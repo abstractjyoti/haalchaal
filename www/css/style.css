@@ -92,7 +92,7 @@
 }
 
 .timer {
-    height: 8px;
+    height: 50px;
 }
 
 .popuptext {
@@ -111,4 +111,16 @@
     color: white;
     width: 0%;
     padding: 3px;
+}
+
+.bar.bar-stable .mybutton {
+    color: snow !important;
+}
+
+.bar-stable .mymenu {
+    background-color: #26a69a;
+}
+
+.bar.bar-stable .title {
+    color:snow !important;
 }
