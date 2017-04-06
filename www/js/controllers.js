@@ -514,8 +514,8 @@ angular.module('starter.controllers', [])
             $ionicScrollDelegate.scrollTop();
             if (!$scope.showresult) {
                 angular.element(document.querySelector('.firstclass')).addClass('active');
-                 angular.element(document.querySelector('.bodyoffirstclass')).trigger( "expand" );
-              //  angular.element(document.querySelector('.collapsible')).collapsible('open', 0);
+                angular.element(document.querySelector('.bodyoffirstclass')).trigger('click');
+                //  angular.element(document.querySelector('.collapsible')).collapsible('open', 0);
                 /* $(".collapsible").collapsible({
                      accordion: false
                  });*/
