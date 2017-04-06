@@ -46,12 +46,12 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(6,'classification',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(7,'logic',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(8,'personality',0,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(9,'Wellness Scale ',4,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(10,'Thought Control Scale ',4,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(11,'Active Coping Scale',4,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(12,'Social Ease Scale ',4,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(13,'Tension reduction Scale ',4,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(14,'Spiritual Practice Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(12,'Wellness Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(13,'Thought Control Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(14,'Active Coping Scale',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(15,'Social Ease Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(16,'Tension reduction Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(17,'Spiritual Practice Scale ',4,'combinational_question')");
 
 
 

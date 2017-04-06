@@ -5,10 +5,10 @@ var maincatid;
 //var jstoragevalue = {};
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast,$location) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast, $location) {
 
-if ($.jStorage.get("user") != null) 
-    $location.path('/app/options');
+    if ($.jStorage.get("user") != null)
+        $location.path('/app/options');
     else
         $location.path('/app/login');
     $scope.user = {};
@@ -17,7 +17,7 @@ if ($.jStorage.get("user") != null)
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
 
-       
+
         $scope.passwordrequired = $scope.user.password == "" ? "Please enter password !" : "";
         $scope.usernamerequired = $scope.user.username == "" ? "Please enter username !" : "";
         if ($scope.passwordrequired == "" && $scope.usernamerequired == "") {
@@ -26,16 +26,17 @@ if ($.jStorage.get("user") != null)
                 tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
                     // console.log($cordovaToast.show("Here's a message", 'long', 'center'));
                     if (results.rows.length == 1) {
-                        if (results.rows.item(0).password == $scope.user.password)
-                        {
-                             $scope.userdoesnotexist='';
-                            $scope.passwordnotmatched='';
-                             console.log("matched");
-                              $.jStorage.set("user",{id:results.rows.item(0).id,name: $scope.user.username});
+                        if (results.rows.item(0).password == $scope.user.password) {
+                            $scope.userdoesnotexist = '';
+                            $scope.passwordnotmatched = '';
+                            console.log("matched");
+                            $.jStorage.set("user", {
+                                id: results.rows.item(0).id,
+                                name: $scope.user.username
+                            });
 
                             $location.path('/app/options');
-                        }
-                        else {
+                        } else {
                             console.log("not matched");
                             $scope.passwordnotmatched = "Wrong password !";
                         }
@@ -56,11 +57,10 @@ if ($.jStorage.get("user") != null)
         }
 
     };
-    $scope.signUp=function()
-    {
+    $scope.signUp = function () {
 
-$location.path('/app/signup');
-}
+        $location.path('/app/signup');
+    }
 })
 
 
@@ -225,7 +225,7 @@ $location.path('/app/signup');
             var score = 0,
                 totalscore = 0,
                 totallength = $scope.questionarray.length;
-
+            console.log(questioncategory);
             for (var i = 0; i < $scope.questionarray.length; i++) {
 
                 for (var j = 0; j < questioncategory.length; j++) {
@@ -253,7 +253,7 @@ $location.path('/app/signup');
 
 
 
-            console.log(questioncategory);
+
 
         };
 
