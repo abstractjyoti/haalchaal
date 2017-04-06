@@ -348,7 +348,7 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('ResultCtrl', function ($scope, MyDatabase, $location,$ionicScrollDelegate) {
+    .controller('ResultCtrl', function ($scope, MyDatabase, $location, $ionicScrollDelegate, $compile) {
         $scope.showresult = true;
         $scope.result = [];
         $scope.recommendation = [];
@@ -505,14 +505,22 @@ angular.module('starter.controllers', [])
 
 
 */
-    $scope.changeshowresultvalue=function()
-    {
-        $scope.showresult=!$scope.showresult;
+        $scope.changeshowresultvalue = function () {
+            $scope.showresult = !$scope.showresult;
 
-}
+        }
         $scope.$watch('showresult', function () {
-           console.log('hey, myVar has changed!');
+            console.log('hey, myVar has changed!');
             $ionicScrollDelegate.scrollTop();
+            if (!$scope.showresult) {
+                angular.element(document.querySelector('.firstclass')).addClass('active');
+                 angular.element(document.querySelector('.bodyoffirstclass')).trigger( "expand" );
+              //  angular.element(document.querySelector('.collapsible')).collapsible('open', 0);
+                /* $(".collapsible").collapsible({
+                     accordion: false
+                 });*/
+
+            }
         });
 
 

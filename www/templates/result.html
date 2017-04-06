@@ -28,11 +28,11 @@
         </div>
         <div ng-hide="showresult" id="suggestiondiv">
             <ul class="collapsible popout" data-collapsible="accordion">
-                <li class="mycards" ng-repeat="recommendations in recommendation" ng-if="recommendations.behaviour!=''" >
-                    <div class="collapsible-header"  ng-class="{firstclass:$index==0}">
+                <li class="mycards" ng-repeat="recommendations in recommendation" ng-if="recommendations.behaviour!=''" ng-class="{firstclass:$index==0}" >
+                    <div class="collapsible-header" ng-class="{bodyoffirstclass:$index==0}">
                         {{recommendations.category.charAt(0).toUpperCase()+recommendations.category.substr(1,(recommendations.category.length-1))}}
                     </div>
-                    <div class="collapsible-body"><span class="popuptext"><h5>Prediction of your behaviour :</h5>{{recommendations.prediction}}<h5 ng-if="recommendations.suggestion!=''">Suggestions :</h5>{{recommendations.suggestion}}</span>
+                    <div class="collapsible-body"  ng-class="{firstclass:$index==0}"><span class="popuptext"><h5>Prediction of your behaviour :</h5>{{recommendations.prediction}}<h5 ng-if="recommendations.suggestion!=''">Suggestions :</h5>{{recommendations.suggestion}}</span>
                     </div>
                 </li>
             </ul>
@@ -45,7 +45,6 @@
 </ion-view>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.mycards .collapsible-header .firstclass').addClass('active');
         $('.collapsible').collapsible({
             onOpen: function (el) {
                 $('.mcards').addClass('mycards');
