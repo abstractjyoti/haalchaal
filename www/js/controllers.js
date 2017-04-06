@@ -348,7 +348,7 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('ResultCtrl', function ($scope, MyDatabase, $location) {
+    .controller('ResultCtrl', function ($scope, MyDatabase, $location,$ionicScrollDelegate) {
         $scope.showresult = true;
         $scope.result = [];
         $scope.recommendation = [];
@@ -459,8 +459,8 @@ angular.module('starter.controllers', [])
             if (questioncategory.length > 1) {
 
                 tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
-
-                    prepareValueMeter(results);
+                    if (results.rows.length > 0)
+                        prepareValueMeter(results);
 
                 }, null)
 
@@ -505,6 +505,16 @@ angular.module('starter.controllers', [])
 
 
 */
+    $scope.changeshowresultvalue=function()
+    {
+        $scope.showresult=!$scope.showresult;
+
+}
+        $scope.$watch('showresult', function () {
+           console.log('hey, myVar has changed!');
+            $ionicScrollDelegate.scrollTop();
+        });
+
 
     })
     .controller('SignupCtrl', function ($scope, MyDatabase, $location) {
@@ -525,7 +535,7 @@ angular.module('starter.controllers', [])
 
         }
         $scope.checkUniqueUser = function () {
- $scope.usernamerequired="";
+            $scope.usernamerequired = "";
             if (!$scope.user.username == "") {
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username.toLowerCase() + '"', [], function (tx, results) {
@@ -544,7 +554,7 @@ angular.module('starter.controllers', [])
         }
         $scope.checkPassword = function () {
 
-            $scope.passwordrequired ="";
+            $scope.passwordrequired = "";
             $scope.password = $scope.user.password.length < 6 ? "Minimum password length should be 6 !" : "";
 
 
@@ -554,8 +564,8 @@ angular.module('starter.controllers', [])
             $scope.namerequired = $scope.user.lastname == "" || $scope.user.firstname == "" ? "Name is required !" : "";
             $scope.usernamerequired = $scope.user.username == "" ? "Username is required !" : "";
             $scope.passwordrequired = $scope.user.password == "" ? "Password is required !" : "";
-            if($scope.namerequired=="" &&  $scope.usernamerequired==""&&$scope.passwordrequired=="")
-            MyDatabase.insertUser($scope.user, $scope);
+            if ($scope.namerequired == "" && $scope.usernamerequired == "" && $scope.passwordrequired == "")
+                MyDatabase.insertUser($scope.user, $scope);
 
         }
 

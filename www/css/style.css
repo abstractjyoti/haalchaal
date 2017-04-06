@@ -72,21 +72,43 @@
 }
 
 .third .item-content {
-    background-color:#b9f6ca;
+    background-color: #b9f6ca;
 }
 
 .forth .item-content {
     background-color: #f8bbd0;
 }
+
 #mybutton {
-  position: fixed !important;
-  bottom: -4px;
-  right: 10px;
+    position: fixed !important;
+    bottom: -4px;
+    right: 10px;
 }
-.mycards
-{
 
+.mycards .collapsible-header {
+    background-color: #d50000;
+    color: azure;
+    font-size: larger;
+}
 
+.timer {
+    height: 8px;
+}
 
+.popuptext {
+    font-size: inherit;
+    font-family: sans-serif;
+}
 
+.popuptext h5 {
+    font-family: serif;
+}
+
+.timerfill {
+    height: 8px;
+    background-color: rgb(68, 68, 68);
+    transition: 2s ease;
+    color: white;
+    width: 0%;
+    padding: 3px;
 }

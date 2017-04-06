@@ -5,7 +5,8 @@
             <h4 class="questiontext"> {{messagebeforequestion}}</h4>
 
         </div>-->
-<div  ng-style="{'width': (countDown*20)+ '%', 'background-color': '#aabbff' }" ng-if="maincategory=='PERSONALITY'&&!showoption"><center><p>{{showoption}}&nbsp;</p></center></div>
+        <div ng-if="maincategory=='PERSONALITY'&&!showoption" class="timer">
+<div  class="timerfill" style="width:{{countDown*20}}%" ></div></div>
         <div ng-repeat="questions in questionarray" ng-if=display[$index] class="questiondiv">
 
             <div class="card" ng-if="questions.que_format!='img'">

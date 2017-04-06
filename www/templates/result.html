@@ -7,7 +7,9 @@
             <div class="row" ng-repeat="results in result">
                 <div class="col s3 m2">
                     <div width="60%" ng-radial-gauge ranges="results.ranges" value="results.value" value-unit="results.unit" precision="results.precision" lower-limit="results.lowerLimit" upper-limit="results.upperLimit">
-                        <h5><b>{{recommendation[$index].category.charAt(0).toUpperCase()+recommendation[$index].category.substr(1,(recommendation[$index].category.length-1))}} :</b> {{recommendation[$index].status.charAt(0).toUpperCase()+recommendation[$index].status.substr(1,(recommendation[$index].status.length-1))}}</h5>
+                        <h5><b>{{recommendation[$index].category.charAt(0).toUpperCase()+recommendation[$index].category.substr(1,(recommendation[$index].category.length-1))}}&nbsp;: </h5>
+                        <h6 ng-if="recommendation[$index].status!=''">{{recommendation[$index].status.charAt(0).toUpperCase()+recommendation[$index].status.substr(1,(recommendation[$index].status.length-1))}}</h6>
+                        </b>
                     </div>
                 </div>
 
@@ -21,29 +23,41 @@
 </div>-->
 
             <center>
-                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="showresult=!showresult">Get suggestions</button>
+                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="changeshowresultvalue()" onclick="scrollup()">Get suggestions</button>
             </center>
         </div>
-        <div ng-hide="showresult">
+        <div ng-hide="showresult" id="suggestiondiv">
             <ul class="collapsible popout" data-collapsible="accordion">
-                <li class="mycards" ng-repeat="recommendations in recommendation" ng-if="recommendations.behaviour!=''">
-                    <div class="collapsible-header active">
+                <li class="mycards" ng-repeat="recommendations in recommendation" ng-if="recommendations.behaviour!=''" >
+                    <div class="collapsible-header"  ng-class="{firstclass:$index==0}">
                         {{recommendations.category.charAt(0).toUpperCase()+recommendations.category.substr(1,(recommendations.category.length-1))}}
                     </div>
-                    <div class="collapsible-body"><span><h5>Prediction of your behaviour :</h5>{{recommendations.prediction}}<h5>Suggestions :</h5>{{recommendations.suggestion}}</span>
+                    <div class="collapsible-body"><span class="popuptext"><h5>Prediction of your behaviour :</h5>{{recommendations.prediction}}<h5 ng-if="recommendations.suggestion!=''">Suggestions :</h5>{{recommendations.suggestion}}</span>
                     </div>
                 </li>
             </ul>
 
             <center>
-                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="showresult=!showresult">Back</button>
+                <button id="#mybutton" class="waves-effect waves-light btn" ng-click="changeshowresultvalue()">Back</button>
 
         </div>
     </ion-content>
 </ion-view>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.collapsible').collapsible();
+        $('.mycards .collapsible-header .firstclass').addClass('active');
+        $('.collapsible').collapsible({
+            onOpen: function (el) {
+                $('.mcards').addClass('mycards');
+            }, // Callback for Collapsible open
+            onClose: function (el) {
+                    $('.mcards').removeClass('mycards');
+                } // Callback for Collapsible close
+
+        });
 
     });
+    var scrollup=function(){
+    $("#suggestiondiv").scrollTop();
+    }
 </script>

@@ -89,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
         }
     })
 
-    .state('app.single', {
+    .state('app.sinup', {
         url: '/signup',
         views: {
             'menuContent': {
