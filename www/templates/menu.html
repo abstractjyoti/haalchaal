@@ -1,8 +1,10 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable mymenu mytitle">
-            <ion-nav-back-button class=" mybutton">
-            </ion-nav-back-button>
+            
+                <!--<ion-nav-back-button class=" mybutton" ng-click="backbutton()">
+                </ion-nav-back-button>-->
+            
 
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon mybutton" menu-toggle="left">
@@ -18,7 +20,7 @@
         <ion-header-bar class="bar-stable">
             <h1 class="title">Left</h1>
         </ion-header-bar>
-        <ion-content >
+        <ion-content>
 
             <ion-item menu-close href="#/app/options">
                 Assessment Options
@@ -28,10 +30,10 @@
             </ion-item>
 
             <ion-item menu-close href="#/app/game">
-              Game
+                Game
             </ion-item>
-             <ion-item menu-close href="#/app/logout">
-              Log out
+            <ion-item menu-close ng-click="logout()">
+                Log out
             </ion-item>
             </ion-list>
         </ion-content>

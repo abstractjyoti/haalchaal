@@ -6,7 +6,9 @@ var maincatid;
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast, $location) {
-
+    $scope.showform = true;
+    $scope.donotpressbackground = true;
+    $scope.changepassword = false;
     if ($.jStorage.get("user") != null)
         $location.path('/app/options');
     else
@@ -26,20 +28,28 @@ angular.module('starter.controllers', [])
                 tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
                     // console.log($cordovaToast.show("Here's a message", 'long', 'center'));
                     if (results.rows.length == 1) {
-                        if (results.rows.item(0).password == $scope.user.password) {
-                            $scope.userdoesnotexist = '';
-                            $scope.passwordnotmatched = '';
-                            console.log("matched");
-                            $.jStorage.set("user", {
-                                id: results.rows.item(0).id,
-                                name: $scope.user.username
-                            });
+                        if (!$scope.changepassword) {
+                            if (results.rows.item(0).password == $scope.user.password) {
+                                $scope.userdoesnotexist = '';
+                                $scope.passwordnotmatched = '';
+                                console.log("matched");
+                                $.jStorage.set("user", {
+                                    id: results.rows.item(0).id,
+                                    name: $scope.user.username
+                                });
 
-                            $location.path('/app/options');
+                                $location.path('/app/options');
+                            } else {
+                                console.log("not matched");
+                                $scope.passwordnotmatched = "Wrong password !";
+                            }
                         } else {
-                            console.log("not matched");
-                            $scope.passwordnotmatched = "Wrong password !";
+                            tx.executeSql("update users set password='" + $scope.user.password + "' where username='" + $scope.user.username + "'");
+                            $scope.user.password = "";
+                            $scope.user.username = "";                              
+                            $scope.showform = true;
                         }
+
                     } else {
                         console.log("not exits matched");
                         $scope.userdoesnotexist = "User does no exists !";
@@ -61,6 +71,31 @@ angular.module('starter.controllers', [])
 
         $location.path('/app/signup');
     }
+    $scope.logout = function () {
+        $.jStorage.flush();
+        $location.path("/app/login");
+    }
+
+    $scope.backbutton = function () {
+
+        $location.path('/app/options');
+
+
+    }
+    $scope.changevalue = function () {
+        $scope.donotpressbackground = !$scope.donotpressbackground;
+    }
+
+    $scope.forgotpassword = function () {
+        $scope.showform = !$scope.showform;
+
+
+    }
+    $scope.changepasswordsection = function () {
+        $scope.changepassword = true;
+        $scope.doLogin();
+    }
+
 })
 
 
