@@ -63,6 +63,81 @@
     font-size: 50%;
 }
 
+.wrappers {
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-gap: 2%;
+    grid-template-rows: repeat(2, 0.001fr);
+    grid-row-gap: 10px;
+    background-color: #fff;
+    color: #444;
+}
+
+.boxes {
+    background-color: #444;
+    color: #fff;
+    border-radius: 10%;
+    text-align: center;
+    padding: 50%;
+    font-size: 50%;
+}
+
+@keyframes spinner {
+    from {
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    to {
+        -moz-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+}
+
+@keyframes spinneragain {
+    from {
+        -moz-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+    to {
+        -moz-transform: rotateY(-360deg);
+        -ms-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+}
+
+.spinner {
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 2s;
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.spinneragain {
+    -webkit-animation-name: spinneragain;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 2s;
+    animation-name: spinneragain;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
 .second .item-content {
     background-color: #ffe0b2;
 }
@@ -135,4 +210,14 @@
 .bar.bar-stable {
     background-color: #26a69a;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.images {
+    /*transition-delay: 2s;*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+    -webkit-transition: 1s;
+    transition: 1s;
+    background-position-x: 50%;
+    background-position-y: 50%;
 }

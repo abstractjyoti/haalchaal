@@ -13,9 +13,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
-             $cordovaPlugin.someFunction().then(success, error);
+            $cordovaPlugin.someFunction().then(success, error);
 
-       }
+        }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
@@ -57,6 +57,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
                 'menuContent': {
                     templateUrl: 'templates/game.html',
                     controller: 'GameCtrl'
+                }
+            }
+        })
+        .state('app.flipgame', {
+            url: '/flipgame',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/flipgame.html',
+                    controller: 'FlipGameCtrl'
                 }
             }
         })

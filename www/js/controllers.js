@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     $scope.donotpressbackground = true;
     $scope.changepassword = false;
     if ($.jStorage.get("user") != null)
-        $location.path('/app/options');
+        $location.path('/app/flipgame');
     else
         $location.path('/app/login');
     $scope.user = {};
@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
                         } else {
                             tx.executeSql("update users set password='" + $scope.user.password + "' where username='" + $scope.user.username + "'");
                             $scope.user.password = "";
-                            $scope.user.username = "";                              
+                            $scope.user.username = "";
                             $scope.showform = true;
                         }
 
@@ -88,6 +88,7 @@ angular.module('starter.controllers', [])
 
     $scope.forgotpassword = function () {
         $scope.showform = !$scope.showform;
+        $scope.user = {};
 
 
     }
@@ -100,41 +101,57 @@ angular.module('starter.controllers', [])
 
 
 .controller('OptionsCtrl', function ($scope, MyDatabase, $location) {
-        $scope.getCatId = function (category) {
-            questioncat = category;
-            db.transaction(function (tx) {
-                tx.executeSql('SELECT * FROM `questioncategory` where category="' + category + '"', [], function (tx, results) {
+        $scope.$on('$ionicView.enter', function () {
+            if ($.jStorage.get('user'))
+                optionctrl();
+            else
+                $location.path('/app/login');
 
-                    if (results.rows.length > 0) {
 
-                        $location.path('/app/questions/' + results.rows.item(0).id);
-                        //  $location.replace();
-                        console.log(results.rows.item(0).id);
-                        $scope.$apply();
-                    }
+        });
+        var optionctrl = function () {
+            $scope.getCatId = function (category) {
+                questioncat = category;
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM `questioncategory` where category="' + category + '"', [], function (tx, results) {
 
-                }, null);
-            });
+                        if (results.rows.length > 0) {
+
+                            $location.path('/app/questions/' + results.rows.item(0).id);
+                            //  $location.replace();
+                            console.log(results.rows.item(0).id);
+                            $scope.$apply();
+                        }
+
+                    }, null);
+                });
+
+
+
+            }
 
 
 
         }
 
-
-
-
-
     })
     .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams, $interval) {
-        $scope.maincategory = questioncat.toUpperCase();
-        console.log($scope.maincategory + "  " + questioncat);
-        $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
-        // console.log($scope.messagebeforequestion);
-        $scope.questionarray = [{}];
-        $scope.answers = {};
-        $scope.display = [];
-        maincatid = $stateParams.id;
-        $scope.showoption = false;
+        $scope.$on('$ionicView.enter', function () {
+            $scope.maincategory = questioncat.charAt(0).toUpperCase() + questioncat.substr(1, questioncat.length - 1);
+            console.log($scope.maincategory + "  " + questioncat);
+            $scope.messagebeforequestion = questioncategory == "personality" ? "What you see FIRST" : "";
+            // console.log($scope.messagebeforequestion);
+            $scope.questionarray = [{}];
+            $scope.answers = {};
+            $scope.display = [];
+            maincatid = $stateParams.id;
+            $scope.showoption = false;
+            getQuestionsById();
+
+
+        });
+
+
         //  var questioncategory = [];
         // Array shuffling 
 
@@ -198,6 +215,7 @@ angular.module('starter.controllers', [])
                                 length: 0
                             });
 
+                        $scope.$apply();
 
                     });
                     tx.executeSql('SELECT * FROM `' + results.rows.item(0).type_of_eval + '`where categoryid="' + $stateParams.id + '"', [], function (tx, results) {
@@ -222,12 +240,14 @@ angular.module('starter.controllers', [])
                             console.log("called");
                             $scope.timerCountdown();
                         }
+                        $scope.$apply();
 
                     }, null);
 
 
 
                 }, null);
+
             });
 
 
@@ -235,7 +255,7 @@ angular.module('starter.controllers', [])
         }
 
 
-        getQuestionsById();
+
         $scope.submit = function () {
             console.log($scope.answers);
         };
@@ -296,7 +316,111 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
+
+.controller('FlipGameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
+
+    $scope.numbers = [{
+            "id": "img/bg.jpg",
+            "title": "img/image1.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image2.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image3.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image4.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image5.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image6.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image7.png"
+        },
+        {
+            "id": "img/bg.jpg",
+            "title": "img/image8.png"
+        }]
+
+    $scope.cardarray = [];
+    $scope.images = [];
+    $scope.rotate = [];
+    var previousindex = -1;
+    var sufflearray = function (array) {
+        for (var i = 0; i < array.length; i++) {
+            var randomvalue = Math.floor(Math.random() * array.length);
+            var t;
+            t = array[i];
+            array[i] = array[randomvalue];
+            array[randomvalue] = t;
+        }
+
+
+        return array;
+
+
+    }
+
+
+
+
+    for (var j = 0; j < 2; j++) {
+        var newarray = sufflearray($scope.numbers.slice())
+        for (var i = 0; i < newarray.length; i++) {
+            $scope.cardarray.push(newarray[i]);
+            $scope.images.push(newarray[i].id);
+            $scope.rotate.push(true);
+        }
+    }
+
+    console.log($scope.cardarray);
+
+
+    $scope.getArray = function (number) {
+
+        return new Array(number);
+    }
+
+    $scope.checkselection = function (index) {
+
+        if ($scope.rotate[index]) {
+
+            $scope.rotate[index] = false;
+            setTimeout(function () {
+
+                $scope.images[index] = $scope.cardarray[index].title;
+                $scope.$digest();
+            }, 1000);
+
+
+
+
+
+
+        }
+
+
+    }
+
+
+})
+
+
+
+
+
+
+.controller('GameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
         $scope.$on('$ionicView.enter', function () {
             game();
 
