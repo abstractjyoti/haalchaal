@@ -356,6 +356,7 @@ angular.module('starter.controllers', [])
     $scope.images = [];
     $scope.rotate = [];
     var previousindex = -1;
+    var proceed = true;
     var sufflearray = function (array) {
         for (var i = 0; i < array.length; i++) {
             var randomvalue = Math.floor(Math.random() * array.length);
@@ -390,22 +391,64 @@ angular.module('starter.controllers', [])
 
         return new Array(number);
     }
+    var checkforsamevalue = function (index) {
+        if ($scope.cardarray[index].title != $scope.cardarray[previousindex].title) {
+            $scope.rotate[previousindex] = true;
+            $scope.rotate[index] = true;
 
-    $scope.checkselection = function (index) {
 
-        if ($scope.rotate[index]) {
+            console.log(previousindex + " " + index);
 
-            $scope.rotate[index] = false;
+            console.log($scope.images[index]);
             setTimeout(function () {
+                $scope.images[previousindex] = $scope.cardarray[previousindex].id;
+                $scope.images[index] = $scope.cardarray[index].id;
 
-                $scope.images[index] = $scope.cardarray[index].title;
+
+                previousindex = -1;
+
                 $scope.$digest();
             }, 1000);
 
 
+        }
+        setTimeout(function () {
+
+            previousindex = -1;
+            proceed = true;
+            $scope.$digest();
+        }, 2500);
+
+    }
+
+    $scope.checkselection = function (index) {
+
+        if (proceed && $scope.rotate[index]) {
+            proceed = false;
+            $scope.rotate[index] = false;
+            setTimeout(function () {
+
+                $scope.images[index] = $scope.cardarray[index].title;
 
 
 
+                $scope.$digest();
+            }, 1000);
+
+            setTimeout(function () {
+
+                $scope.images[index] = $scope.cardarray[index].title;
+
+                if (previousindex != -1)
+                    checkforsamevalue(index);
+
+                else {
+                    previousindex = index;
+                    proceed = true;
+                }
+
+                $scope.$digest();
+            }, 2100);
 
         }
 

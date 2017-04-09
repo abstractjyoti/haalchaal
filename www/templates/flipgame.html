@@ -13,7 +13,8 @@
             <div class="wrappers" ng-repeat="i in getArray(1) track by $index">
                 <div class="boxes " ng-repeat="number in cardarray track by $index" ng-click="checkselection($index)"
                      ng-click="checkfornext($parent.$index,$index)" 
-                     ng-class="{spinner:rotate[$index],spinneragain:!rotate[$index],images:!rotate[$index]}"
+                     ng-class=
+                     "{spinner:rotate[$index],spinneragain:!rotate[$index],images:!rotate[$index],bgimages:!rotate[$index]}"
                      style="background-image:url({{images[$index]}})">
                    </div>
             </div>
