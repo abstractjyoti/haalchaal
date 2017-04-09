@@ -9,9 +9,9 @@ angular.module('starter.controllers', [])
     $scope.showform = true;
     $scope.donotpressbackground = true;
     $scope.changepassword = false;
-    if ($.jStorage.get("user") != null)
-        $location.path('/app/flipgame');
-    else
+    if ($.jStorage.get("user") != null) {
+        //  $location.path('/app/flipgame');
+    } else
         $location.path('/app/login');
     $scope.user = {};
     $scope.user.username = "";
@@ -315,6 +315,7 @@ angular.module('starter.controllers', [])
     })
 
 .controller('FlipGameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
+
     var previousindex, proceed;
     var sufflearray = function (array) {
         for (var i = 0; i < array.length; i++) {
@@ -378,7 +379,12 @@ angular.module('starter.controllers', [])
         }]
 
 
+    $scope.back = function () {
+        $interval.cancel(stop);
+        $location.path('/app/options');
 
+
+    }
 
     $scope.$on('$ionicView.enter', function () {
         console.log("called");
@@ -412,7 +418,7 @@ angular.module('starter.controllers', [])
                 $scope.rotate.push(true);
             }
         }
-       
+
         console.log($scope.cardarray);
 
         $scope.timerCountdown();
@@ -693,6 +699,14 @@ angular.module('starter.controllers', [])
             });
             count++;
             console.log($scope.result);
+            //Insert records 
+
+
+
+
+
+
+
 
         }
         db.transaction(function (tx) {
@@ -754,50 +768,41 @@ angular.module('starter.controllers', [])
                 tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
                     if (results.rows.length > 0)
                         prepareValueMeter(results);
+                    $scope.$apply();
+
+
 
                 }, null)
+
 
 
             }
         });
 
 
-        /*    //  $scope.result.push();
-        $scope.value = 2;
-        $scope.upperLimit = 6;
-        $scope.lowerLimit = 0;
-        $scope.unit = "kW";
-        $scope.precision = 2;
-        $scope.ranges = [
-            {
-                min: 0,
-                max: 1.5,
-                color: '#DEDEDE'
-        },
-            {
-                min: 1.5,
-                max: 2.5,
-                color: '#8DCA2F'
-        },
-            {
-                min: 2.5,
-                max: 3.5,
-                color: '#FDC702'
-        },
-            {
-                min: 3.5,
-                max: 4.5,
-                color: '#FF7700'
-        },
-            {
-                min: 4.5,
-                max: 6.0,
-                color: '#C50200'
-        }
-    ];
 
 
-*/
+
+        db.transaction(function (tx) {
+            console.log('called resultsection');
+            if (questioncategory[questioncategory.length - 1].id == maincatid) {
+                // var today=new Date();
+                tx.executeSql("insert into `userrecords`(userid ,catid ,score ,status ,min_value ,max_value,dates) values(?,?,?,?,?,?,strftime('%d-%m-%Y', 'now'))", [$.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit]);
+
+                console.log("inserting values :" + 'insert into userrecords(userid ,catid ,score ,status ,min_value ,max_value) values(?,?,?,?,?,?)' + $.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit);
+                $scope.$apply()
+
+            }
+        });
+
+
+
+
+
+
+
+
+
         $scope.changeshowresultvalue = function () {
             $scope.showresult = !$scope.showresult;
 
@@ -808,10 +813,7 @@ angular.module('starter.controllers', [])
             if (!$scope.showresult) {
                 angular.element(document.querySelector('.firstclass')).addClass('active');
                 angular.element(document.querySelector('.bodyoffirstclass')).trigger('click');
-                //  angular.element(document.querySelector('.collapsible')).collapsible('open', 0);
-                /* $(".collapsible").collapsible({
-                     accordion: false
-                 });*/
+
 
             }
         });
@@ -835,6 +837,7 @@ angular.module('starter.controllers', [])
 
 
         }
+
         $scope.checkUniqueUser = function () {
             $scope.usernamerequired = "";
             if (!$scope.user.username == "") {
@@ -874,4 +877,58 @@ angular.module('starter.controllers', [])
 
 
 
+    })
+
+.controller('HistoryCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
+    var gethistory = function () {
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT u.id,u.score,u.status,u.dates,u.min_value,u.max_value,q.category FROM `userrecords` as u,`questioncategory` as q where u.catid=q.id and u.userid=' + $.jStorage.get('user').id + ' order by (u.id) DESC', [], function (tx, results) {
+                console.log(results.rows.length);
+                for (var i = 0; i < results.rows.length; i++)
+                    $scope.historydata.push(results.rows.item(i));
+
+                $scope.$apply();
+                console.log($scope.historydata);
+
+
+
+            }, null)
+
+        });
+
+
+
+    }
+
+    $scope.$on('$ionicView.enter', function () {
+        $scope.historydata = [];
+        gethistory();
+
     });
+
+
+
+    $scope.deletehistory = function () {
+        db.transaction(function (tx) {
+            tx.executeSql('delete from `userrecords` where userid=' + $.jStorage.get('user').id);
+            //show toast History cleared
+            gethistory();
+
+        })
+        $scope.deleteonswipe = function (index) {
+
+            db.transaction(function (tx) {
+                tx.executeSql('delete from `userrecords` where userid=' + $.jStorage.get('user').id + ' and id=' + $scope.historydata[index].id);
+                //show toast History cleared
+                gethistory();
+            })
+        }
+
+
+
+
+    }
+
+
+
+});

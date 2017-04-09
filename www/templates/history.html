@@ -1,0 +1,46 @@
+<ion-view view-title="Assessment history">
+    <ion-header-bar>
+
+    </ion-header-bar>
+    <ion-content>
+        <table class="centered striped">
+            <thead>
+                <tr>
+                    <th><b>Date</b>
+                    </th>
+                    <th><b>Assessment</b>
+                    </th>
+                    <th><b>Score</b>
+                    </th>
+                    <th><b>Status</b>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="history in historydata" on-swipe-left="deleteonswipe($index)">
+                    <td>{{history.dates}}</td>
+                    <td>{{(history.category.charAt(0).toUpperCase())+(history.category.substr(1,history.category.length-1))}}</td>
+                    <td>{{history.score}}</td>
+                    <td>{{history.status}}</td>
+                </tr>
+
+
+            </tbody>
+
+
+        </table>
+
+        <center>
+            <button id="#mybutton" class="waves-effect waves-light btn" ng-click="deletehistory()">clear all</button>
+           <!-- <button id="#mybutton" class="waves-effect waves-light btn" ng-click="changeshowresultvalue()">Get Progress</button>-->
+        </center>
+
+
+
+
+
+
+
+    </ion-content>
+</ion-view>

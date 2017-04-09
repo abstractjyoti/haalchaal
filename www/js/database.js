@@ -9,7 +9,7 @@ db.transaction(function (tx) {
 */
 });
 db.transaction(function (tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS `userrecords` (id integer primary key AUTOINCREMENT, userid integer,score integer,status varchar,dates CURRENT_TIMESTAMP)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `userrecords` (id integer primary key AUTOINCREMENT, userid integer,catid integer,score integer,status varchar,dates CURRENT_TIMESTAMP,min_value integer,max_value integer)');
 });
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `questioncategory` (id integer primary key , category varchar,parentid integer,type_of_eval varchar)');

@@ -5,7 +5,7 @@
     </ion-header-bar>
     <ion-content>
         <div class="timer">
-            <div class="timerfill" style="width:{{countDown*1}}%"></div>
+            <div class="timerfill" style="width:{{countDown*1.12}}%"></div>
         </div>
         <center>
             <h6>Find matching cards</h6>
@@ -27,10 +27,10 @@
             <p id="spinner" style="background: rgba(0,0,0,0.5); text-align: center; color: #fff;">Stop, I'm getting dizzy!</p>
         </div>-->
 
-        <a href="#/app/options">
-            <button class="waves-effect waves-light btn" name="action" style="float:left">Back
-                <i class="mdi mdi-chevron-double-left" style="float:left"></i>
-            </button>
+
+        <button class="waves-effect waves-light btn" ng-click="back()" name="action" style="float:left">Back
+            <i class="mdi mdi-chevron-double-left" style="float:left"></i>
+        </button>
 
 
     </ion-content>

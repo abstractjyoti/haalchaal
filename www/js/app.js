@@ -97,6 +97,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
             }
         }
     })
+    
+    
+      .state('app.history', {
+        url: '/history',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/history.html',
+                controller: 'HistoryCtrl'
+            }
+        }
+    })
+    
 
     .state('app.sinup', {
         url: '/signup',
