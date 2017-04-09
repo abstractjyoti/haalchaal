@@ -169,7 +169,7 @@ angular.module('starter.controllers', [])
         }
 
         var stop;
-        $scope.timerCountdown = function () {
+      /*  $scope.timerCountdown = function () {
             // set number of seconds until the pizza is ready
             $scope.countDown = 0;
 
@@ -186,7 +186,7 @@ angular.module('starter.controllers', [])
                 }
             }, 1000, 0); // invoke every 1 second
         };
-
+*/
 
 
         //Get Questions
@@ -236,10 +236,7 @@ angular.module('starter.controllers', [])
 
                         questionset = $scope.questionarray;
                         console.log("QUESTIONSET :" + questionset + "  " + $scope.showoption);
-                        if (questioncat == 'personality') {
-                            console.log("called");
-                            $scope.timerCountdown();
-                        }
+                     
                         $scope.$apply();
 
                     }, null);
@@ -271,8 +268,8 @@ angular.module('starter.controllers', [])
                 $scope.calculateresult();
                 $location.path('/app/result');
             }
-            if (questioncat == 'personality')
-                $scope.timerCountdown();
+           /* if (questioncat == 'personality')
+                $scope.timerCountdown();*/
 
         };
 
@@ -383,7 +380,7 @@ angular.module('starter.controllers', [])
             $scope.rotate.push(true);
         }
     }
-
+    sufflearray($scope.cardarray);
     console.log($scope.cardarray);
 
 
@@ -405,10 +402,10 @@ angular.module('starter.controllers', [])
                 $scope.images[index] = $scope.cardarray[index].id;
 
 
-                previousindex = -1;
+                //   previousindex = -1;
 
                 $scope.$digest();
-            }, 1000);
+            }, 500);
 
 
         }
@@ -417,7 +414,7 @@ angular.module('starter.controllers', [])
             previousindex = -1;
             proceed = true;
             $scope.$digest();
-        }, 2500);
+        }, 1050);
 
     }
 
@@ -433,7 +430,7 @@ angular.module('starter.controllers', [])
 
 
                 $scope.$digest();
-            }, 1000);
+            }, 500);
 
             setTimeout(function () {
 
@@ -448,7 +445,7 @@ angular.module('starter.controllers', [])
                 }
 
                 $scope.$digest();
-            }, 2100);
+            }, 1200);
 
         }
 
