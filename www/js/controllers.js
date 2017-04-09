@@ -169,7 +169,7 @@ angular.module('starter.controllers', [])
         }
 
         var stop;
-      /*  $scope.timerCountdown = function () {
+        /*  $scope.timerCountdown = function () {
             // set number of seconds until the pizza is ready
             $scope.countDown = 0;
 
@@ -236,7 +236,7 @@ angular.module('starter.controllers', [])
 
                         questionset = $scope.questionarray;
                         console.log("QUESTIONSET :" + questionset + "  " + $scope.showoption);
-                     
+
                         $scope.$apply();
 
                     }, null);
@@ -268,8 +268,8 @@ angular.module('starter.controllers', [])
                 $scope.calculateresult();
                 $location.path('/app/result');
             }
-           /* if (questioncat == 'personality')
-                $scope.timerCountdown();*/
+            /* if (questioncat == 'personality')
+                 $scope.timerCountdown();*/
 
         };
 
@@ -315,7 +315,35 @@ angular.module('starter.controllers', [])
     })
 
 .controller('FlipGameCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
+    var previousindex, proceed;
+    var sufflearray = function (array) {
+        for (var i = 0; i < array.length; i++) {
+            var randomvalue = Math.floor(Math.random() * array.length);
+            var t;
+            t = array[i];
+            array[i] = array[randomvalue];
+            array[randomvalue] = t;
+        }
 
+
+        return array;
+
+
+    }
+    var showpopup = function (title, msg, path) {
+        $ionicPopup.alert({
+            title: title,
+            template: msg,
+        }).then(function (res) {
+            if (path)
+                $location.path(path);
+            else {
+                changeindex();
+                $scope.timerCountdown();
+            }
+
+        });
+    }
     $scope.numbers = [{
             "id": "img/bg.jpg",
             "title": "img/image1.png"
@@ -349,39 +377,68 @@ angular.module('starter.controllers', [])
             "title": "img/image8.png"
         }]
 
-    $scope.cardarray = [];
-    $scope.images = [];
-    $scope.rotate = [];
-    var previousindex = -1;
-    var proceed = true;
-    var sufflearray = function (array) {
-        for (var i = 0; i < array.length; i++) {
-            var randomvalue = Math.floor(Math.random() * array.length);
-            var t;
-            t = array[i];
-            array[i] = array[randomvalue];
-            array[randomvalue] = t;
-        }
 
 
-        return array;
 
-
+    $scope.$on('$ionicView.enter', function () {
+        console.log("called");
+        $scope.cardarray = [];
+        $scope.images = [];
+        $scope.rotate = [];
+        $scope.countDown = 0;
+        previousindex = -1;
+        proceed = true;
+        /*var sufflearray = function (array) {
+    for (var i = 0; i < array.length; i++) {
+        var randomvalue = Math.floor(Math.random() * array.length);
+        var t;
+        t = array[i];
+        array[i] = array[randomvalue];
+        array[randomvalue] = t;
     }
 
 
+    return array;
 
 
-    for (var j = 0; j < 2; j++) {
-        var newarray = sufflearray($scope.numbers.slice())
-        for (var i = 0; i < newarray.length; i++) {
-            $scope.cardarray.push(newarray[i]);
-            $scope.images.push(newarray[i].id);
-            $scope.rotate.push(true);
+}*/
+
+
+        for (var j = 0; j < 2; j++) {
+            var newarray = sufflearray($scope.numbers.slice())
+            for (var i = 0; i < newarray.length; i++) {
+                $scope.cardarray.push(newarray[i]);
+                $scope.images.push(newarray[i].id);
+                $scope.rotate.push(true);
+            }
         }
-    }
-    sufflearray($scope.cardarray);
-    console.log($scope.cardarray);
+       
+        console.log($scope.cardarray);
+
+        $scope.timerCountdown();
+
+    });
+    var stop;
+    $scope.timerCountdown = function () {
+        // set number of seconds until the pizza is ready
+        $scope.countDown = 0;
+
+        // start the countdown
+        stop = $interval(function () {
+            // decrement remaining seconds
+            console.log($scope.countDown);
+            $scope.countDown++;
+            // if zero, stop $interval and show the popup
+            if ($scope.countDown == 91) {
+                $interval.cancel(stop);
+                var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
+
+            }
+        }, 1000, 0); // invoke every 1 second
+    };
+
+
+
 
 
     $scope.getArray = function (number) {
@@ -410,7 +467,10 @@ angular.module('starter.controllers', [])
 
         }
         setTimeout(function () {
-
+            if ($scope.rotate.indexOf(true) == -1) {
+                $interval.cancel(stop);
+                var alertPopup = showpopup('Congratulations !', 'Good job .', '/app/options');
+            }
             previousindex = -1;
             proceed = true;
             $scope.$digest();
