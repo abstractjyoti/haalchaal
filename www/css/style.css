@@ -146,6 +146,7 @@
 
 .second .item-content {
     background-color: #ffe0b2;
+    word-spacing: 2px !important;
 }
 
 .first .item-content {
@@ -187,9 +188,7 @@
 
 .timerfill {
     height: 8px;
-    background-color: rgb(68,
-68,
-68);
+    background-color: rgb(68, 68, 68);
     transition: 2s ease;
     color: white;
     width: 0%;
@@ -198,7 +197,6 @@
 
 .bar.bar-stable .title {
     color: snow !important;
-    text-align: center;
 }
 
 .bar.bar-stable .mybutton {
@@ -229,4 +227,8 @@
     transition: 1s;
     background-position-x: 50%;
     background-position-y: 50%;
+}
+
+.errormessage {
+    color: #f44336;
 }

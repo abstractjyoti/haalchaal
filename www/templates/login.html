@@ -1,34 +1,40 @@
 <ion-view view-title="Login">
-    <ion-header-bar>
-        <h1 class="title">Login</h1>
+    <ion-nav-buttons side="left">
 
-    </ion-header-bar>
+    </ion-nav-buttons>
     <ion-content>
         <form ng-if="showform">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="username" type="text" class="validate" ng-model="user.username" ng-change="usernamerequired=''">
                     <label for="username" data-success={{message}}>User Name</label>
-                    <span>{{userdoesnotexist}}{{usernamerequired}}</span>
+                    <span class="errormessage"> <i class="mdi mdi-alert-circle-outline" ng-if="userdoesnotexist||usernamerequired">&nbsp;{{userdoesnotexist}}{{usernamerequired}}</i></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate" ng-model="user.password" ng-change="passwordrequired=''">
                     <label for="password" data-success={{message}}>Password</label>
-                    <span>{{passwordnotmatched}}</span><span>{{passwordrequired}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline"ng-if="passwordnotmatched||passwordrequired">&nbsp;{{passwordnotmatched}}{{passwordrequired}}</i></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <button class="waves-effect waves-light btn" ng-click="doLogin()"><i class="material-icons left"></i>login</button> <i>Or</i> <a ng-click="forgotpassword()">forgot password ?</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
 
-                    Not registered yet ?
-                    <button class="waves-effect waves-light btn" ng-click="signUp()"><i class="material-icons left"></i>Sign Up</button>
+            <div class="row">
+
+                <div class="input-field col s6 ">
+                    <a ng-click="forgotpassword()" style="float:right">forgot password ?</a>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="input-field col s3 m2">
+                    <button class="waves-effect waves-light btn" ng-click="doLogin()"><i class="mdi mdi-login"></i>&nbsp;login</button>
+                </div>
+                <div class="input-field col s3 m2 ">
+
+                    <button class="waves-effect waves-light btn" ng-click="signUp()"><i class="mdi mdi-launch"></i>&nbsp;Sign Up</button>
+
+                    <!---->
                 </div>
             </div>
             <!--<div class="input-field col s6">
@@ -42,14 +48,14 @@
                 <div class="input-field col s12">
                     <input id="username" type="text" class="validate" ng-model="user.username" ng-change="usernamerequired=''">
                     <label for="username" data-success={{message}}>User Name</label>
-                    <span>{{userdoesnotexist}}{{usernamerequired}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline" ng-if="userdoesnotexist||usernamerequired">&nbsp;{{userdoesnotexist}}{{usernamerequired}}</i></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate" ng-model="user.password" ng-change="passwordrequired='';">
                     <label for="password" data-success={{message}}>New password</label>
-                    <span>{{passwordnotmatched}}</span><span>{{passwordrequired}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline" ng-if="passwordrequired">&nbsp;{{passwordrequired}}</i></span>
                 </div>
             </div>
 
@@ -57,6 +63,7 @@
 
 
                 <button class="waves-effect waves-light btn" ng-click="changepasswordsection()"><i class="material-icons left"></i>Change Password</button>
+                <button class="waves-effect waves-light btn" ng-click="cancel()"><i class="material-icons left"></i>Cancel</button>
             </div>
 
 

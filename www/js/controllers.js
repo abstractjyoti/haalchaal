@@ -7,18 +7,21 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast, $location) {
     $scope.$on('$ionicView.enter', function () {
+
         $scope.showform = true;
         $scope.donotpressbackground = true;
         $scope.changepassword = false;
-        if ($.jStorage.get("user") != null) {
-            $location.path('/app/options');
-        } else
-            $location.path('/app/login');
+
         $scope.user = {};
         $scope.user.username = "";
         $scope.user.password = "";
 
+
     });
+    if ($.jStorage.get("user") != null) {
+        $location.path('/app/options');
+    } else
+        $location.path('/app/login');
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
@@ -82,6 +85,9 @@ angular.module('starter.controllers', [])
 
 
         /* */
+    }
+    $scope.cancel = function () {
+        $scope.showform = true;
     }
 
     $scope.backbutton = function () {
@@ -897,10 +903,17 @@ angular.module('starter.controllers', [])
 
         $scope.checkforvalidation = function (checkforfield) {
             $scope.namerequired = '';
-            $scope.validationforname='';
-            $scope.validationforsurname='';
-            var code = checkforfield ? $scope.user.firstname.charCodeAt($scope.user.firstname.length - 1) : scope.user.lastname.charCodeAt($scope.user.lastname.length - 1);
-            
+            $scope.validationforname = '';
+            $scope.validationforsurname = '';
+            var code = checkforfield ? $scope.user.firstname.charCodeAt($scope.user.firstname.length - 1) : $scope.user.lastname.charCodeAt($scope.user.lastname.length - 1);
+
+            if ((code < 65 || code > 90) && (code < 97 || code > 122)) {
+                if (checkforfield)
+                    $scope.user.firstname = $scope.user.firstname.replace($scope.user.firstname.charAt($scope.user.firstname.length - 1), "");
+
+                else
+                    $scope.user.lastname = $scope.user.lastname.replace($scope.user.lastname.charAt($scope.user.lastname.length - 1), "");
+            }
 
         }
 

@@ -5,7 +5,7 @@
                 <div class="input-field col s6">
                     <input id="firstname" type="text" class="validate" ng-model="user.firstname" ng-change="checkforvalidation(true)">
                     <label for="firstname">First Name</label>
-                    <span>{{namerequired}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline" ng-if="namerequired">&nbsp;{{namerequired}}</i></span>
                 </div>
                 <div class="input-field col s6">
                     <input id="lastname" type="text" class="validate" ng-model="user.lastname" ng-change="checkforvalidation(false)">
@@ -16,14 +16,14 @@
                 <div class="input-field col s12">
                     <input id="username" type="text" ng-model="user.username" ng-change="checkUniqueUser()">
                     <label for="username">User Name</label>
-                    <span>{{usernamerequired}}</span><span>{{userexists}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline" ng-if="usernamerequired||userexists">&nbsp;{{usernamerequired}}{{userexists}}</i></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate" ng-model="user.password" ng-change="checkPassword()">
                     <label for="password">Password (minimum length 6)</label>
-                    <span>{{passwordrequired}}</span> <span>{{password}}</span>
+                    <span class="errormessage"><i class="mdi mdi-alert-circle-outline" ng-if="passwordrequired||password">&nbsp;{{passwordrequired}}{{password}}</i></span>
                 </div>
             </div>
             <div class="row">
