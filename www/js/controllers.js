@@ -437,7 +437,7 @@ angular.module('starter.controllers', [])
             // if zero, stop $interval and show the popup
             if ($scope.countDown == 91) {
                 $interval.cancel(stop);
-                var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
+                var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/game');
 
             }
         }, 1000, 0); // invoke every 1 second
@@ -475,7 +475,7 @@ angular.module('starter.controllers', [])
         setTimeout(function () {
             if ($scope.rotate.indexOf(true) == -1) {
                 $interval.cancel(stop);
-                var alertPopup = showpopup('Congratulations !', 'Good job .', '/app/options');
+                var alertPopup = showpopup('Congratulations !', 'Good job .', '/app/game');
             }
             previousindex = -1;
             proceed = true;
@@ -530,7 +530,7 @@ angular.module('starter.controllers', [])
         $scope.$on('$ionicView.enter', function () {
             game();
 
-        })
+        });
         var game = function () {
             $scope.ambiguousletterpairs = [[7, 1], ["B", 8], ["Q", "O"], [1, "I"]];
             $scope.message = "";
@@ -563,9 +563,9 @@ angular.module('starter.controllers', [])
 
 
                 $scope.random = Math.floor(Math.random() * $scope.ambiguousletterpairs.length);
-                showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
+                //  showpopup("Let's start !", 'Find ' + $scope.ambiguousletterpairs[$scope.random][1]);
 
-
+                $scope.timerCountdown();
 
             }
 
@@ -584,7 +584,7 @@ angular.module('starter.controllers', [])
                     // if zero, stop $interval and show the popup
                     if ($scope.countDown === 15) {
                         $interval.cancel(stop);
-                        var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/options');
+                        var alertPopup = showpopup('<b>Oops ! Time Up..</b>', '<b>Try again later<b>', '/app/game');
 
                     }
                 }, 1000, 0); // invoke every 1 second
@@ -600,11 +600,11 @@ angular.module('starter.controllers', [])
 
                     $scope.random = $scope.random + 1 >= $scope.ambiguousletterpairs.length ? $scope.random + 1 - $scope.ambiguousletterpairs.length : $scope.random + 1;
 
-                    timecount != 3 ? showpopup('Congratulations !', 'Now find ' + $scope.ambiguousletterpairs[$scope.random][1]) : showpopup('Congratulations !', 'You did a great job !', '/app/options');
+                    timecount != 3 ? showpopup('<b>Congratulations !</b>', 'level ' + (timecount + 1)) : showpopup('Congratulations !', 'You did a great job !', '/app/game');
 
                 } else {
 
-                    showpopup('Oops !Wrong selection..!', 'Try again later', '/app/options');
+                    showpopup('<b>Oops !Wrong selection..!</b>', '<b>Try again later</b>', '/app/game');
                 }
 
             }

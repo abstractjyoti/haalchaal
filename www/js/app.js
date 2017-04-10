@@ -10,12 +10,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.Keyboard.disableScroll(true);
-            $cordovaPlugin.someFunction().then(success, error);
+        // if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
+        $cordovaPlugin.someFunction().then(success, error);
 
-        }
+        // }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
@@ -55,7 +55,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
             url: '/game',
             views: {
                 'menuContent': {
-                    templateUrl: 'templates/game.html',
+                    templateUrl: 'templates/game.html'
+                }
+            }
+        })
+        .state('app.oddone', {
+            url: '/oddone',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/oddone.html',
                     controller: 'GameCtrl'
                 }
             }
@@ -97,9 +105,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
             }
         }
     })
-    
-    
-      .state('app.history', {
+
+
+    .state('app.history', {
         url: '/history',
         views: {
             'menuContent': {
@@ -108,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'fettleflingdb', 'ngC
             }
         }
     })
-    
+
 
     .state('app.sinup', {
         url: '/signup',

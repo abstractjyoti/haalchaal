@@ -1,26 +1,51 @@
-<ion-view view-title="Game">
-    <ion-header-bar>
-      
-
-    </ion-header-bar>
+<ion-view view-title="Games">
     <ion-content>
-        <div class="timer">
-            <div class="timerfill" style="width:{{countDown*7}}%"></div>
-        </div>
+        <div class="row">
 
-<h4>
-        <div>
-            <div class="wrapper" ng-repeat="i in getNumber(8) track by $index">
-                <div class="box a" ng-repeat="j in getNumber(8) track by $index" ng-click="checkfornext($parent.$index,$index)">
-                    {{$parent.$index==parent && $index==child?ambiguousletterpairs[random][1]:ambiguousletterpairs[random][0]}}</div>
+
+            <div class="col s3 m2">
+                <div class="card mycard">
+                    <div class="card-image">
+                        <img src="img/Emotions.png">
+                        <span class="card-title heading">Find odd one</span>
+                    </div>
+                    <a href="#/app/oddone">
+                        <button class="btn-floating halfway-fab waves-effect waves-light red buttonstyle"><i class="mdi mdi-arrow-right"></i>
+                    </a>
+                    </button>
+
+                    <div class="card-content">
+                    </div>
+                </div>
             </div>
         </div>
-   </h4>
 
-       <a href="#/app/options"> <button class="waves-effect waves-light btn" name="action" style="float:left" >Back
-            <i class="mdi mdi-chevron-double-left" style="float:left"></i>
-        </button>
+        <div class="row">
+
+            <div class="col s3 m2">
+                <div class="card mycard">
+                    <div class="card-image">
+                        <img src="img/concentration.jpg" class="images">
+                        <span class="card-title heading">Find matching cards</span>
+                    </div>
+                    <a href="#/app/flipgame">
+                        <button class="btn-floating halfway-fab waves-effect waves-light red buttonstyle"><i class="mdi mdi-arrow-right"></i>
+                    </a>
+                    </button>
+
+                    <div class="card-content">
+                    </div>
+                </div>
+
+            </div>
 
 
-    </ion-content>
-</ion-view>
+
+
+
+
+
+
+
+
+            <!---->

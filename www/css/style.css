@@ -173,7 +173,7 @@
 }
 
 .timer {
-    height: 50px;
+    height: 8px;
 }
 
 .popuptext {
@@ -187,7 +187,9 @@
 
 .timerfill {
     height: 8px;
-    background-color: rgb(68, 68, 68);
+    background-color: rgb(68,
+68,
+68);
     transition: 2s ease;
     color: white;
     width: 0%;

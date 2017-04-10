@@ -4,13 +4,18 @@
 
     </ion-header-bar>
     <ion-content>
-        <div class="timer">
-            <div class="timerfill" style="width:{{countDown*1.12}}%"></div>
-        </div>
-        <center>
-            <h6>Find matching cards</h6>
-        </center>
         <h4>
+        <div class="timer">
+    <div class="timerfill" style="width:{{countDown*1.12}}%"></div>
+</div>
+<div class="card">
+    <div class="item item-text-wrap">
+        <center>Find matching cards</center>
+    </div>
+</div>
+           
+        
+      
         <div>
             <div class="wrappers" ng-repeat="i in getArray(1) track by $index">
                 <div class="boxes " ng-repeat="number in cardarray track by $index" ng-click="checkselection($index)"
@@ -28,9 +33,11 @@
         </div>-->
 
 
-        <button class="waves-effect waves-light btn" ng-click="back()" name="action" style="float:left">Back
-            <i class="mdi mdi-chevron-double-left" style="float:left"></i>
-        </button>
+        <center>
+            <button class="waves-effect waves-light btn" ng-click="back()" name="action" style="float:left">Back
+                <i class="mdi mdi-chevron-double-left" style="float:left"></i>
+            </button>
+        </center>
 
 
     </ion-content>

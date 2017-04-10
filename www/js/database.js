@@ -198,7 +198,7 @@ db.transaction(function (tx) {
 });*/
 //EQ QUESTIONS
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [1, " How frequently do you moderately exercise? ", "Daily or more often |1", "Once or twice a week |2", "Once or twice a month |3", "Seldom |4",12, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [1, " How frequently do you moderately exercise? ", "Daily or more often |1", "Once or twice a week |2", "Once or twice a month |3", "Seldom |4", 12, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [2, " How often do you get a full,restful night of sleep? ", "Most every night |1", "Four to five times a each week |2", "Two to three times each week |3", "Seldom |4", 12, 1]);
@@ -210,7 +210,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [4, " How closely does your weight approach the ideal level? ", "My weight is at the ideal level |1", "My weight is close to the idea level |2", "My weight is not close to the ideal level |3", "I am dangerously overweight (underweight) |4", 12, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [5, " To what extent do you eat a nutritious diet? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4",12, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [5, " To what extent do you eat a nutritious diet? ", "to a very great extent |1", "to some extent |2", "to little extent |3", "to very little extent |4", 12, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [6, " Which of the following best describes your use of tobacco? ", "In no period of my life have I had the habit of smoking or chewing tobacco. |1", "Early in my life for a short period I smoked or chewed tobacco |2", "I stopped smoking or chewing tobacco over the past two years |3", "I currently smoke or chew tobacco |4", 12, 1]);
@@ -237,22 +237,22 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [13, " When highly stressed, how capable are you of changing your thinking to calm down? ", "very capable |1", "capable |2", "incapable |3", "very incapable |4", 13, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [14, " When confronted with a stressful situation, how likely are you to wait passively for events to   develop rather than to take charge? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4",14, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [14, " When confronted with a stressful situation, how likely are you to wait passively for events to   develop rather than to take charge? ", "very unlikely |1", "unlikely |2", "likely |3", "very likely |4", 14, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [15, " Which of the following courses of action are you most likely to take when you have become thoroughly frustrated? ", "identify an alternate goal and pursue it |1", "pursue a relaxing activity |2", "withdraw and fell sorry for yourself |3", "vent your aggression on someone weaker than  you |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [16, " If you had worn an article of clothing one day and then found it to be flawed, how likely would you be to return it and ask for a refund? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4",14, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [16, " If you had worn an article of clothing one day and then found it to be flawed, how likely would you be to return it and ask for a refund? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [17, " When an unexpected, negative event happens to you, how likely are you to actively seek information about the event and how to cope with it? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4",14, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [17, " When an unexpected, negative event happens to you, how likely are you to actively seek information about the event and how to cope with it? ", "very likely |1", "likely |2", "unlikely |3", "very unlikely |4", 14, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [18, " How much decision-making power so you have in your family? ", "more power than any other member of my family |1", "as much power as any other member of my family |2", "less power than most members of my family |3", "less power than any other member of my family |4", 14, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [19, " How much decision-making power do you have in your working environment?  (if not working outside the home at present, use your last job as a basis for answering this question.) ", "more power than most members of my work team |1", "as much power as any other member of my work team |2", "less power than most members of my work team |3", "less power than any other member of my work team |4",14, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [19, " How much decision-making power do you have in your working environment?  (if not working outside the home at present, use your last job as a basis for answering this question.) ", "more power than most members of my work team |1", "as much power as any other member of my work team |2", "less power than most members of my work team |3", "less power than any other member of my work team |4", 14, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,4,?)", [20, " To what extent do you believe that events in your life are merely the result of luck, fate, or chance? ", "to very little extent |1", "to little extent |2", "to some extent |3", "to a great extent |4", 14, 1]);
@@ -525,6 +525,32 @@ db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [32, 4, 3.5, 4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Superior stresscoper"]);
 });
 
+
+(id integer primary key, catid integer, min_score integer, max_score integer, behaviour varchar, recommend varchar, status varchar, que_set integer)
+
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [33, 1, 0, 6, "You have absolute control over your attention. When you need to clear your mind of distractions, you become a blank slate and are ready for necessary tasks, no matter the duration. You don't need peace and quiet because you can work in the noisiest, most distracting environments. You can listen to complicated stories, solve complex problems, and then dive right into the next thing.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Excellent concentration"]);
+});
+
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [34, 1, 7, 13, "You've found your sweet spot between getting intensely wrapped up in concentration and being open to worthwhile interruptions. Sometimes you have the patience for involved tasks and other times your mind wanders and it's a challenge to get it focused. You might find yourself wondering 'Is this over yet?' or you could get so immersed that hours fly by.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Balanced concentration"]);
+});
+
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [35, 1, 14, 20, "You have a short attention span, but no worries! You get bored with the ordinary, mundane things in life and have a wanderlust for excitement. Because you are seeking out new and interesting horizons, you'll be the person who comes up with the innovative ideas that change the world. ", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low concentration"]);
+});
+
+
+
+
+
+
+
+
+
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,1,?)", [62, " I often daydream during lectures or tune out when a speaker is boring.", "Yes |1", "No |0", null, null, 0, 1]);
 });
@@ -624,10 +650,10 @@ angular.module('fettleflingdb', ['ngCordova'])
                     tx.executeSql('SELECT * FROM `users` where username="' + username + '"', [], function (tx, results) {
                         // console.log($cordovaToast.show("Here's a message", 'long', 'center'));
                         if (results.rows.length == 1) {
-                            if(result.rows.item(0).password==password)
-                            $location.path('/app/options');
-                          /*  else 
-                               $scope.passwordnotmatched="Wrong password !";  */
+                            if (result.rows.item(0).password == password)
+                                $location.path('/app/options');
+                            /*  else 
+                                 $scope.passwordnotmatched="Wrong password !";  */
                         } else {
                             scope.userdoesnotexist = "User does no exists !";
                             console.log(scope.userdoesnotexist);
@@ -636,7 +662,7 @@ angular.module('fettleflingdb', ['ngCordova'])
 
                     }, null);
                 });
-                
+
             }
         }
     });
