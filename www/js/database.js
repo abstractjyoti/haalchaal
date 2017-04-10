@@ -526,7 +526,7 @@ db.transaction(function (tx) {
 });
 
 
-(id integer primary key, catid integer, min_score integer, max_score integer, behaviour varchar, recommend varchar, status varchar, que_set integer)
+/*(id integer primary key, catid integer, min_score integer, max_score integer, behaviour varchar, recommend varchar, status varchar, que_set integer)*/
 
 
 db.transaction(function (tx) {
