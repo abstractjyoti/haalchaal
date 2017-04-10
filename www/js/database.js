@@ -361,6 +361,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [54, "As an HRD manager you have to recruit a large number of employees for a multinational firm.After the written test and interview you find that most of candidates who qualified are women. What will be your reaction? ", "Hire women employees. They deserve it as they have qualified the selection criteria.|20", "Well it’s a women’s world. Hire them any way.|15", "Hire male and female employees in equal number.|10", "Avoid women employees as they are a liability.|5", 9, 1]);
 });
 
+//eq evaluation
 
 db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [1, 9, 91, 100, "You regularly have “meltdowns”,you think with their heart,you talk everything out,you don’t rush through life, put your whole hearts into whatever it is that you are doing,you pay attention even to small details, You are powerfully affected by the feelings of others,You often end up in situations “by accident”, you can give great advice to others, and lastly u guys know your worth very well", "Try progressive muscle relaxation.Change your posture as Facial expressions and posture have an effect on our moods.", "extremely high eq"]);
@@ -425,13 +426,6 @@ db.transaction(function (tx) {
 });
 
 
-
-
-
-
-
-
-
 //personality
 
 
@@ -477,6 +471,8 @@ db.transaction(function (tx) {
     tx.executeSql("insert into evaluation(id,catid ,min_score ,max_score,que_set ,status) values(20,2,311,440,1,'Extremely  high EQ')");
 });
 
+//personality eval
+
 db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [21, 8, 7, 9, "you have a uniquecreative personality. the main thing in life for you are your intuition, wisdom, joy, satisfaction and curiosity.the world for you is full of mystery and is made up of so many different things, situations and people which are all constantly stimulating your imagination. your life is painted in a multitude of beautiful colours, and you're always looking at it through the prism of creativity. you can turn anything that happens to you into something positive, and you never look for simple answers to life's questions", "", "Creative Personality"]);
 });
@@ -511,23 +507,24 @@ db.transaction(function (tx) {
 });
 
 
-// Stree 
+// Strees eval
+
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [29, 4, 0, 1.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Below average stresscoper"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [29, 4, 0, 1.4, " Over-planning each day. you feel the need to stick to a strict schedule daily, you live in fear of falling behind or overlooking a task. With too much to do and not enough time, it’s easy to think that “efficient” means doing everything at once. you are among those who chases two rabbits catches neither.you feel like a failure if you don’t come out on top—even when the only competition is your own expectations. you people need confirmation from outside sources that they’re doing okay and performing well.you have inability to relax without feeling guilty.", " Practice the 4 A's- Avoid, Alter, Adapt & Accept, learn to say no,Get moving: Put on some music and dance around, feel relaxed.Connect to others- Reach out to a colleague at work.Share your feelings.Adjust your standards.Create a balanced schedule.", "Below average stresscoper"]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [30, 4, 1.5, 2.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Average stresscoper"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [30, 4, 1.5, 2.4, "you are impatience with delays. When you’re under pressure, everything in life takes on urgency and the additional burdens to get everything done as fast as possible.you are chronically late or forgetful of commitments. your schedule at times cause problems in personal or professional relationships. you have forgotten what it’s like to have fun for fun’s sake.you have “grown up” so much that playtime actually causes you anxiety.you find yourself missing out on what you might otherwise deem meaningful.you are Compulsive to overwork.", "Take time to know who you are and what you wish to achieve.Meet new people by taking a class or joining a club.Make time for fun and relaxation.Relaxation techniques such as yoga, meditation, and deep breathing activate the body’s relaxation response, a state of restfulness that is the opposite of the fight or flight or mobilization stress response, practice such techniques.", "Average stresscoper"]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [31, 4, 2.5, 3.4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Above average stresscoper"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [31, 4, 2.5, 3.4, "you are Flexible and open to options. When you have captured all of your commitments, you are able to make clear decisions whenever an opportunity presents itself.You find it easier to manage relationships as you are clear on what commitments you can and cannot make.You are able to look ahead and see where you might need to improve your knowledge or skills.You have an ability to determine what is truly important and focus your energy on that.You can handle anything which is thrown at you and you are confident in your ability to do so", " Curl up with a good book, Learn to forgive, Listen to music, Watch a comedy,Don't over-commit yourself, Prioritize tasks.", "Above average stresscoper"]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [32, 4, 3.5, 4, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Superior stresscoper"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [32, 4, 3.5, 4, "you do not just manage your work, you manage your life. Because you have a well structured system to ensure that everything which needs to get done gets done. You are in charge of your life and you have developed the personal productivity mindset to deal with whatever life throws at you.You know your purpose, you have a clear vision and a plan to achieve each goal.if you cannot control it or influence it, you are going to find it difficult to change it because You focus on what you can change.From the smile on your face to the boundless energy with which you move, you exemplify the positivity which most people can only dream of.", " Maintain balance with a healthy lifestyle, Reduce caffeine and sugar,Get enough sleep- Adequate sleep fuels your mind, as well as your body.", "Superior stresscoper"]);
 });
 
 
 /*(id integer primary key, catid integer, min_score integer, max_score integer, behaviour varchar, recommend varchar, status varchar, que_set integer)*/
-
+//concentration eval
 
 db.transaction(function (tx) {
     tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [33, 1, 0, 6, "You have absolute control over your attention. When you need to clear your mind of distractions, you become a blank slate and are ready for necessary tasks, no matter the duration. You don't need peace and quiet because you can work in the noisiest, most distracting environments. You can listen to complicated stories, solve complex problems, and then dive right into the next thing.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Excellent concentration"]);
