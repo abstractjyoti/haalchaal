@@ -6,16 +6,20 @@ var maincatid;
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout, MyDatabase, $cordovaToast, $location) {
-    $scope.showform = true;
-    $scope.donotpressbackground = true;
-    $scope.changepassword = false;
-    if ($.jStorage.get("user") != null) {
-        //  $location.path('/app/flipgame');
-    } else
-        $location.path('/app/login');
-    $scope.user = {};
-    $scope.user.username = "";
-    $scope.user.password = "";
+    $scope.$on('$ionicView.enter', function () {
+        $scope.showform = true;
+        $scope.donotpressbackground = true;
+        $scope.changepassword = false;
+        if ($.jStorage.get("user") != null) {
+            $location.path('/app/options');
+        } else
+            $location.path('/app/login');
+        $scope.user = {};
+        $scope.user.username = "";
+        $scope.user.password = "";
+
+    });
+
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
 
@@ -23,15 +27,16 @@ angular.module('starter.controllers', [])
         $scope.passwordrequired = $scope.user.password == "" ? "Please enter password !" : "";
         $scope.usernamerequired = $scope.user.username == "" ? "Please enter username !" : "";
         if ($scope.passwordrequired == "" && $scope.usernamerequired == "") {
-
+            $scope.userdoesnotexist = '';
+            $scope.passwordnotmatched = '';
             db.transaction(function (tx) {
-                tx.executeSql('SELECT * FROM `users` where username="' + $scope.user.username + '"', [], function (tx, results) {
+                tx.executeSql('SELECT * FROM `users` where username="' + ($scope.user.username).toLowerCase() + '"', [], function (tx, results) {
                     // console.log($cordovaToast.show("Here's a message", 'long', 'center'));
                     if (results.rows.length == 1) {
                         if (!$scope.changepassword) {
                             if (results.rows.item(0).password == $scope.user.password) {
-                                $scope.userdoesnotexist = '';
-                                $scope.passwordnotmatched = '';
+                                /* $scope.userdoesnotexist = '';
+                                 $scope.passwordnotmatched = '';*/
                                 console.log("matched");
                                 $.jStorage.set("user", {
                                     id: results.rows.item(0).id,
@@ -74,6 +79,9 @@ angular.module('starter.controllers', [])
     $scope.logout = function () {
         $.jStorage.flush();
         $location.path("/app/login");
+
+
+        /* */
     }
 
     $scope.backbutton = function () {
@@ -96,6 +104,8 @@ angular.module('starter.controllers', [])
         $scope.changepassword = true;
         $scope.doLogin();
     }
+
+
 
 })
 
@@ -868,8 +878,29 @@ angular.module('starter.controllers', [])
             $scope.namerequired = $scope.user.lastname == "" || $scope.user.firstname == "" ? "Name is required !" : "";
             $scope.usernamerequired = $scope.user.username == "" ? "Username is required !" : "";
             $scope.passwordrequired = $scope.user.password == "" ? "Password is required !" : "";
-            if ($scope.namerequired == "" && $scope.usernamerequired == "" && $scope.passwordrequired == "")
-                MyDatabase.insertUser($scope.user, $scope);
+            if ($scope.namerequired == "" && $scope.usernamerequired == "" && $scope.passwordrequired == "") {
+                db.transaction(function (tx) {
+                    tx.executeSql('INSERT INTO `users` (name,username,password,gender,age) VALUES(?,?,?,?,?)', [$scope.user.firstname + " " + $scope.user.lastname, $scope.user.username.toLowerCase(), $scope.user.password, $scope.user.gender, $scope.user.age]);
+                    $location.path('/app/login');
+                    $scope.$apply();
+                });
+
+
+
+
+            }
+
+
+        }
+
+
+
+        $scope.checkforvalidation = function (checkforfield) {
+            $scope.namerequired = '';
+            $scope.validationforname='';
+            $scope.validationforsurname='';
+            var code = checkforfield ? $scope.user.firstname.charCodeAt($scope.user.firstname.length - 1) : scope.user.lastname.charCodeAt($scope.user.lastname.length - 1);
+            
 
         }
 
@@ -881,6 +912,7 @@ angular.module('starter.controllers', [])
 
 .controller('HistoryCtrl', function ($scope, MyDatabase, $location, $timeout, $interval, $ionicPopup) {
     var gethistory = function () {
+        $scope.historydata = [];
         db.transaction(function (tx) {
             tx.executeSql('SELECT u.id,u.score,u.status,u.dates,u.min_value,u.max_value,q.category FROM `userrecords` as u,`questioncategory` as q where u.catid=q.id and u.userid=' + $.jStorage.get('user').id + ' order by (u.id) DESC', [], function (tx, results) {
                 console.log(results.rows.length);
@@ -901,7 +933,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.$on('$ionicView.enter', function () {
-        $scope.historydata = [];
+
         gethistory();
 
     });
@@ -914,20 +946,21 @@ angular.module('starter.controllers', [])
             //show toast History cleared
             gethistory();
 
-        })
-        $scope.deleteonswipe = function (index) {
+        });
+    };
+    $scope.deleteonswipe = function (index) {
 
-            db.transaction(function (tx) {
-                tx.executeSql('delete from `userrecords` where userid=' + $.jStorage.get('user').id + ' and id=' + $scope.historydata[index].id);
-                //show toast History cleared
-                gethistory();
-            })
-        }
-
-
-
-
+        db.transaction(function (tx) {
+            tx.executeSql('delete from `userrecords` where userid=' + $.jStorage.get('user').id + ' and id=' + $scope.historydata[index].id);
+            //show toast History cleared
+            gethistory();
+        });
     }
+
+
+
+
+
 
 
 

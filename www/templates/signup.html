@@ -3,12 +3,12 @@
         <div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="firstname" type="text" class="validate" ng-model="user.firstname" ng-change="namerequired=''">
+                    <input id="firstname" type="text" class="validate" ng-model="user.firstname" ng-change="checkforvalidation(true)">
                     <label for="firstname">First Name</label>
                     <span>{{namerequired}}</span>
                 </div>
                 <div class="input-field col s6">
-                    <input id="lastname" type="text" class="validate" ng-model="user.lastname">
+                    <input id="lastname" type="text" class="validate" ng-model="user.lastname" ng-change="checkforvalidation(false)">
                     <label for="lastname">Last Name</label>
                 </div>
             </div>
