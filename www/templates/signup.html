@@ -1,4 +1,10 @@
 <ion-view view-title="Sign Up">
+    <ion-nav-buttons side="left">
+        <!-- <a href="#/app/login">
+        <i class="mdi mdi-arrow-left backicon" ng-click="back()"></i>
+        </a>-->
+    </ion-nav-buttons>
+
     <ion-content>
         <div>
             <div class="row">
@@ -47,7 +53,10 @@
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <button class="waves-effect waves-light btn" ng-click=signup()><i class="material-icons left"></i>Sign Up</button>
+                <button class="waves-effect waves-light btn" ng-click=signup()><i class="mdi mdi-launch"></i>&nbsp;Sign Up</button>
+                <a href="#/app/login">
+                    <button class="waves-effect waves-light btn"><i class="material-icons left"></i>Cancel</button>
+                </a>
             </div>
         </div>
 

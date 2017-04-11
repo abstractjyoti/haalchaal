@@ -1,20 +1,19 @@
 <ion-view view-title="Login">
     <ion-nav-buttons side="left">
-
     </ion-nav-buttons>
     <ion-content>
         <form ng-if="showform">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="username" type="text" class="validate" ng-model="user.username" ng-change="usernamerequired=''">
-                    <label for="username" data-success={{message}}>User Name</label>
+                    <input id="username" type="text" ng-model="user.username" ng-change="usernamerequired=''">
+                    <label for="username">User Name</label>
                     <span class="errormessage"> <i class="mdi mdi-alert-circle-outline" ng-if="userdoesnotexist||usernamerequired">&nbsp;{{userdoesnotexist}}{{usernamerequired}}</i></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" ng-model="user.password" ng-change="passwordrequired=''">
-                    <label for="password" data-success={{message}}>Password</label>
+                    <input id="password" type="password" ng-model="user.password" ng-change="passwordrequired=''">
+                    <label for="password">Password</label>
                     <span class="errormessage"><i class="mdi mdi-alert-circle-outline"ng-if="passwordnotmatched||passwordrequired">&nbsp;{{passwordnotmatched}}{{passwordrequired}}</i></span>
                 </div>
             </div>

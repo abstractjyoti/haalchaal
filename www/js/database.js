@@ -16,7 +16,7 @@ db.transaction(function (tx) {
 
 });
 db.transaction(function (tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS `direct_questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,question_type varchar, categoryid integer)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS `direct_questions` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,option5 varchar,correctanswer varchar,que_format varchar, categoryid integer,sub_type integer,que_set integer)');
 });
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS `combinational_question` (id integer primary key AUTOINCREMENT, question varchar,option1 varchar,option2 varchar,option3 varchar,option4 varchar,que_format varchar,sub_type integer, categoryid integer,que_set integer)');
@@ -42,10 +42,11 @@ db.transaction(function (tx) {
     //QUESTIONCATEGORY TABLE DATA
     tx.executeSql("insert into questioncategory values(1,'cocentration',0,'combinational_question')");
     tx.executeSql("insert into questioncategory values(2,'eq',0,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(3,'iq',0,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(3,'iq',0,'direct_questions')");
 
     tx.executeSql("insert into questioncategory values(4,'stress',0,'combinational_question')");
-    tx.executeSql("insert into questioncategory values(5,'analogy',3,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(5,'analogy',3,'direct_questions')");
+
     tx.executeSql("insert into questioncategory values(6,'classification',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(7,'logic',3,'direct_questions')");
     tx.executeSql("insert into questioncategory values(8,'personality',0,'combinational_question')");
@@ -55,6 +56,9 @@ db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(15,'Social Ease Scale ',4,'combinational_question')");
     tx.executeSql("insert into questioncategory values(16,'Tension reduction Scale ',4,'combinational_question')");
     tx.executeSql("insert into questioncategory values(17,'Spiritual Practice Scale ',4,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(18,'pattern_matching',3,'direct_questions')");
+    tx.executeSql("insert into questioncategory values(19,'spatial',3,'direct_questions')");
+    tx.executeSql("insert into questioncategory values(20,'visual',3,'direct_questions')");
 
 
 
@@ -69,6 +73,137 @@ db.transaction(function (tx) {
 db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(11,'competency',2,'combinational_question')");
 });
+
+/*(id , question ,option1 ,option2 ,option3 ,option4 ,option5 ,correctanswer ,que_format , categoryid ,sub_type ,que_set )*/
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [1, "Choose the picture that would go in the empty box so that the two bottom pictures are related in the same way as the top two are related ?;img/analogy1.png", "1", "2", "3", "4", null, "1|5", "img", 3, 5, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [2, "Choose the picture that would go in the empty box so that the two bottom pictures are related in the same way as the top two are related ?;img/analogy2.png", "1", "2", "3", "4", null, "1|5", "img", 3, 5, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [3, "The words in the bottom row are related in the same way as the words in the top row. For each item, find the word that completes the bottom row of words. ?;img/analogy3.png", "Tent", "City", "Dwelling", "House", null, "House|5", "img", 3, 5, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [4, "Choose the pair that best represents a similar relationship to the one expressed in the original pair of words. EXPLORE : DISCOVER", "read : skim", "research : learn", "write : print", "think : relate", "sleep : wake", "research : learn|5", "text", 3, 5, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [5, "Choose the pair that best represents a similar relationship to the one expressed in the original pair of words. COBBLER : SHOE", "jockey : horse",
+"contractor : building", "mason : stone", "cowboy : boot", "potter : paint", "contractor : building|5", "text", 3, 5, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [6, "Odometer is to mileage as compass is to", "speed", "hiking", "needle", "direction", null, "direction|5", "text", 3, 5, 1]);
+});
+//Iq classification
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [7, "Choose the word which is different from the rest.", "Kiwi", "Eagle", "Emu", "Ostrich", null, "Eagle|5", "text", 3, 6, 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [8, "Choose the word which is different from the rest.", "Rigveda", "Yajurveda", "Atharvaveda", "Ayurveda", "Samveda", "Ayurveda|5", "text", 3, 6, 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [9, "Choose the word which is different from the rest.", "Gangtok", "Singhbhum", "Hyderabad", "Chennai", "Bhubaneshwar", "Singhbhum|5", "text", 3, 6, 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [10, "Choose the word which is different from the rest.", "Tailor", "Carpenter", "Blacksmith", "Barber", "Engineer", "Barber|5", "text", 3, 6, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [11, "Choose the word which is different from the rest.", "Eyes", "Ears", "Hands", "Legs", "Nose", "Nose|5", "text", 3, 6, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [12, "Choose the word which is different from the rest.", "Volume", "Size", "Large", "Shape", "Weight", "Large|5", "text", 3, 6, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [13, "Choose the word which is different from the rest.", "Walk", "Pull", "Hear", "Jump", "Run", "Hear|5", "text", 3, 6, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [14, "Choose the word which is different from the rest.", "Teach", "Instruct", "Educate", "Explain", null, "Instruct|5", "text", 3, 6, 1]);
+});
+
+//iq logic
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [15, "At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?", "100", "20", "45", "50", "90", "45|5", "text", 3, 7, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [16, "The day before the day before yesterday is three days after Saturday. What day is it today?", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Friday|5", "text", 3, 7, 1]);
+});
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [17, "10 : 6 :: 3 : ?", " 2", "1", "-1", "12", "4", "-1|5", "text", 3, 7, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [18, "1, 3, 6, 10, 15,?", "8", "11", "24", "21", "27", "21|5", "text", 3, 7, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [19, "165135 is to peace as 1215225 is to", "lead", "love", "loop", "castle", null, "love|5", "text", 3, 7, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [20, "Library is to book as book is to", "page", "copy", "binding", "cover", null, "page|5", "text", 3, 7, 1]);
+});
+
+
+//iq visual
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [21, "Pick the piece that's missing from the diagram below;img/visual1.png", "A", "B", "C", "D", null, "A|5", "img", 3, 20, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [22, "Which figure is the odd one out? ;img/visual2.png", "A", "B", "C", "D", null, "D|5", "img", 3, 20, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [23, "Which of the following figures is the odd one out?;img/visual3.png", "A", "B", "C", "D", "E", "A|5", "img", 3, 20, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [24, "Which of the following figures is the odd one out?;img/visual4.png", "A", "B", "C", "D", null, "C|5", "img", 3, 20, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [25, "How many four sided shapes does this diagram have?;img/visual5.png", "5-10", "11-15", "16-20", "21-25", "26-30", "26-30|5", "img", 3, 20, 1]);
+});
+
+
+//iq spatial
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [26, "Which diagram results from folding the diagram on the left?;img/spatial1.png", "A", "B", "C", "D", null, "A|5", "img", 3, 19, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [27, "Which of the cubes is the same as the unfolded cube below?;img/spatial2.png", "A", "B", "C", "D", null, "A|5", "img", 3, 19, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [28, "Which one of the Rubik's cube below can be part of the sequence?;img/spatial3.png", "A", "B", "C", "D", null, "C|5", "img", 3, 19, 1]);
+});
+
+//iq pattern matching
+
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [29, "1.	Which of the figures can be used to continue the series given below?;img/pm1.png", "A", "B", "C", "D", "E", "C|5", "img", 3, 18, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [30, "Which one of the Rubik's cube below can be part of the sequence?;img/pm2.png", "A", "B", "C", "D", null, "A|5", "img", 3, 18, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [31, "Which one of the Rubik's cube below can be part of the sequence?;img/pm3.png", "A", "B", "C", "D", null, "D|5", "img", 3, 18, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [32, "If in a certain code language BOSTON can be written as SNSNSN, then how would you write CALIFORNIA in the same code language?", "OAOAOA", "LONLON", "LOILOILOI", "LONLONLON", null, "LOILOILOI|5", "text", 3, 18, 1]);
+});
+db.transaction(function (tx) {
+    tx.executeSql("insert into direct_questions values(?,?,?,?,?,?,?,?,?,?,?,?)", [33, "If NEW YORK can be encrypted as PGYAQTM, how can you code the word CHARLOTTE?", "EICSNPVVG", "EJCTNQVVG", "EICTNPVVF", "EJCSMPVVG", null, "EJCTNQVVG|5", "text", 3, 18, 1]);
+});
+
+
+
+
+
+
+
+
+
 /*db.transaction(function (tx) {
     tx.executeSql("insert into questioncategory values(12,'personality',0,'combinational_question')");
 });
@@ -295,7 +430,7 @@ db.transaction(function (tx) {
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [33, "You have been denied a promotion by the management for which you were eligible. Moreover,one of your juniors has been promoted. You are emotionally upset and feel frustrated. What will you do?", "Talk it over with your boss and ask for reconsideration of the management’s decision.|15", "Start abusing the colleague who superseded you.|5", "Move to court and obtain a stay order to get justice.|10", "Identify your shortcomings and try to improve your performance.|20", 11, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [33, " You have been denied a promotion by the management for which you were eligible.Moreover,one of your juniors has been promoted.aYou are emotionally upset and feel frustrated. What will you do?", "Talk it over with your boss and ask for reconsideration of the management’s decision.|15", "Start abusing the colleague who superseded you.|5", "Move to court and obtain a stay order to get justice.|10", "Identify your shortcomings and try to improve your performance.|20", 11, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [34, "A freshly recruited professional graduate joins your organisation as a management trainee.Aftera few weeks, she complains to you that she was not being taken seriously by her subordinates. What will you suggest her?", "Ask her to handle the situation herself and not bother you with trivial matters.|5", "Tell her that such behaviour should be ignored.|10", "Ask her to be bold, face the challenge and overcome the problem.|15", "Empathize with her and help her figure out ways to get others to work with her.|20", 9, 1]);
@@ -304,7 +439,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [35, "At the workplace, due to some misunderstanding, your colleagues stop talking to you. You are convinced that there was no fault no yours. How will you react?", "Wait till they come and start talking to you again.|15", "Take the initiative, go forward and start talking to them.|20", "Let things take their own time to improve.|5", "Ask someone to mediate.|10", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [36, "You get into an argument with your colleague and end up attacking him/her personally. Later you realize that you never intended to tarnish the image of your colleague. How will you handle such ugly situation?","Sit calmly and consider what triggered off the arguments and was it possible to control your anger at that point of time.|20", "Avoid future arguments and leave the room.|15", "Apologise to your colleague for your behaviour.|10", "Continue with the argument till you reach some definite conclusion.|5", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [36, "You get into an argument with your colleague and end up attacking him/her personally. Later you realize that you never intended to tarnish the image of your colleague. How will you handle such ugly situation?", "Sit calmly and consider what triggered off the arguments and was it possible to control your anger at that point of time.|20", "Avoid future arguments and leave the room.|15", "Apologise to your colleague for your behaviour.|10", "Continue with the argument till you reach some definite conclusion.|5", 10, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [37, "Imagine you are an insurance salesperson selling insurance policies. You approach a number of prospective clients who slam the door on your face and refuse to buy policies. What will you do?", "Blame yourself and stop work for the day.|5", "Reassess your capabilities as an insurance salesperson.|20", "Come out with fresh strategies to overcome similar situations in future.|15", "Contact the clients again some other day.|10", 11, 1]);
@@ -322,14 +457,14 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [41, "Your grown up daughter starts arguing with you every now and then.She tells you that you cannot impose your old fashioned attitudes and outdated values on her.How will you tackle her?", "Accept her statement in helplessness and take a low profile position in the family.|5", "Send her to a psychologist to learn her adjust with her environment.|10", "Manage your emotions and explain your point of view as patiently as possible.|20", "Talk to her and understand her emotions, beliefs and attitudes.|15", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [42, "After weeks of merger of two largest financial firms, hundreds of employees were expected to lose their jobs. You, being the General Manager(HQ),were told to convey to the employee the decision of the  management. How will you convey the message?", "Give a gloomy picture and tell them you have no option but to fire half of them.|5", "Give a bright picture and tell them that the company will be blessed with talented people from both firms.|20", 
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [42, "After weeks of merger of two largest financial firms, hundreds of employees were expected to lose their jobs. You, being the General Manager(HQ),were told to convey to the employee the decision of the  management. How will you convey the message?", "Give a gloomy picture and tell them you have no option but to fire half of them.|5", "Give a bright picture and tell them that the company will be blessed with talented people from both firms.|20",
 "Tell them that you will collect more information to be fair and update them every few days on how things will take shape.|15", "Announce the decision and let the employees take a decision about what they want.|10", 11, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [43, "You are a professor in a college. While delivering a lecture, a student comments that you have not prepared the topic properly and you are just passing the time.This has hurt your self esteem .What will be your reaction?", "Report to the principal of the college about the unruly behavior of the student.|5", "Order the student to leave the classroom at once.|10", "Ask him/her to meet you in your chamber after the class to explain what he/she wants.|15", "Judge the emotions of the class and promise to make amendments accordingly.|20", 10, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [44, "As CEO of a company, while taking a meeting with the union, one of the union leaders levels serious allegations of corruption and favoritism against you.How will you react?","Continue with the discussion and listen to their demands with a cool head.|20", "Ask union leader to make allegations in writing and offer an impartial enquiry.|15", "Cancel further negotiation and ask the union leader to apologise first.|10", "Leave the room after assigning the responsibility to your subordinate to continue with the|5", 10, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [44, "As CEO of a company, while taking a meeting with the union, one of the union leaders levels serious allegations of corruption and favoritism against you.How will you react?", "Continue with the discussion and listen to their demands with a cool head.|20", "Ask union leader to make allegations in writing and offer an impartial enquiry.|15", "Cancel further negotiation and ask the union leader to apologise first.|10", "Leave the room after assigning the responsibility to your subordinate to continue with the|5", 10, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [45, "You had an argument with your spouse on some trivial family matter and are not on speakingterms for sometime. The situationis causing mental disturbance to both of you. What will you do?", "Stick to your stand; after all you were never at fault.|5", "Try to break the ice by analysing the reasons for the conflict.|15", "Make first move and ease the situation.|20", "Wait for your spouse to make the first move to restore normalcy.|10", 11, 1]);
@@ -341,7 +476,7 @@ db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [47, "While speaking to an audience, you feel that:", "It is difficult to convey your speech.|10", "You are partly comfortable in conveying your speech.|15", "You are comfortable in conveying your speech.|20", "You feel that you will do better with some more practice.|5", 11, 1]);
 });
 db.transaction(function (tx) {
-    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [48, "Your friend’s sister, who got married just one year back,is heading for a divorce.She is highly educated and economically self dependent. She come so you for guidance .What will you advise her?", "Tell her to go ahead with the divorce as she is a first class MBA and her husband can not takeher for granted|5", "Empathize with her for marring an academically average person.|10", "Advise her to talk to her husband and figure out the reasons behind the mal‐adjustment.|20",                           "Tell her that academic qualifications are important but these do not help in leading a successful married life.|15", 9, 1]);
+    tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [48, "Your friend’s sister, who got married just one year back,is heading for a divorce.She is highly educated and economically self dependent. She come so you for guidance .What will you advise her?", "Tell her to go ahead with the divorce as she is a first class MBA and her husband can not takeher for granted|5", "Empathize with her for marring an academically average person.|10", "Advise her to talk to her husband and figure out the reasons behind the mal‐adjustment.|20", "Tell her that academic qualifications are important but these do not help in leading a successful married life.|15", 9, 1]);
 });
 db.transaction(function (tx) {
     tx.executeSql("insert into combinational_question values(?,?,?,?,?,?,'text',?,2,?)", [49, "There is blind girl in your class. She trips on her way out of the class. You see a few of your friends making fun of her and laughing at her. What will you do? ", "Laugh along with your friends.|5", "Ignore the incident as they are your friends.|10", "Help the blind girl make her way out of the class room but say nothing to your friends.|15", "Help the girl and then confront your friends for being so insensitive.|20", 9, 1]);
@@ -504,7 +639,7 @@ db.transaction(function (tx) {
 });
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [28, 3, 50, 89, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [28, 3, 0, 89, "You Simply Cannot Explain Yourself.you People generally get bored and uninterested in anything that requires you to think too much or to acquire more self-awareness.You Have A Hard Time Understanding Things.you are generally less curious and interested to find out new things. you have poor social skills in play-learn situations, poor dressing and feeding skills as well as delayed hygiene and self-care.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low IQ"]);
 });
 
 

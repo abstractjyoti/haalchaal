@@ -174,7 +174,7 @@
 }
 
 .timer {
-    height: 8px;
+    height: 20px;
 }
 
 .popuptext {
@@ -231,4 +231,10 @@
 
 .errormessage {
     color: #f44336;
+}
+
+.backicon {
+    font-size: 2em;
+    margin-top: 15%;
+    color: snow;
 }
