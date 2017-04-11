@@ -1,7 +1,7 @@
 {
-  "name": "fettlefling",
+  "name": "Haalchaal",
   "version": "1.1.1",
-  "description": "fettlefling: An Ionic project",
+  "description": "Haalchaal: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",

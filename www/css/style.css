@@ -28,8 +28,30 @@
     transform: scale(1, 1);
 }
 
+@keyframes divanimation {
+    from {
+        top: 50%;
+        left: 50%;
+        margin-left: 100%;
+        margin-top: -50px;
+        transition-timing-function: ease-in-out
+      /* // transition: all 2s;*/
+    }
+    to {
+        top: 50%;
+        left: 50%;
+        margin-left: 0%;
+        margin-top: -50px;
+        
+       /* transition: all 2s;*/
+    }
+}
+
 .questiondiv {
     margin-top: 5% !important;
+   /* animation-name: divanimation;
+    animation-timing-function: linear;
+    animation-duration: 1s;*/
 }
 
 @keyframes example {

@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
         }
 
     })
-    .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams, $interval) {
+    .controller('QuestionsCtrl', function ($scope, MyDatabase, $location, $stateParams, $interval,$ionicScrollDelegate) {
         $scope.$on('$ionicView.enter', function () {
             $scope.maincategory = questioncat.charAt(0).toUpperCase() + questioncat.substr(1, questioncat.length - 1);
             console.log($scope.maincategory + "  " + questioncat);
@@ -275,6 +275,7 @@ angular.module('starter.controllers', [])
             console.log($scope.answers);
         };
         $scope.changequestion = function (index, indextobchanged) {
+            $ionicScrollDelegate.scrollTop();
             $scope.showoption = false;
 
             if (indextobchanged < $scope.display.length && indextobchanged >= 0) {
@@ -284,7 +285,7 @@ angular.module('starter.controllers', [])
 
             } else {
                 $scope.calculateresult();
-                $location.path('/app/result');
+                $location.path('app/result');
             }
             /* if (questioncat == 'personality')
                  $scope.timerCountdown();*/
@@ -667,14 +668,7 @@ angular.module('starter.controllers', [])
 
     })
     .controller('ResultCtrl', function ($scope, MyDatabase, $location, $ionicScrollDelegate) {
-
-        $scope.$on('$ionicView.enter', function () {
-            console.log("Called");
-
-
-        });
-
-        var ranges = [];
+        var ranges;
         console.log("Called outside");
         var count = 0,
             totalscore = 0,
@@ -685,112 +679,141 @@ angular.module('starter.controllers', [])
             value = 0,
             precision = 2,
             unit = "";
-        $scope.result = [];
-        $scope.recommendation = [];
-        $scope.showresult = true;
-        ranges = [];
-        if (questioncat == "stress" || questioncat == "iq") {
 
-            var totalscores = 0;
+        $scope.$on('$ionicView.enter', function () {
+            angular.element(document.querySelector('.collapsible')).collapsible({
+                onOpen: function (el) {
+                    $('.mcards').addClass('mycards');
+                }, // Callback for Collapsible open
+                onClose: function (el) {
+                        $('.mcards').removeClass('mycards');
+                    } // Callback for Collapsible close
 
-            for (var i = 0; i < questioncategory.length; i++)
-                totalscores += questioncat == "stress" ? questioncategory[i].scores / questioncategory[i].length : questioncategory[i].scores;
-
-            questioncategory = [];
-
-
-            questioncategory.push({
-                id: maincatid,
-                category: questioncat,
-                scores: questioncat == "stress" ? Math.round(totalscores / 6) : totalscores,
-                length: questionset.length
             });
-        }
-        db.transaction(function (tx) {
-            for (var i = 0; i < questioncategory.length; i++) {
-                totalscore += questioncategory[i].scores;
 
-                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
-                    console.log(questioncategory);
-                    prepareValueMeter(results);
-                    /*
-                         
-                            upperLimit = results.rows.item(results.rows.length - 1).max_score;
-                             lowerLimit = results.rows.item(0).min_score;
-                             value = questioncategory[i].scores;
-                             console.log( upperLimit+" "+lowerLimit+" "+ value);
-                           $scope.result.push({
-                                 value: value,
-                                 upperLimit: upperLimit,
-                                 lowerLimit: lowerLimit,
-                                 unit: unit,
-                                 precision: precision,
-                                 ranges: ranges
-                             });*/
-                    /* console.log(results.rows.item(results.rows.length - 1).max_score + "   " + ranges);
-                          
-                            $scope.$apply();
-                          
-                            console.log(ranges);
-                            $scope.result.push({
-                                value: value,
-                                upperLimit: upperLimit,
-                                lowerLimit: lowerLimit,
-                                unit: unit,
-                                precision: precision,
-                                ranges: ranges*/
-                    //  $scope.$apply();
-                }, null);
+            count = 0;
+            totalscore = 0;
+            totallength = 0;
+            upperLimit = 0;
+            lowerLimit = 0;
+            value = 0;
+            precision = 2;
+            unit = "";
+            console.log("are you called !");
+            $scope.result = [];
+            $scope.recommendation = [];
+            $scope.showresult = true;
+            //ranges = [];
+            console.log(questioncategory);
+            if (questioncat == "stress" || questioncat == "iq") {
 
-            }
-            console.log($scope.result[1]);
-        });
-
-        db.transaction(function (tx) {
-            if (questioncategory.length > 1) {
                 var totalscores = 0;
 
                 for (var i = 0; i < questioncategory.length; i++)
-                    totalscores += questioncategory[i].scores;
+                    totalscores += questioncat == "stress" ? questioncategory[i].scores / questioncategory[i].length : questioncategory[i].scores;
+
+                questioncategory = [];
+
 
                 questioncategory.push({
                     id: maincatid,
-                    category: "Over all " + questioncat,
-                    scores: totalscores,
+                    category: questioncat,
+                    scores: questioncat == "stress" ? Math.round(totalscores / 6) : totalscores,
                     length: questionset.length
                 });
+            }
+            db.transaction(function (tx) {
+                for (var i = 0; i < questioncategory.length; i++) {
+                    totalscore += questioncategory[i].scores;
 
-
-
-                tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
-                    if (results.rows.length > 0)
+                    tx.executeSql('SELECT * FROM `evaluation` where catid= ' + questioncategory[i].id + ' order by min_score', [], function (tx, results) {
+                        console.log(questioncategory);
                         prepareValueMeter(results);
-                    $scope.$apply();
+                        /*
+                             
+                                upperLimit = results.rows.item(results.rows.length - 1).max_score;
+                                 lowerLimit = results.rows.item(0).min_score;
+                                 value = questioncategory[i].scores;
+                                 console.log( upperLimit+" "+lowerLimit+" "+ value);
+                               $scope.result.push({
+                                     value: value,
+                                     upperLimit: upperLimit,
+                                     lowerLimit: lowerLimit,
+                                     unit: unit,
+                                     precision: precision,
+                                     ranges: ranges
+                                 });*/
+                        /* console.log(results.rows.item(results.rows.length - 1).max_score + "   " + ranges);
+                              
+                                $scope.$apply();
+                              
+                                console.log(ranges);
+                                $scope.result.push({
+                                    value: value,
+                                    upperLimit: upperLimit,
+                                    lowerLimit: lowerLimit,
+                                    unit: unit,
+                                    precision: precision,
+                                    ranges: ranges*/
+                        //  $scope.$apply();
+                    }, null);
+
+                }
+                console.log($scope.result[1]);
+            });
+
+            db.transaction(function (tx) {
+                if (questioncategory.length > 1) {
+                    var totalscores = 0;
+
+                    for (var i = 0; i < questioncategory.length; i++)
+                        totalscores += questioncategory[i].scores;
+
+                    questioncategory.push({
+                        id: maincatid,
+                        category: "Over all " + questioncat,
+                        scores: totalscores,
+                        length: questionset.length
+                    });
 
 
 
-                }, null)
+                    tx.executeSql('SELECT * FROM `evaluation` where catid= ' + maincatid + ' order by min_score', [], function (tx, results) {
+                        if (results.rows.length > 0)
+                            prepareValueMeter(results);
+                        $scope.$apply();
 
 
 
-            }
+                    }, null)
+
+
+
+                }
+            });
+
+
+
+
+
+            db.transaction(function (tx) {
+                console.log('called resultsection');
+                if (questioncategory[questioncategory.length - 1].id == maincatid) {
+                    // var today=new Date();
+                    tx.executeSql("insert into `userrecords`(userid ,catid ,score ,status ,min_value ,max_value,dates) values(?,?,?,?,?,?,strftime('%d-%m-%Y', 'now'))", [$.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit]);
+
+                    console.log("inserting values :" + 'insert into userrecords(userid ,catid ,score ,status ,min_value ,max_value) values(?,?,?,?,?,?)' + $.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit);
+                    $scope.$apply()
+
+                }
+            });
+
+
+
         });
 
 
 
-
-
-        db.transaction(function (tx) {
-            console.log('called resultsection');
-            if (questioncategory[questioncategory.length - 1].id == maincatid) {
-                // var today=new Date();
-                tx.executeSql("insert into `userrecords`(userid ,catid ,score ,status ,min_value ,max_value,dates) values(?,?,?,?,?,?,strftime('%d-%m-%Y', 'now'))", [$.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit]);
-
-                console.log("inserting values :" + 'insert into userrecords(userid ,catid ,score ,status ,min_value ,max_value) values(?,?,?,?,?,?)' + $.jStorage.get('user').id, maincatid, $scope.result[$scope.result.length - 1].value, $scope.recommendation[$scope.recommendation.length - 1].status, $scope.result[$scope.result.length - 1].lowerLimit, $scope.result[$scope.result.length - 1].upperLimit);
-                $scope.$apply()
-
-            }
-        });
 
 
 

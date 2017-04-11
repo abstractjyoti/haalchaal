@@ -1,7 +1,8 @@
 <ion-view view-title="Evaluation">
 
     <ion-nav-buttons side="left">
-        <a href="#/app/option"> <i class="mdi mdi-arrow-left backicon" ></i></a>
+        <a href="#/app/option" style=" margin-top: auto;"> <i class="mdi mdi-arrow-left backicon" style="margin-top:25% !important"></i>
+        </a>
     </ion-nav-buttons>
 
 
@@ -26,7 +27,7 @@
 </div>-->
             <div>
                 <center>
-                    <button id="#mybutton" class="waves-effect waves-light btn" ng-click="changeshowresultvalue()" onclick="scrollup()">Get suggestions</button>
+                    <button id="#mybutton" class="waves-effect waves-light btn" ng-click="changeshowresultvalue()">Get suggestions</button>
             </div>
             </center>
         </div>
@@ -47,20 +48,6 @@
         </div>
     </ion-content>
 </ion-view>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.collapsible').collapsible({
-            onOpen: function (el) {
-                $('.mcards').addClass('mycards');
-            }, // Callback for Collapsible open
-            onClose: function (el) {
-                    $('.mcards').removeClass('mycards');
-                } // Callback for Collapsible close
-
-        });
-
-    });
-    var scrollup = function () {
-        $("#suggestiondiv").scrollTop();
-    }
-</script>
+<<!--script type="text/javascript">
+    $(document).ready(function () { $('.collapsible').collapsible({ onOpen: function (el) { $('.mcards').addClass('mycards'); }, // Callback for Collapsible open onClose: function (el) { $('.mcards').removeClass('mycards'); } // Callback for Collapsible close }); }); var scrollup = function () { $("#suggestiondiv").scrollTop(); }
+    </script>-->
