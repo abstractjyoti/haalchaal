@@ -663,20 +663,18 @@ db.transaction(function (tx) {
 //concentration eval
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [33, 1, 0, 6, "You have absolute control over your attention. When you need to clear your mind of distractions, you become a blank slate and are ready for necessary tasks, no matter the duration. You don't need peace and quiet because you can work in the noisiest, most distracting environments. You can listen to complicated stories, solve complex problems, and then dive right into the next thing.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Excellent concentration"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [33, 1, 0, 6, "You have absolute control over your attention. When you need to clear your mind of distractions, you become a blank slate and are ready for necessary tasks, no matter the duration. You don't need peace and quiet because you can work in the noisiest, most distracting environments. You can listen to complicated stories, solve complex problems, and then dive right into the next thing.", " Stop Multitasking. Get Rid of Clutter.Find Your Perfect Sound Environment.Eat plenty of fruits and vegetables.They are high in vitamins, antioxidants, and phytonutrients your brain needs.", "Excellent concentration"]);
 });
 
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [34, 1, 7, 13, "You've found your sweet spot between getting intensely wrapped up in concentration and being open to worthwhile interruptions. Sometimes you have the patience for involved tasks and other times your mind wanders and it's a challenge to get it focused. You might find yourself wondering 'Is this over yet?' or you could get so immersed that hours fly by.", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Balanced concentration"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [34, 1, 7, 13, "You've found your sweet spot between getting intensely wrapped up in concentration and being open to worthwhile interruptions. Sometimes you have the patience for involved tasks and other times your mind wanders and it's a challenge to get it focused. You might find yourself wondering 'Is this over yet?' or you could get so immersed that hours fly by.", " Read long stuff slowly, dive deep into the context, try to feel it.The more curious you are about the world, the greater the stamina of your concentration will be when it comes to any endeavor. Practice attentive listening: making an effort to focus all your energy on someone else strengthens your concentration.", "Balanced concentration"]);
 });
 
 
 db.transaction(function (tx) {
-    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [35, 1, 14, 20, "You have a short attention span, but no worries! You get bored with the ordinary, mundane things in life and have a wanderlust for excitement. Because you are seeking out new and interesting horizons, you'll be the person who comes up with the innovative ideas that change the world. ", " Read at least one book a week. Start to notice the patterns. Intelligence all boils down to pattern recognition.Buy the book Boost Your IQ by Carolyn Skitt, and play all the games.take natural supplements like Caffeine or Creatine or dark chocolate.", "Low concentration"]);
+    tx.executeSql("insert into evaluation values(?,?,?,?,?,?,?,1)", [35, 1, 14, 20, "You have a short attention span, but no worries! You get bored with the ordinary, mundane things in life and have a wanderlust for excitement. Because you are seeking out new and interesting horizons, you'll be the person who comes up with the innovative ideas that change the world. ", " Create a distraction to-do list, and try to hvae control over it.mediate : as meditation help keep you cool, calm, and collected,and mindfulness meditation can boost your attention span significantly.memorizing stuff is an excellent way to exercise your mind muscles. try it out!!", "Low concentration"]);
 });
-
-
 
 
 
