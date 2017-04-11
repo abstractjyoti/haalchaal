@@ -40,7 +40,7 @@ db.transaction(function (tx) {
     //user
     // 
     //QUESTIONCATEGORY TABLE DATA
-    tx.executeSql("insert into questioncategory values(1,'cocentration',0,'combinational_question')");
+    tx.executeSql("insert into questioncategory values(1,'concentration',0,'combinational_question')");
     tx.executeSql("insert into questioncategory values(2,'eq',0,'combinational_question')");
     tx.executeSql("insert into questioncategory values(3,'iq',0,'direct_questions')");
 
