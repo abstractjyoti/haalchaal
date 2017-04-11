@@ -459,7 +459,7 @@ angular.module('starter.controllers', [])
             console.log($scope.countDown);
             $scope.countDown++;
             // if zero, stop $interval and show the popup
-            if ($scope.countDown == 91) {
+            if ($scope.countDown == 60) {
                 $interval.cancel(stop);
                 var alertPopup = showpopup('Oops ! Time Up..', 'Try again later', '/app/game');
 
